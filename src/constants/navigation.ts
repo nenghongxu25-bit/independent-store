@@ -5,7 +5,7 @@ export interface Category {
   subtitle: string;
   image?: string; // 加个问号表示这个字段是可选的
 }
-import { Category } from "@/types/navigation";
+import { Category } from "../types/navigation";
 
 // 明确告诉 TS：这个数组里必须全是 Category 类型的对象
 export const CATEGORY_DATA: Category[] = [
