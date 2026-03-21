@@ -1,5 +1,5 @@
-import { CATEGORY_DATA } from "@/constants/navigation";
-import CategoryCard from "@/components/CategoryCard";
+import { CATEGORY_DATA } from "independent-store/src/constants/navigation";
+import CategoryCard from "independent/src/components/CategoryCard";
 
 export default function HomePage() {
   return (
