@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Category } from "../types/navigation";
+import { Category } from "../constants/navigation";
 
 // 定义组件接收的参数类型
 interface CategoryCardProps {
