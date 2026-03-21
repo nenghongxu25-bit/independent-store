@@ -1,13 +1,12 @@
-// 定义分类对象的形状
+// 1. 定义数据结构（这就相当于数据库的 Table Schema）
 export interface Category {
   slug: string;
   title: string;
   subtitle: string;
-  image?: string; // 加个问号表示这个字段是可选的
+  image?: string;
 }
-import { Category } from "../components/navigation";
 
-// 明确告诉 TS：这个数组里必须全是 Category 类型的对象
+// 2. 导出数据（这就是你的数据库内容）
 export const CATEGORY_DATA: Category[] = [
   { slug: "engagement-rings", title: "订婚戒指", subtitle: "见证承诺与心动时刻" },
   { slug: "wedding-rings", title: "结婚戒指", subtitle: "陪伴一生的经典之选" },
