@@ -6,8 +6,8 @@
 
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { useTranslation } from "../../../../hooks/useTranslation";
-import { theme, styles } from "../../../../lib/theme";
+import { useTranslation } from "../../../hooks/useTranslation";
+import { theme, styles } from "../../../lib/theme";
 import { categories } from "./data";
 
 interface Props {
