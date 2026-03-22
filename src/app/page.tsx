@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { Playfair_Display } from "next/font/google";
+import { Alex_Brush } from "next/font/google";
 import { CATEGORY_DATA } from "../constants/navigation";
 import CategoryCard from "../components/CategoryCard";
 
-const playfairDisplay = Playfair_Display({
+const alexBrush = Alex_Brush({
   weight: "400",
   subsets: ["latin"],
 });
@@ -13,13 +13,13 @@ export default function HomePage() {
     <main style={{ maxWidth: 1120, margin: "0 auto", padding: 24 }}>
       <div style={{ textAlign: "center", margin: "24px 0 32px", padding: "0 20px" }}>
         <h1
-          className={playfairDisplay.className}
+          className={alexBrush.className}
           style={{
             margin: 0,
             fontSize: "clamp(60px, 12vw, 150px)",
             lineHeight: 1.1,
-            letterSpacing: "0.02em",
-            textTransform: "uppercase",
+            letterSpacing: "0.05em",
+            textTransform: "none",
             fontWeight: 400,
             background: "linear-gradient(180deg, #fff2bf 0%, #e7c86a 45%, #a87b1e 100%)",
             WebkitBackgroundClip: "text",
