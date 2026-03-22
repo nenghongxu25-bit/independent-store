@@ -2,6 +2,9 @@
 // 用途：根据 URL 参数显示不同的产品分类内容
 // 支持通过 slug 参数动态加载不同分类的产品列表
 
+// 标记为客户端组件，因为使用了 useTranslation 钩子
+'use client';
+
 // 导入必要的模块
 import { notFound } from "next/navigation"; // 用于处理 404 错误，当找不到分类时使用
 import Link from "next/link"; // 用于创建导航链接，返回分类列表页
@@ -32,15 +35,6 @@ const categories: Record<string, { items: string[] }> = {
     items: ["一月石榴石", "二月紫水晶", "三月海蓝宝", "四月钻石"],
   },
 };
-
-// 静态参数生成函数
-// 用途：告诉Next.js预先生成哪些slug的页面，提高性能
-// 在构建时生成这些页面，而不是在运行时动态生成
-export function generateStaticParams() {
-  // 从categories对象中提取所有slug作为静态参数
-  // 这样Next.js会为每个slug预先生成页面
-  return Object.keys(categories).map((slug) => ({ slug }));
-}
 
 // 页面组件的属性接口
 // 定义组件接收的参数类型
