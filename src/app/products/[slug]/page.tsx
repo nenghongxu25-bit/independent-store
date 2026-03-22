@@ -1,12 +1,9 @@
 // 动态产品分类页面
-// 用途：根据URL参数显示不同的产品分类内容
-// 支持通过slug参数动态加载不同分类的产品列表
-
-// 标记为客户端组件，因为使用了useTranslation钩子
-'use client';
+// 用途：根据 URL 参数显示不同的产品分类内容
+// 支持通过 slug 参数动态加载不同分类的产品列表
 
 // 导入必要的模块
-import { notFound } from "next/navigation"; // 用于处理404错误，当找不到分类时使用
+import { notFound } from "next/navigation"; // 用于处理 404 错误，当找不到分类时使用
 import Link from "next/link"; // 用于创建导航链接，返回分类列表页
 import { useTranslation } from "../../../hooks/useTranslation"; // 多语言支持，用于翻译文本
 import { theme, styles } from "../../../lib/theme"; // 主题和样式配置

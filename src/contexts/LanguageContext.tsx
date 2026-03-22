@@ -2,7 +2,7 @@
 // 用途：管理应用的语言状态，提供语言切换功能
 // 为整个应用提供统一的语言管理
 
-// 标记为客户端组件，因为使用了useState和useEffect钩子
+// 标记为客户端组件，因为使用了useState和useEffect钩子，意思就是接下来将会导入客户端自带的“文件”
 'use client';
 
 // 导入必要的模块
@@ -11,7 +11,7 @@ import { Language } from '../constants/i18n'; // 语言类型
 
 // 语言上下文类型
 interface LanguageContextType {
-  language: Language; // 当前语言
+  language: Language; // 定义当前语言
   setLanguage: (lang: Language) => void; // 语言切换函数
 }
 
