@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { Great_Vibes } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 import { CATEGORY_DATA } from "../constants/navigation";
 import CategoryCard from "../components/CategoryCard";
 
-const greatVibes = Great_Vibes({
+const playfairDisplay = Playfair_Display({
   weight: "400",
   subsets: ["latin"],
 });
@@ -13,33 +13,35 @@ export default function HomePage() {
     <main style={{ maxWidth: 1120, margin: "0 auto", padding: 24 }}>
       <div style={{ textAlign: "center", margin: "24px 0 32px", padding: "0 20px" }}>
         <h1
-          className={greatVibes.className}
+          className={playfairDisplay.className}
           style={{
             margin: 0,
-            fontSize: "clamp(72px, 14vw, 180px)",
-            lineHeight: 0.9,
-            letterSpacing: "0.04em",
+            fontSize: "clamp(60px, 12vw, 150px)",
+            lineHeight: 1.1,
+            letterSpacing: "0.02em",
             textTransform: "uppercase",
             fontWeight: 400,
             background: "linear-gradient(180deg, #fff2bf 0%, #e7c86a 45%, #a87b1e 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             color: "transparent",
-            textShadow: "0 0 40px rgba(212,175,55,0.4), 0 6px 24px rgba(0,0,0,0.55)",
+            textShadow: "0 0 30px rgba(212,175,55,0.4), 0 4px 12px rgba(0,0,0,0.55)",
             maxWidth: "100%",
-            overflow: "hidden",
-            wordWrap: "break-word",
+            overflow: "visible",
+            whiteSpace: "nowrap",
+            textAlign: "center",
           }}
         >
           SHIMMER
         </h1>
         <p
           style={{
-            margin: "16px auto 0",
-            fontSize: "clamp(18px, 3vw, 28px)",
+            margin: "24px auto 0",
+            fontSize: "clamp(16px, 2.5vw, 24px)",
             color: "#e8d5a3",
             letterSpacing: "0.15em",
             textTransform: "uppercase",
+            fontFamily: "'Playfair Display', serif",
           }}
         >
           珠宝 · 闪耀每一刻
