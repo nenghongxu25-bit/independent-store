@@ -1,3 +1,2 @@
-export const theme = {...};
-export const styles = {...};
-export const fonts = {...};
+export { theme, styles } from './theme';
+export { cormorantGaramond, fontClasses } from './fonts';
