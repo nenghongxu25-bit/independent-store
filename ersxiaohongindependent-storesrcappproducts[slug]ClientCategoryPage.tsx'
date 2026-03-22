@@ -1,0 +1,36 @@
+[33m5d3fb8e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m 重构：分离服务端和客户端组件，支持 generateStaticParams 和语言切换
+[33mfe2afc5[m 修复：删除 generateStaticParams 以支持客户端组件和语言切换
+[33mdd49cfb[m 修复：移除客户端组件指令以支持 generateStaticParams
+[33me733720[m 添加详细注释，提高代码可读性
+[33m9175c90[m Change to Cormorant Garamond font for balanced elegance
+[33mcac5653[m Change to Alex Brush font for artistic feel
+[33m26791da[m Update to Playfair Display font for luxury feel
+[33mbe0e3e6[m Fix title overflow issue
+[33mb196861[m Merge remote changes and keep SHIMMER theme
+[33m0bafb08[m Update SHIMMER theme and add products pages
+[33maff02d6[m Update navigation.ts
+[33m4f833f7[m Update navigation.ts
+[33m069b8bf[m Update CategoryCard.tsx
+[33m52db9d6[m Update navigation.ts
+[33ma6ecfd6[m Update CategoryCard.tsx
+[33ma79fae6[m Update page.tsx
+[33mddc9f7b[m Update page.tsx
+[33me660f9e[m Delete src/app/products directory
+[33me2bf043[m Delete src/app/products/[id] directory
+[33m43f718f[m Delete src/app/cart/page.tsx
+[33m0af7406[m Rename navigation.tsx to navigation.ts
+[33m316b2f3[m Update page.tsx
+[33mc096a6e[m Update page.tsx
+[33m0d4b9b5[m Update CategoryCard.tsx
+[33m38891db[m Update navigation.tsx
+[33mb22dfbb[m Update and rename navigation.js to navigation.tsx
+[33m7dd134d[m Rename CategoryCard.js to CategoryCard.tsx
+[33m04a9a18[m Delete src/app/page.js
+[33m38cfd18[m Rename src/app/constants/navigation.js to src/constants/navigation.js
+[33m08dfc07[m Rename src/app/components/CategoryCard.js to src/components/CategoryCard.js
+[33md401802[m Create page.js
+[33m9506dd5[m Create CategoryCard.js
+[33mbc74e63[m Rename navigation.ts to navigation.js
+[33mf04a4a0[m Create navigation.ts
+[33m8bdfc3d[m Update homepage with jewelry categories and refined black-gold styling.
+[33mca53113[m Initial commit
