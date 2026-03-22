@@ -11,12 +11,12 @@ const greatVibes = Great_Vibes({
 export default function HomePage() {
   return (
     <main style={{ maxWidth: 1120, margin: "0 auto", padding: 24 }}>
-      <div style={{ textAlign: "center", margin: "24px 0 32px" }}>
+      <div style={{ textAlign: "center", margin: "24px 0 32px", padding: "0 20px" }}>
         <h1
           className={greatVibes.className}
           style={{
             margin: 0,
-            fontSize: "clamp(100px, 18vw, 220px)",
+            fontSize: "clamp(72px, 14vw, 180px)",
             lineHeight: 0.9,
             letterSpacing: "0.04em",
             textTransform: "uppercase",
@@ -26,6 +26,9 @@ export default function HomePage() {
             backgroundClip: "text",
             color: "transparent",
             textShadow: "0 0 40px rgba(212,175,55,0.4), 0 6px 24px rgba(0,0,0,0.55)",
+            maxWidth: "100%",
+            overflow: "hidden",
+            wordWrap: "break-word",
           }}
         >
           SHIMMER
