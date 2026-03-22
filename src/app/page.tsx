@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { Alex_Brush } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 import { CATEGORY_DATA } from "../constants/navigation";
 import CategoryCard from "../components/CategoryCard";
 
-const alexBrush = Alex_Brush({
+const cormorantGaramond = Cormorant_Garamond({
   weight: "400",
   subsets: ["latin"],
 });
@@ -13,13 +13,13 @@ export default function HomePage() {
     <main style={{ maxWidth: 1120, margin: "0 auto", padding: 24 }}>
       <div style={{ textAlign: "center", margin: "24px 0 32px", padding: "0 20px" }}>
         <h1
-          className={alexBrush.className}
+          className={cormorantGaramond.className}
           style={{
             margin: 0,
             fontSize: "clamp(60px, 12vw, 150px)",
             lineHeight: 1.1,
-            letterSpacing: "0.05em",
-            textTransform: "none",
+            letterSpacing: "0.03em",
+            textTransform: "uppercase",
             fontWeight: 400,
             background: "linear-gradient(180deg, #fff2bf 0%, #e7c86a 45%, #a87b1e 100%)",
             WebkitBackgroundClip: "text",
@@ -41,7 +41,7 @@ export default function HomePage() {
             color: "#e8d5a3",
             letterSpacing: "0.15em",
             textTransform: "uppercase",
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'Cormorant Garamond', serif",
           }}
         >
           珠宝 · 闪耀每一刻
