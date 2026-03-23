@@ -7,55 +7,36 @@ interface PageTemplateProps {
   pageNum?: string;
 }
 
-export default function PageTemplate({ 
-  children, 
-  innerBg = 'rgba(15, 5, 25, 0.8)', 
-  pageNum = "01" 
-}: PageTemplateProps) {
+export default function PageTemplate({ children, pageNum = "01" }: PageTemplateProps) {
   return (
     <section style={{ 
-      height: '100vh', 
+      minHeight: '80vh', // 改为最小高度，内容多时自动撑开
+      width: '100%',
       position: 'relative', 
       display: 'flex', 
-      alignItems: 'center', 
-      justifyContent: 'center',
-      padding: '40px' 
+      flexDirection: 'column',
+      alignItems: 'center',
+      borderBottom: '1px solid rgba(212, 175, 55, 0.1)' // 淡淡的分割线
     }}>
-      
+      {/* 内容区域直接铺满，不再套那个厚重的玻璃盒子 */}
       <div style={{ 
-        position: 'absolute', top: '25px', width: '100%', 
-        textAlign: 'center', fontSize: '0.7rem', 
-        letterSpacing: '10px', color: '#d4af37', opacity: 0.6 
-      }}>
-        SHIMMER JEWELRY
-      </div>
-
-      <div className={styles.borderGlow} style={{ 
-        width: '100%', 
-        height: '100%', 
-        backgroundColor: innerBg,
+        flex: 1, 
+        width: '100%',
         display: 'flex', 
-        flexDirection: 'column',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderRadius: '4px',
-        position: 'relative',
-        zIndex: 10
+        alignItems: 'center', 
+        justifyContent: 'center',
+        padding: '120px 0' // 上下留白，保持高级感
       }}>
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {children}
-        </div>
+        {children}
       </div>
 
+      {/* 页码移到侧边或者去掉，避免干扰视觉 */}
       <div style={{ 
-        position: 'absolute', bottom: '25px', left: '40px', right: '40px',
-        display: 'flex', justifyContent: 'space-between',
-        fontSize: '0.65rem', color: '#d4af37', opacity: 0.5
+        position: 'absolute', right: '40px', bottom: '40px',
+        fontSize: '0.6rem', color: '#d4af37', opacity: 0.3
       }}>
-        <span style={{ letterSpacing: '2px' }}>LAB-GROWN DIAMOND SELECTION</span>
-        <span style={{ fontWeight: 'bold' }}>PAGE / {pageNum}</span>
+        INDEX / {pageNum}
       </div>
-
     </section>
   );
 }
