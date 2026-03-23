@@ -1,13 +1,21 @@
 /* src/app/page.module.css */
 .shimmerText {
-  font-size: 6rem;
-  font-weight: bold;
+  /* 核心：切换为衬线体 */
+  font-family: var(--font-cormorant), serif;
+  
+  /* 高奢秘诀：字要细，间距要大 */
+  font-weight: 300; 
+  letter-spacing: 0.05em; /* 稍微拉开一点点，更有呼吸感 */
+  font-style: italic;    /* 斜体有时比正体更有高定感 */
+  
+  /* 保持之前的流光和大小逻辑 */
+  font-size: clamp(3.5rem, 12vw, 8rem);
   background: linear-gradient(to right, #d4af37 20%, #fff 40%, #fff 60%, #d4af37 80%);
   background-size: 300% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmerEffect 10s ease-in-out infinite;
+  animation: shimmerEffect 10s ease-in-out infinite; /* 慢速流光 */
 }
 
 @keyframes shimmerEffect {
