@@ -32,20 +32,23 @@ export default function PageTemplate({
       </div>
 
       {/* 中间玻璃卡片 - 挂载呼吸边框动画 */}
-      <div className={styles.borderGlow} style={{ 
-        width: '100%', 
-        height: '100%', 
-        backgroundColor: innerBg,
-        border: '1px solid rgba(212, 175, 55, 0.1)', // 初始极淡的金色
-        display: 'flex', 
-        flexDirection: 'column',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-      }}>
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {children}
-        </div>
-      </div>
+     // 在中间卡片的 div 上应用
+<div className={styles.borderGlow} style={{ 
+  width: '100%', 
+  height: '100%', 
+  backgroundColor: innerBg,
+  display: 'flex', 
+  flexDirection: 'column',
+  backdropFilter: 'blur(20px)',
+  WebkitBackdropFilter: 'blur(20px)',
+  borderRadius: '4px', // 稍微明显的圆角，能让金边的转角更有质感
+  position: 'relative',
+  zIndex: 10
+}}>
+  <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    {children}
+  </div>
+</div>
 
       {/* 底部页脚 - 贴在屏幕边缘 */}
       <div style={{ 
