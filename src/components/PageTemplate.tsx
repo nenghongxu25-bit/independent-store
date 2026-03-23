@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import styles from '../app/page.module.css'; // 引入刚才定义的样式
+import styles from '../app/page.module.css';
 
 interface PageTemplateProps {
   children: ReactNode;
@@ -19,42 +19,38 @@ export default function PageTemplate({
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'center',
-      padding: '60px' 
+      padding: '40px' 
     }}>
       
-      {/* 顶部页眉 - 贴在屏幕边缘 */}
       <div style={{ 
         position: 'absolute', top: '25px', width: '100%', 
         textAlign: 'center', fontSize: '0.7rem', 
-        letterSpacing: '10px', color: '#d4af37', opacity: 0.5 
+        letterSpacing: '10px', color: '#d4af37', opacity: 0.6 
       }}>
         SHIMMER JEWELRY
       </div>
 
-      {/* 中间玻璃卡片 - 挂载呼吸边框动画 */}
-     // 在中间卡片的 div 上应用
-<div className={styles.borderGlow} style={{ 
-  width: '100%', 
-  height: '100%', 
-  backgroundColor: innerBg,
-  display: 'flex', 
-  flexDirection: 'column',
-  backdropFilter: 'blur(20px)',
-  WebkitBackdropFilter: 'blur(20px)',
-  borderRadius: '4px', // 稍微明显的圆角，能让金边的转角更有质感
-  position: 'relative',
-  zIndex: 10
-}}>
-  <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-    {children}
-  </div>
-</div>
+      <div className={styles.borderGlow} style={{ 
+        width: '100%', 
+        height: '100%', 
+        backgroundColor: innerBg,
+        display: 'flex', 
+        flexDirection: 'column',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderRadius: '4px',
+        position: 'relative',
+        zIndex: 10
+      }}>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {children}
+        </div>
+      </div>
 
-      {/* 底部页脚 - 贴在屏幕边缘 */}
       <div style={{ 
-        position: 'absolute', bottom: '25px', left: '60px', right: '60px',
+        position: 'absolute', bottom: '25px', left: '40px', right: '40px',
         display: 'flex', justifyContent: 'space-between',
-        fontSize: '0.65rem', color: '#d4af37', opacity: 0.4
+        fontSize: '0.65rem', color: '#d4af37', opacity: 0.5
       }}>
         <span style={{ letterSpacing: '2px' }}>LAB-GROWN DIAMOND SELECTION</span>
         <span style={{ fontWeight: 'bold' }}>PAGE / {pageNum}</span>
