@@ -1,5 +1,4 @@
 import { Cormorant_Garamond, Great_Vibes } from 'next/font/google';
-import './globals.css'; // 确保你的全局样式还在
 
 // 1. 初始化衬线体 (用于副标题和正文)
 const cormorant = Cormorant_Garamond({ 
