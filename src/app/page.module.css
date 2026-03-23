@@ -1,0 +1,22 @@
+/* src/app/page.module.css */
+.shimmerText {
+  font-size: 6rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #d4af37 20%, #fff 40%, #fff 60%, #d4af37 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerEffect 3s linear infinite;
+}
+
+@keyframes shimmerEffect {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.mainContainer {
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: #2d0a42;
+}
