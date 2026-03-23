@@ -1,28 +1,32 @@
-// src/app/page.tsx
 import React from 'react';
-// 关键：这行代码告诉程序去 components 文件夹里找 PageTemplate
 import PageTemplate from '@/components/PageTemplate';
+// 导入你的 CSS 模块
+import styles from './page.module.css';
 
 export default function Page() {
   return (
-    <main style={{ 
-      height: '100vh', 
-      overflowY: 'scroll', 
-      // 背景：从“几乎黑”到“深暗紫”的渐变
-      background: 'linear-gradient(135deg, #0a0210 0%, #1a0525 100%)',
-      backgroundAttachment: 'fixed',
-    }}>
-      {/* 之前的 <style> 里的 .shimmer-text 保持不变 */}
+    /* 使用 styles.mainContainer 挂载背景 */
+    <main className={styles.mainContainer}>
       
       <PageTemplate pageNum="01">
-        <h1 className="shimmer-text">Shimmer</h1>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          {/* 使用 styles.shimmerText 挂载标题样式 */}
+          <h1 className={styles.shimmerText}>Shimmer</h1>
+          
+          <p style={{ letterSpacing: '12px', color: '#d4af37', marginTop: '15px', opacity: 0.8 }}>
+            JEWELRY
+          </p>
+        </div>
       </PageTemplate>
 
       <PageTemplate pageNum="02">
-        <h2 style={{ color: '#d4af37', fontSize: '2.5rem', fontWeight: '300' }}>
-          科技缔造永恒
-        </h2>
+        <div style={{ textAlign: 'center', maxWidth: '600px' }}>
+          <h2 style={{ color: '#d4af37', fontSize: '2.5rem', fontWeight: '300' }}>
+            科技缔造永恒
+          </h2>
+        </div>
       </PageTemplate>
+
     </main>
   );
 }
