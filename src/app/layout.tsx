@@ -1,28 +1,28 @@
 import { Cormorant_Garamond, Great_Vibes } from 'next/font/google';
+import Navbar from '@/components/Navbar'; // 建议把导航逻辑拆分成独立组件
 
-// 1. 初始化衬线体 (用于副标题和正文)
 const cormorant = Cormorant_Garamond({ 
-  subsets: ['latin'],
-  weight: ['300', '400', '600'],
-  variable: '--font-cormorant',
+  subsets: ['latin'], 
+  weight: ['300', '400', '600'], 
+  variable: '--font-cormorant' 
 });
 
-// 2. 初始化手写连笔体 (专门用于 Shimmer 标题)
 const greatVibes = Great_Vibes({ 
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-great-vibes',
+  subsets: ['latin'], 
+  weight: ['400'], 
+  variable: '--font-great-vibes' 
 });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    // 关键：这里只保留一个 html 标签，并挂载两个字体的 CSS 变量
     <html lang="en" className={`${cormorant.variable} ${greatVibes.variable}`}>
-      <body style={{ margin: 0 }}>{children}</body>
+      <body style={{ margin: 0, backgroundColor: '#0a0210' }}>
+        {/* 导航栏放在这里，它就是固定（Fixed）的，不随 children 滚动 */}
+        <Navbar /> 
+        
+        {/* 这里的 children 就是你 page.tsx 里那一列长长的内容 */}
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
