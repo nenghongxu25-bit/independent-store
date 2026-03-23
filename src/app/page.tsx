@@ -8,21 +8,20 @@ export default function Page() {
     <main style={{ 
       height: '100vh', 
       overflowY: 'scroll', 
-      // 皇家紫金渐变：深紫到暗紫的斜向过渡
-      background: 'linear-gradient(135deg, #1a0525 0%, #3d0e5a 50%, #1a0525 100%)',
-      backgroundAttachment: 'fixed', // 背景固定，不随滚动条走
+      // 背景：从“几乎黑”到“深暗紫”的渐变
+      background: 'linear-gradient(135deg, #0a0210 0%, #1a0525 100%)',
+      backgroundAttachment: 'fixed',
     }}>
-      <style>{`
-        /* 之前的 shimmer 动画继续保留 */
-        .shimmer-text { ... } 
-      `}</style>
-
+      {/* 之前的 <style> 里的 .shimmer-text 保持不变 */}
+      
       <PageTemplate pageNum="01">
         <h1 className="shimmer-text">Shimmer</h1>
       </PageTemplate>
 
       <PageTemplate pageNum="02">
-        <h2 style={{ color: '#d4af37', fontSize: '2.5rem' }}>科技缔造永恒</h2>
+        <h2 style={{ color: '#d4af37', fontSize: '2.5rem', fontWeight: '300' }}>
+          科技缔造永恒
+        </h2>
       </PageTemplate>
     </main>
   );
