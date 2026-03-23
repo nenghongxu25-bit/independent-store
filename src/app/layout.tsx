@@ -1,36 +1,29 @@
 import { Cormorant_Garamond, Great_Vibes } from 'next/font/google';
+import './globals.css'; // 确保你的全局样式还在
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="zh">
-      <body>{children}</body>
-    </html>
-  )
-}
-
-// 1. 保留衬线体用于副标题和正文
+// 1. 初始化衬线体 (用于副标题和正文)
 const cormorant = Cormorant_Garamond({ 
   subsets: ['latin'],
   weight: ['300', '400', '600'],
   variable: '--font-cormorant',
 });
 
-// 2. 引入手写连笔体，专门用于 Shimmer 标题
+// 2. 初始化手写连笔体 (专门用于 Shimmer 标题)
 const greatVibes = Great_Vibes({ 
   subsets: ['latin'],
-  weight: ['400'], // 手写体通常只有一个粗细
-  variable: '--font-great-vibes', // 定义 CSS 变量
+  weight: ['400'],
+  variable: '--font-great-vibes',
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    // 关键：把两个字体的变量都挂载到 html 上
+    // 关键：这里只保留一个 html 标签，并挂载两个字体的 CSS 变量
     <html lang="en" className={`${cormorant.variable} ${greatVibes.variable}`}>
-      <body>{children}</body>
+      <body style={{ margin: 0 }}>{children}</body>
     </html>
   );
 }
