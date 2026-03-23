@@ -22,7 +22,6 @@ function PageTemplate({
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'center',
-      scrollSnapAlign: 'start',
       padding: '40px'
     }}>
       <div style={{ 
@@ -64,7 +63,6 @@ export default function Page() {
     <main style={{ 
       height: '100vh', 
       overflowY: 'scroll', 
-      scrollSnapType: 'y mandatory'
     }}>
       {/* 第一页 */}
       <PageTemplate pageNum="01" outerBg="#fff">
