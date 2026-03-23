@@ -1,15 +1,19 @@
-/* src/app/page.module.css */
+
 .shimmerText {
-  /* 核心：切换为衬线体 */
-  font-family: var(--font-cormorant), serif;
+  /* 1. 核心：切换为手写连笔体 */
+  font-family: var(--font-great-vibes), cursive;
   
-  /* 高奢秘诀：字要细，间距要大 */
-  font-weight: 300; 
-  letter-spacing: 0.05em; /* 稍微拉开一点点，更有呼吸感 */
-  font-style: italic;    /* 斜体有时比正体更有高定感 */
+  /* 2. 必须把全大写去掉，让首字母大写，其他小写，才能实现连笔 */
+  text-transform: none; 
   
-  /* 保持之前的流光和大小逻辑 */
-  font-size: clamp(3.5rem, 12vw, 8rem);
+  /* 3. 调整字号，手写体通常需要比黑体更大一点才够霸气 */
+  font-size: clamp(4rem, 15vw, 10rem); 
+  
+  /* 4. 减小间距，让字母靠得更近，增加连笔感 */
+  letter-spacing: -0.02em; 
+  
+  /* 以下保留你之前调好的慢速流光逻辑 */
+  font-weight: 400; /* 手写体不需要加粗 */
   background: linear-gradient(to right, #d4af37 20%, #fff 40%, #fff 60%, #d4af37 80%);
   background-size: 300% auto;
   -webkit-background-clip: text;
@@ -17,6 +21,8 @@
   -webkit-text-fill-color: transparent;
   animation: shimmerEffect 10s ease-in-out infinite; /* 慢速流光 */
 }
+
+/* 之前衬线体的定义可以留着给副标题使用 */
 
 @keyframes shimmerEffect {
   0% { background-position: 150% center; }
