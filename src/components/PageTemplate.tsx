@@ -8,58 +8,66 @@ export interface PageTemplateProps {
 
 export default function PageTemplate({ 
   children, 
-  // 核心修改：使用极低亮度的深紫色，透明度设为 0.8，产生深邃感
   innerBg = 'rgba(15, 5, 25, 0.8)', 
   pageNum = "01" 
 }: PageTemplateProps) {
   return (
     <section style={{ 
       height: '100vh', 
-      backgroundColor: 'transparent', 
+      position: 'relative', // 必须设为 relative，作为文字定位的参考系
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'center',
-      padding: '40px'
+      padding: '60px' // 给边缘留出足够的空位
     }}>
+      
+      {/* 1. 挪到最顶部的页眉 - 现在它会贴在屏幕最上方边缘 */}
+      <div style={{ 
+        position: 'absolute', 
+        top: '20px', 
+        width: '100%', 
+        textAlign: 'center', 
+        fontSize: '0.75rem', 
+        letterSpacing: '8px', 
+        color: '#d4af37', 
+        opacity: 0.6 
+      }}>
+        SHIMMER JEWELRY
+      </div>
+
+      {/* 中间的玻璃卡片 */}
       <div style={{ 
         width: '100%', 
         height: '100%', 
         backgroundColor: innerBg,
-        // 这里的边框调成暗金色，不要太晃眼
-        border: '1px solid rgba(212, 175, 55, 0.15)', 
+        border: '1px solid rgba(212, 175, 55, 0.1)', 
         display: 'flex', 
         flexDirection: 'column',
-        position: 'relative',
-        // 增加模糊滤镜，让底层的渐变透上来时像丝绒一样
-        backdropFilter: 'blur(20px)', 
+        backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        boxShadow: '0 40px 100px rgba(0,0,0,0.5)' 
       }}>
-        
-        {/* 页眉 */}
-        <div style={{ 
-          position: 'absolute', top: '30px', width: '100%', 
-          textAlign: 'center', fontSize: '0.75rem', 
-          letterSpacing: '6px', color: '#d4af37', opacity: 0.8 
-        }}>
-          SHIMMER JEWELRY
-        </div>
-
-        {/* 内容 */}
+        {/* 内容插槽 */}
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {children}
         </div>
-
-        {/* 页脚 */}
-        <div style={{ 
-          position: 'absolute', bottom: '30px', left: '40px', right: '40px',
-          display: 'flex', justifyContent: 'space-between',
-          fontSize: '0.7rem', color: '#d4af37', opacity: 0.6
-        }}>
-          <span>ROYAL DIAMOND SELECTION</span>
-          <span style={{ fontWeight: 'bold' }}>PAGE / {pageNum}</span>
-        </div>
       </div>
+
+      {/* 2. 挪到最底部的页脚 - 贴在屏幕最下方边缘 */}
+      <div style={{ 
+        position: 'absolute', 
+        bottom: '20px', 
+        left: '60px', 
+        right: '60px',
+        display: 'flex', 
+        justifyContent: 'space-between',
+        fontSize: '0.7rem', 
+        color: '#d4af37', 
+        opacity: 0.5
+      }}>
+        <span>ROYAL DIAMOND SELECTION</span>
+        <span style={{ fontWeight: 'bold' }}>PAGE / {pageNum}</span>
+      </div>
+
     </section>
   );
 }
