@@ -2,7 +2,7 @@ export default function Title() {
   const shopname = "Shimmer Jewelry";
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'flexstart', alignItems: 'center', height: '100vh', flexDirection: 'column' }}>
+    <div style={{ display: 'flex', justifyContent: 'flexstart', alignItems: 'center', paddingTop: '40px', flexDirection: 'column',backgroundColor:'#fff'}}>
       <h1 style={{ textAlign: 'center', color: 'gold', fontSize: '6rem' }}>
         {shopname}
       </h1>
