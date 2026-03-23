@@ -1,5 +1,20 @@
+/* 呼吸边框：增强亮度版 */
+@keyframes borderGlow {
+  0%, 100% { 
+    border-color: rgba(212, 175, 55, 0.3); 
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1); /* 初始微弱发光 */
+  }
+  50% { 
+    border-color: rgba(212, 175, 55, 0.8); /* 呼吸到最高点：接近实色金 */
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3); /* 明显的外金圈感 */
+  }
+}
+
 .borderGlow {
-  animation: borderGlow 6s ease-in-out infinite;
+  /* 增加边框宽度到 2px，并确保动画挂载 */
+  border: 2px solid rgba(212, 175, 55, 0.3) !important; 
+  animation: borderGlow 4s ease-in-out infinite; /* 频率稍微加快一点，更容易察觉变化 */
+  transition: all 0.3s ease;
 }
 .shimmerText {
   /* 1. 核心：切换为手写连笔体 */
