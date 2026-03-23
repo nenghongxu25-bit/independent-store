@@ -1,20 +1,20 @@
-import React, { ReactNode } from 'react'; // 1. 必须引入 ReactNode 类型
+import React, { ReactNode } from 'react';
 
-// 2. 定义参数的“结构体” (Interface)
+// 1. 定义接口 (像 C++ 的 struct)
 interface PageTemplateProps {
-  children: ReactNode;      // 告诉 TS：children 是 React 的节点内容
-  outerBg?: string;         // ? 代表可选参数
+  children: ReactNode;
+  outerBg?: string;
   innerBg?: string;
   pageNum?: string;
 }
 
-// 3. 在函数定义时引用这个类型
+// 2. 定义模板组件 (子函数)
 function PageTemplate({ 
   children, 
   outerBg = '#f7f7f7', 
   innerBg = '#ffffff', 
   pageNum = "01" 
-}: PageTemplateProps) { // <--- 关键点：这里指定类型
+}: PageTemplateProps) {
   return (
     <section style={{ 
       height: '100vh', 
@@ -35,7 +35,6 @@ function PageTemplate({
         position: 'relative',
         boxShadow: '0 10px 30px rgba(0,0,0,0.02)' 
       }}>
-        
         <div style={{ 
           position: 'absolute', top: '30px', width: '100%', 
           textAlign: 'center', fontSize: '0.75rem', 
@@ -43,11 +42,9 @@ function PageTemplate({
         }}>
           SHIMMER JEWELRY
         </div>
-
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {children}
         </div>
-
         <div style={{ 
           position: 'absolute', bottom: '30px', left: '40px', right: '40px',
           display: 'flex', justifyContent: 'space-between',
@@ -56,10 +53,48 @@ function PageTemplate({
           <span>LAB-GROWN DIAMOND COLLECTOR</span>
           <span style={{ fontWeight: 'bold' }}>PAGE / {pageNum}</span>
         </div>
-
       </div>
     </section>
   );
 }
 
-// 下面的 Landpage 部分保持不变...
+// 3. 唯一的默认导出页面 (这就是你的 main 函数)
+export default function Page() {
+  return (
+    <main style={{ 
+      height: '100vh', 
+      overflowY: 'scroll', 
+      scrollSnapType: 'y mandatory'
+    }}>
+      {/* 第一页 */}
+      <PageTemplate pageNum="01" outerBg="#fff">
+        <div style={{ textAlign: 'center' }}>
+          <h1 style={{ color: 'gold', fontSize: '5rem', margin: '0', fontWeight: '200' }}>
+            Shimmer
+          </h1>
+          <p style={{ letterSpacing: '8px', color: '#666' }}>JEWELRY</p>
+        </div>
+      </PageTemplate>
+
+      {/* 第二页 */}
+      <PageTemplate pageNum="02" outerBg="#111" innerBg="#000">
+        <div style={{ color: '#fff', textAlign: 'center', maxWidth: '600px', padding: '0 20px' }}>
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>科技缔造永恒</h2>
+          <p style={{ lineHeight: '1.8', opacity: 0.8 }}>
+            采用顶级 CVD 工艺，为您呈现与天然钻石物理特性一致的珠宝。
+          </p>
+        </div>
+      </PageTemplate>
+
+      {/* 第三页 */}
+      <PageTemplate pageNum="03" outerBg="#f0f0f0">
+        <div style={{ textAlign: 'center' }}>
+          <h2 style={{ fontSize: '2rem' }}>国际权威认证</h2>
+          <div style={{ marginTop: '20px', border: '1px solid #333', padding: '10px 20px', cursor: 'pointer' }}>
+            WHATSAPP US
+          </div>
+        </div>
+      </PageTemplate>
+    </main>
+  );
+}
