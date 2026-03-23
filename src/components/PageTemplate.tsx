@@ -1,5 +1,13 @@
 // src/components/PageTemplate.tsx
 // ... 之前的 import 和 Interface 保持不变 ...
+import React, { ReactNode } from 'react';
+
+// 1. 必须先定义这个“接口”，TypeScript 才知道参数里都有啥
+export interface PageTemplateProps {
+  children: ReactNode;
+  innerBg?: string; // 选填：卡片内背景
+  pageNum?: string; // 选填：页码
+}
 
 export default function PageTemplate({ 
   children, 
