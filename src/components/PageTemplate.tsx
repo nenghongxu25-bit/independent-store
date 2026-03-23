@@ -12,7 +12,7 @@ export interface PageTemplateProps {
 export default function PageTemplate({ 
   children, 
   // outerBg 不再需要了，因为我们用全局渐变
-  innerBg = 'rgba(255, 240, 255, 0.9)', // 改成半透明浅紫，更有玻璃质感
+  innerBg = 'rgba(230, 220, 235, 0.85)', // 改成半透明浅紫，更有玻璃质感
   pageNum = "01" 
 }: PageTemplateProps) {
   return (
