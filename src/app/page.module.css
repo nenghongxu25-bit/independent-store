@@ -47,9 +47,10 @@
 }
 
 .mainContainer {
-  height: 100vh;
-  overflow-y: scroll;
-  /* 45度角，从深紫色过渡到稍微亮一点的紫色 */
-  background: linear-gradient(135deg, #1a0525 0%, #2d0a42 50%, #1a0525 100%);
-  background-attachment: fixed; /* 关键：让背景固定，滑动时只有卡片在动 */
+  min-height: 100vh;
+  width: 100%;
+  /* 背景要足够长，或者设为 fixed */
+  background: linear-gradient(180deg, #0a0210 0%, #1a0525 50%, #0a0210 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
