@@ -18,9 +18,27 @@ export default function CategoryContent({ slug }: Props) {
   const category = categories[slug];
   const { t } = useTranslation();
 
+  export default function CategoryContent({ slug }: Props) {
+  const { t } = useTranslation();
+  const category = categories[slug as keyof typeof categories]; // 确保类型安全
+
+  // 如果找不到分类，直接返回一个友好的提示或者自定义的 404 UI，而不是调用 notFound()
   if (!category) {
-    notFound();
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p>Category not found.</p>
+        <Link href="/products" className="ml-2 text-blue-500">Back to Shop</Link>
+      </div>
+    );
   }
+
+  // 正常的渲染逻辑...
+  return (
+    <div>
+      {/* 你的页面内容 */}
+    </div>
+  );
+}
 
   const getLocalizedTitle = (slug: string) => {
     switch (slug) {
