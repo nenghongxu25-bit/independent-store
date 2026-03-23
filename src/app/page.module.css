@@ -1,4 +1,6 @@
-
+.borderGlow {
+  animation: borderGlow 6s ease-in-out infinite;
+}
 .shimmerText {
   /* 1. 核心：切换为手写连笔体 */
   font-family: var(--font-great-vibes), cursive;
