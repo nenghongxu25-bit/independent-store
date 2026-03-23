@@ -1,4 +1,8 @@
 // src/app/page.tsx
+import React from 'react';
+// 关键：这行代码告诉程序去 components 文件夹里找 PageTemplate
+import PageTemplate from '@/components/PageTemplate';
+
 export default function Page() {
   return (
     <main style={{ 
