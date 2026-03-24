@@ -2,8 +2,7 @@ import React from 'react';
 
 export const megaMenuStyles: React.CSSProperties = {
   position: 'absolute',
-  /* 重点：现在它是二级导航容器的子元素，top: 100% 刚好是 45px 处 */
-  top: '100%', 
+  top: '45px', // 刚好是二级导航栏的高度
   left: 0,
   width: '100vw',
   backgroundColor: '#fff',
@@ -13,11 +12,12 @@ export const megaMenuStyles: React.CSSProperties = {
   padding: '10px 0 60px 0', 
   color: '#333',
   boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+  /* 这一根线就是你要求的衔接线 */
   borderTop: '1px solid #f2f2f2',
   marginTop: '-1px', 
 };
 
-// ... 下面其余样式 containerStyles, headerStyles 等保持原样，不要动 ...
+/* 还原你最初的字体设置，不乱动任何样式 */
 export const containerStyles: React.CSSProperties = {
   display: 'flex',
   width: '100%',
