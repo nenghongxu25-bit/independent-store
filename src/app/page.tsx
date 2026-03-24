@@ -6,9 +6,10 @@ export default function Home() {
   return (
     <main style={{ minHeight: '100vh', background: '#FFFFFF', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '100px' }}>
       <style>{`
-        @keyframes fast-shimmer {
-          0% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+        @keyframes fire-shimmer {
+          /* 精简位移，确保循环无缝且无漫长等待 */
+          0% { background-position: 150% 50%; }
+          100% { background-position: -50% 50%; }
         }
         .shimmer-title {
           font-size: 8.5rem;
@@ -16,22 +17,21 @@ export default function Home() {
           font-family: 'Georgia', serif;
           margin: 0;
           line-height: 0.85;
-          /* 核心改动：缩短比例到 200%，并放两个流光点，让光接连不断 */
+          /* 核心：金色基底 + 极其紧凑的红、白、蓝三色火彩带 */
           background: linear-gradient(90deg, 
             #d4af37 0%, 
-            #e5c05b 20%, 
-            rgba(255,255,255,0.4) 25%, 
-            #d4af37 30%, 
-            #d4af37 70%, 
-            rgba(255,255,255,0.4) 75%, 
-            #e5c05b 80%, 
+            #d4af37 45%, 
+            rgba(255, 100, 100, 0.4) 47%, 
+            rgba(255, 255, 255, 0.8) 50%, 
+            rgba(100, 200, 255, 0.5) 53%, 
+            #d4af37 55%, 
             #d4af37 100%
           );
-          background-size: 200% auto;
+          background-size: 150% auto;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          /* 速度调到 12s 匀速，配合 200% 的尺寸，光会走得非常顺滑且频繁 */
-          animation: fast-shimmer 12s linear infinite;
+          /* 35秒匀速：缓慢、连贯、带火彩 */
+          animation: fire-shimmer 35s linear infinite;
         }
       `}</style>
       
