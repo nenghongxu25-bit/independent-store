@@ -3,20 +3,18 @@
 import React from 'react';
 
 export default function Home() {
-  // 定义更复杂的钻石火彩动画 CSS
+  // 优化后的 CSS 动画
   const diamondFireKeyframes = `
-    /* 1. 缓慢流动的光带 (包含细微彩虹色) */
+    /* 1. 窄比例流光动画：让光带更聚焦 */
     @keyframes diamondMove {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
+      0% { background-position: 150% 0; }
+      100% { background-position: -150% 0; }
     }
 
-    /* 2. 模拟火彩闪烁的微颤动 (亮度/透明度) */
+    /* 2. 模拟火彩闪烁 */
     @keyframes diamondSparkle {
       0%, 100% { opacity: 1; filter: brightness(1); }
-      30% { opacity: 0.95; filter: brightness(1.1); }
-      50% { opacity: 1; filter: brightness(1); }
-      70% { opacity: 0.98; filter: brightness(1.05); }
+      50% { opacity: 0.98; filter: brightness(1.15); }
     }
   `;
 
@@ -36,7 +34,7 @@ export default function Home() {
         textAlign: 'center', 
         maxWidth: '800px', 
         padding: '0 20px',
-        marginTop: '70px'
+        marginTop: '70px' 
       }}>
         
         <p style={{ 
@@ -49,11 +47,11 @@ export default function Home() {
           Handcrafted Excellence
         </p>
 
-        {/* --- 核心：钻石火彩标题区域 --- */}
+        {/* --- 标题区域：流光范围已收窄 --- */}
         <div style={{
           display: 'inline-block',
           position: 'relative',
-          animation: 'diamondSparkle 2s ease-in-out infinite', 
+          animation: 'diamondSparkle 3s ease-in-out infinite', 
         }}>
           <h1 style={{ 
             fontSize: '8.5rem', 
@@ -63,11 +61,17 @@ export default function Home() {
             fontWeight: '400',
             lineHeight: '0.85',
             textTransform: 'none',
-            background: 'linear-gradient(90deg, #d4af37 0%, #fff 40%, #e0f7fa 45%, #fff 50%, #fbe9e7 55%, #fff 60%, #d4af37 100%)',
-            backgroundSize: '200% auto',
+            
+            /* 核心修改：
+               将彩虹色集中在 48%-52% 之间，其余部分留给主色调。
+               这样光束经过时会非常细碎、闪耀，而不是大面积变色。
+            */
+            background: 'linear-gradient(90deg, #d4af37 0%, #d4af37 45%, #fff 48%, #e0f7fa 50%, #fbe9e7 52%, #fff 55%, #d4af37 60%, #d4af37 100%)',
+            backgroundSize: '300% auto', // 增大背景尺寸，使光束更窄
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-            animation: 'diamondMove 15s linear infinite', 
+            
+            animation: 'diamondMove 10s linear infinite', 
           }}>
             Shimmer
           </h1>
@@ -83,6 +87,7 @@ export default function Home() {
         }}>
           Jewelry
         </h2>
+        {/* --- 结束 --- */}
 
         <div style={{ marginTop: '90px' }}>
           <p style={{ 
