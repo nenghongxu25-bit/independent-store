@@ -5,13 +5,14 @@ import React from 'react';
 export default function Home() {
   const css = `
     @keyframes move {
-      /* 缩短路程：让光束刚离开右侧就立刻从左侧准备切入 */
+      /* 精准控制路程：光束刚好在文字内部匀速穿过 */
       0% { background-position: 150% 50%; }
       100% { background-position: -150% 50%; }
     }
     @keyframes sparkle {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.05); }
+      /* 极其微弱的呼吸感 */
+      0%, 100% { filter: brightness(1) contrast(1); }
+      50% { filter: brightness(1.04) contrast(1.01); }
     }
   `;
 
@@ -24,7 +25,12 @@ export default function Home() {
           Handcrafted Excellence
         </p>
 
-        <div style={{ display: 'inline-block', animation: 'sparkle 5s ease-in-out infinite' }}>
+        {/* 标题区域 */}
+        <div style={{
+          display: 'inline-block',
+          position: 'relative',
+          animation: 'sparkle 6s ease-in-out infinite', 
+        }}>
           <h1 style={{ 
             fontSize: '8.5rem', 
             fontStyle: 'italic',
@@ -32,12 +38,27 @@ export default function Home() {
             margin: '0',
             fontWeight: '400',
             lineHeight: '0.85',
-            /* 增加金色和白色的过渡长度，减少纯金色的面积 */
-            background: 'linear-gradient(90deg, #d4af37 0%, #e5c05b 30%, #fff 50%, #f0faff 52%, #fff 70%, #d4af37 100%)',
-            backgroundSize: '600% auto', 
+            textTransform: 'none',
+            
+            /* 渐变优化（彻底不白、不聚集）：
+               1. 底色使用稳固的金色 (#d4af37, #b19343) 占绝对主导。
+               2. 光束核心设为半透明的钻蓝 (#e0f7fa) 和浅紫 (#f3e5f5)，仅占 3%。
+            */
+            background: 'linear-gradient(90deg, 
+              #d4af37 0%, 
+              #d4af37 40%, 
+              #b19343 45%, 
+              rgba(224, 247, 250, 0.6) 48.5%, 
+              rgba(243, 229, 245, 0.6) 51.5%, 
+              #b19343 55%, 
+              #d4af37 60%, 
+              #d4af37 100%)',
+            /* 缩小背景比例从 600% 到 300%，消除“摊开”感，让光束变细 */
+            backgroundSize: '300% auto', 
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-            /* 40s 匀速：这是极致缓慢的流淌，几乎像静止但又在动 */
+            
+            /* 40秒匀速：极致缓慢的细丝流淌 */
             animation: 'move 40s linear infinite'
           }}>
             Shimmer
@@ -52,11 +73,4 @@ export default function Home() {
           <button style={{ padding: '12px 30px', backgroundColor: '#1a1a1a', color: '#fff', border: 'none', fontSize: '0.7rem', letterSpacing: '2px', cursor: 'pointer' }}>
             SHOP ENGAGEMENT
           </button>
-          <button style={{ padding: '12px 30px', backgroundColor: 'transparent', color: '#1a1a1a', border: '1px solid #1a1a1a', fontSize: '0.7rem', letterSpacing: '2px', cursor: 'pointer' }}>
-            EXPLORE DIAMONDS
-          </button>
-        </div>
-      </div>
-    </main>
-  );
-}
+          <button style={{ padding: '12px 30px', backgroundColor: 'transparent', color: '#1a1a1a', border: '1px solid #1a1a1a', fontSize: '0.7rem',
