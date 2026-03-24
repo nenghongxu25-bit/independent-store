@@ -2,6 +2,7 @@ import React from 'react';
 import PageTemplate from '@/components/PageTemplate';
 // 导入你的 CSS 模块
 import styles from './page.module.css';
+import className from './grobal.css';
 
 export default function Page() {
   return (
@@ -18,6 +19,40 @@ export default function Page() {
         {/* 关键：第二个板块紧跟其后 */}
         <PageTemplate pageNum="02">
           <div style={{ textAlign: 'center', maxWidth: '800px', padding: '100px 20px' }}>
+            {/* 图片展示区 */}
+<div className="jewelry-grid">
+  
+  {/* 第一张 */}
+  <div className="jewelry-item">
+    <div className="image-container">
+      <img src="/pic1.jpg" alt="Diamond {111} Plane" />
+    </div>
+    <p className="font-serif italic text-[10px] tracking-widest text-center uppercase text-gray-500">
+      {111} Plane Micro
+    </p>
+  </div>
+
+  {/* 第二张 */}
+  <div className="jewelry-item">
+    <div className="image-container">
+      <img src="/pic2.jpg" alt="Diamond {100} Plane" />
+    </div>
+    <p className="font-serif italic text-[10px] tracking-widest text-center uppercase text-gray-500">
+      {100} Plane Control
+    </p>
+  </div>
+
+  {/* 第三张 */}
+  <div className="jewelry-item">
+    <div className="image-container">
+      <img src="/pic3.jpg" alt="HPHT Growth" />
+    </div>
+    <p className="font-serif italic text-[10px] tracking-widest text-center uppercase text-gray-500">
+      Growth Process
+    </p>
+  </div>
+
+</div>
             <h2 style={{ 
               fontFamily: 'var(--font-cormorant)', 
               color: '#d4af37', 
