@@ -2,9 +2,8 @@ import React from 'react';
 
 export const megaMenuStyles: React.CSSProperties = {
   position: 'absolute',
-  /* 80px (上层) + 45px (中层) = 125px */
-  /* 如果你的页面还是有 1px 缝隙，就改成 124px */
-  top: '125px', 
+  /* 关键：100% 会紧贴在上面那个 div 的屁股后面 */
+  top: '100%', 
   left: 0,
   width: '100%',
   backgroundColor: '#fff',
@@ -13,8 +12,11 @@ export const megaMenuStyles: React.CSSProperties = {
   justifyContent: 'center',
   padding: '40px 0 60px 0', 
   color: '#333',
+  /* 加强投影和边框对齐 */
   boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
   borderTop: '1px solid #eee',
+  /* 强制消除可能残留的 1px 间隙 */
+  marginTop: '-1px',
 };
 
 export const containerStyles: React.CSSProperties = {
