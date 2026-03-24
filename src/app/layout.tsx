@@ -1,5 +1,5 @@
 import { Cormorant_Garamond, Great_Vibes } from 'next/font/google';
-import Navbar from '@/components/Navbar'; // 建议把导航逻辑拆分成独立组件
+import Navbar from '@/components/Navbar/index'; // 建议把导航逻辑拆分成独立组件
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ['latin'], 
