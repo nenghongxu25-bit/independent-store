@@ -23,16 +23,17 @@ export default function Navbar() {
   ];
 
   return (
-    <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff' }}>
+    /* 整个导航栏容器，设为 flex-direction column 确保没有间隙 */
+    <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff', display: 'flex', flexDirection: 'column' }}>
       
-      {/* 1. 顶部主导航 */}
+      {/* 1. Logo 层 */}
       <nav style={{ 
         height: '80px', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'space-between',
         padding: '0 60px',
-        borderBottom: '1px solid #eee' // 这里的线保留，区分 Logo 区
+        borderBottom: '1px solid #eee'
       }}>
         <div style={{ display: 'flex', gap: '20px', flex: 1 }}>
            <span style={{ cursor: 'pointer', fontSize: '1.2rem' }}>📍</span>
@@ -40,31 +41,27 @@ export default function Navbar() {
         </div>
 
         <div style={{ flex: 1, textAlign: 'center' }}>
-          <h1 style={{ fontSize: '1.8rem', letterSpacing: '4px', fontWeight: '400', fontFamily: 'serif', margin: 0, cursor: 'pointer' }}>
-            SHIMMER
-          </h1>
-          <p style={{ fontSize: '0.6rem', letterSpacing: '2px', margin: 0, color: '#666' }}>
-            YOUR FRIEND & JEWELER
-          </p>
+          <h1 style={{ fontSize: '1.8rem', letterSpacing: '4px', fontWeight: '400', fontFamily: 'serif', margin: 0 }}>SHIMMER</h1>
+          <p style={{ fontSize: '0.6rem', letterSpacing: '2px', margin: 0, color: '#666' }}>YOUR FRIEND & JEWELER</p>
         </div>
 
         <div style={{ flex: 1, textAlign: 'right', display: 'flex', justifyContent: 'flex-end', gap: '20px', alignItems: 'center' }}>
-          <div style={{ border: '1px solid #ccc', borderRadius: '20px', padding: '5px 15px', display: 'flex', alignItems: 'center' }}>
+          <div style={{ border: '1px solid #ccc', borderRadius: '20px', padding: '5px 15px' }}>
             <span style={{ fontSize: '0.8rem', color: '#999' }}>Search</span>
           </div>
           <span style={{ cursor: 'pointer', fontSize: '1.2rem' }}>🛍️</span>
         </div>
       </nav>
 
-      {/* 2. 二级菜单触发区 - 彻底消除空行 */}
+      {/* 2. 二级菜单区 - 强行固定高度 45px，不给任何空隙机会 */}
       <div 
         style={{ 
           display: 'flex', 
           justifyContent: 'center', 
           gap: '35px', 
-          padding: '15px 0 0 0', // 底部 padding 设为 0
-          margin: 0,             // 确保没有外边距
-          borderBottom: activeMenu ? 'none' : '1px solid #eee' // 激活时去掉底线，防止重叠
+          height: '45px', 
+          backgroundColor: '#fff',
+          borderBottom: activeMenu ? 'none' : '1px solid #eee'
         }}
         onMouseLeave={() => setActiveMenu(null)}
       >
@@ -77,10 +74,12 @@ export default function Navbar() {
               fontSize: '0.85rem',
               color: '#333',
               fontWeight: activeMenu === item.id ? '600' : '400',
-              paddingBottom: '15px', // 通过这里撑开高度，确保 hover 的下划线贴近边缘
+              display: 'flex',
+              alignItems: 'center',
+              height: '100%',
               borderBottom: activeMenu === item.id ? '2px solid #333' : '2px solid transparent',
-              transition: 'all 0.1s',
-              zIndex: 1001 // 确保文字在弹窗阴影之上
+              boxSizing: 'border-box',
+              transition: 'all 0.1s'
             }}
           >
             {item.label}
@@ -88,7 +87,7 @@ export default function Navbar() {
         ))}
       </div>
 
-      {/* 3. 弹窗子菜单 */}
+      {/* 3. 弹窗区 - 使用绝对定位紧贴顶部 */}
       {activeMenu && (
         <div 
           style={megaMenuStyles}
