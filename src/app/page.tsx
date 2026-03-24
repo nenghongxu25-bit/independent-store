@@ -2,7 +2,7 @@ import React from 'react';
 import PageTemplate from '@/components/PageTemplate';
 // 导入你的 CSS 模块
 import styles from './page.module.css';
-import className from './global.css';
+import './globals.css'; // 确保文件名带 s，且不需要 from 关键字
 
 export default function Page() {
   return (
