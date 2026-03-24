@@ -23,9 +23,10 @@ export default function Navbar() {
   ];
 
   return (
+    /* 锁定背景色，防止透底 */
     <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff' }}>
       
-      {/* 1. Logo 层 - 还原 80px 高度 */}
+      {/* 1. Logo 层 - 保持你原始的 80px 布局 */}
       <nav style={{ 
         height: '80px', 
         display: 'flex', 
@@ -50,14 +51,14 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 2. 二级菜单区 - 还原你的间距，但通过 zIndex 处理衔接 */}
+      {/* 2. 二级菜单区 - 关键：高度固定，去掉 border */}
       <div 
         style={{ 
           display: 'flex', 
           justifyContent: 'center', 
           gap: '35px', 
           backgroundColor: '#fff',
-          position: 'relative',
+          height: '45px' // 给一个固定高度方便弹窗定位
         }}
         onMouseLeave={() => setActiveMenu(null)}
       >
@@ -70,21 +71,22 @@ export default function Navbar() {
               fontSize: '0.9rem',
               color: '#333',
               fontWeight: activeMenu === item.id ? '700' : '400',
-              padding: '15px 0',
-              /* 这里的线会和弹窗的顶边线完美重合 */
+              display: 'flex',
+              alignItems: 'center',
+              height: '100%',
+              /* 文字下划线：通过 position 让它浮在最底层，方便跟弹窗线合体 */
               borderBottom: activeMenu === item.id ? '2px solid #000' : '2px solid transparent',
-              zIndex: 1001,
-              marginBottom: '-1px' 
+              boxSizing: 'border-box',
+              zIndex: 1001, // 确保文字在弹窗线上方
+              transition: 'all 0.1s'
             }}
           >
             {item.label}
           </div>
         ))}
-        {/* 底线：只有在没激活菜单时显示，激活时由弹窗的 borderTop 代替 */}
-        {!activeMenu && <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, borderBottom: '1px solid #f2f2f2' }} />}
       </div>
 
-      {/* 3. 弹窗区 */}
+      {/* 3. 弹窗区 - 这次真的贴死了 */}
       {activeMenu && (
         <div 
           style={megaMenuStyles}
