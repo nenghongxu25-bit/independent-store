@@ -3,6 +3,14 @@
 import React from 'react';
 
 export default function Home() {
+  // 定义流光动画的 CSS
+  const shimmerKeyframes = `
+    @keyframes slowShimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+  `;
+
   return (
     <main style={{ 
       minHeight: '100vh', 
@@ -10,84 +18,98 @@ export default function Home() {
       display: 'flex', 
       flexDirection: 'column', 
       alignItems: 'center', 
-      justifyContent: 'center',
-      paddingTop: '80px'
+      justifyContent: 'flex-start', // 改为从顶部开始排列
+      paddingTop: '60px' // 调整整体顶距
     }}>
-      <div style={{ textAlign: 'center', maxWidth: '800px', padding: '0 20px' }}>
+      <style>{shimmerKeyframes}</style>
+
+      <div style={{ 
+        textAlign: 'center', 
+        maxWidth: '800px', 
+        padding: '0 20px',
+        marginTop: '80px' // 这里的间距决定了标题距离导航栏的高度
+      }}>
         
         <p style={{ 
-          fontSize: '0.9rem', 
-          letterSpacing: '3px', 
-          color: '#888', 
+          fontSize: '0.8rem', 
+          letterSpacing: '4px', 
+          color: '#aaa', 
           textTransform: 'uppercase',
-          marginBottom: '20px'
+          marginBottom: '15px'
         }}>
           Handcrafted Excellence
         </p>
 
-        {/* --- 核心修复区域 --- */}
+        {/* --- 核心流光标题区域 --- */}
         <h1 style={{ 
-          fontSize: '7rem',          // 调大一点，气场更强
-          // 关键：如果你没有特定字体包，使用 italic 模拟原本的手写感
-          fontStyle: 'italic',       
-          fontFamily: 'Georgia, serif', // Georgia 这种字体斜体后非常有美感
-          color: '#d4af37',          // 换回你原本标志性的金色
+          fontSize: '8rem',
+          fontStyle: 'italic',
+          fontFamily: 'Georgia, serif',
           margin: '0',
           fontWeight: '400',
-          lineHeight: '0.8',         // 缩短行高，让上下靠得更近
-          textTransform: 'none'      // 保持大小写混拼，手写感更好
+          lineHeight: '0.9',
+          textTransform: 'none',
+          
+          // 流光效果核心代码
+          background: 'linear-gradient(90deg, #d4af37 0%, #fff 50%, #d4af37 100%)',
+          backgroundSize: '200% auto',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          animation: 'slowShimmer 8s linear infinite', // 8秒一轮，非常缓慢
         }}>
           Shimmer
         </h1>
         
         <h2 style={{ 
-          fontSize: '1.2rem', 
-          letterSpacing: '8px',      // 增加字间距，显得更简约
-          color: '#1a1a1a',          // 下面这个词用深色，形成对比
-          marginTop: '20px',         // 增加点距离，别叠在一起
+          fontSize: '1.1rem', 
+          letterSpacing: '10px',
+          color: '#333',
+          marginTop: '10px',
           fontWeight: '300',
           textTransform: 'uppercase'
         }}>
           Jewelry
         </h2>
-        {/* --- 修复结束 --- */}
+        {/* --- 结束 --- */}
 
-        <p style={{ 
-          marginTop: '60px', 
-          fontSize: '1.1rem', 
-          color: '#555', 
-          lineHeight: '1.8',
-          maxWidth: '600px',
-          margin: '60px auto 0',
-          fontFamily: 'sans-serif',   // 文案用无衬线体，更现代
-          fontWeight: '300'
-        }}>
-          &quot;Modern diamonds for a new generation. <br />
-          Ethically grown, brilliantly cut, and designed to last a lifetime.&quot;
-        </p>
+        <div style={{ marginTop: '80px' }}>
+          <p style={{ 
+            fontSize: '1.05rem', 
+            color: '#666', 
+            lineHeight: '2',
+            maxWidth: '550px',
+            margin: '0 auto',
+            fontFamily: 'sans-serif',
+            fontWeight: '300',
+            letterSpacing: '0.5px'
+          }}>
+            &quot;Modern diamonds for a new generation. <br />
+            Ethically grown, brilliantly cut, and designed to last a lifetime.&quot;
+          </p>
+        </div>
 
-        <div style={{ marginTop: '50px', display: 'flex', gap: '20px', justifyContent: 'center' }}>
+        <div style={{ marginTop: '60px', display: 'flex', gap: '25px', justifyContent: 'center' }}>
           <button style={{
-            padding: '15px 45px',
+            padding: '12px 35px',
             backgroundColor: '#1a1a1a',
             color: '#fff',
             border: 'none',
-            fontSize: '0.85rem',
+            fontSize: '0.8rem',
             letterSpacing: '2px',
             cursor: 'pointer',
-            fontWeight: '600'
+            fontWeight: '500'
           }}>
             SHOP ENGAGEMENT
           </button>
           <button style={{
-            padding: '15px 45px',
+            padding: '12px 35px',
             backgroundColor: 'transparent',
             color: '#1a1a1a',
             border: '1px solid #1a1a1a',
-            fontSize: '0.85rem',
+            fontSize: '0.8rem',
             letterSpacing: '2px',
             cursor: 'pointer',
-            fontWeight: '600'
+            fontWeight: '500'
           }}>
             EXPLORE DIAMONDS
           </button>
