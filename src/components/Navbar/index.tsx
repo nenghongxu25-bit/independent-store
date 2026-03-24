@@ -23,11 +23,11 @@ export default function Navbar() {
   ];
 
   return (
-    <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff' }}>
       
-      {/* 1. Logo 层 - 保持大气 */}
+      {/* 1. Logo 层 */}
       <nav style={{ 
-        height: '70px', 
+        height: '80px', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'space-between',
@@ -35,32 +35,31 @@ export default function Navbar() {
         borderBottom: '1px solid #f2f2f2'
       }}>
         <div style={{ display: 'flex', gap: '20px', flex: 1 }}>
-           <span style={{ cursor: 'pointer', fontSize: '1.1rem' }}>📍</span>
-           <span style={{ cursor: 'pointer', fontSize: '1.1rem' }}>❓</span>
+           <span style={{ cursor: 'pointer', fontSize: '1.2rem' }}>📍</span>
+           <span style={{ cursor: 'pointer', fontSize: '1.2rem' }}>❓</span>
         </div>
-
         <div style={{ flex: 1, textAlign: 'center' }}>
-          <h1 style={{ fontSize: '1.6rem', letterSpacing: '3px', fontWeight: '400', fontFamily: 'serif', margin: 0 }}>SHIMMER</h1>
-          <p style={{ fontSize: '0.55rem', letterSpacing: '1px', margin: 0, color: '#888' }}>YOUR FRIEND & JEWELER</p>
+          <h1 style={{ fontSize: '1.8rem', letterSpacing: '4px', fontWeight: '400', fontFamily: 'serif', margin: 0 }}>SHIMMER</h1>
+          <p style={{ fontSize: '0.6rem', letterSpacing: '2px', margin: 0, color: '#666' }}>YOUR FRIEND & JEWELER</p>
         </div>
-
         <div style={{ flex: 1, textAlign: 'right', display: 'flex', justifyContent: 'flex-end', gap: '20px', alignItems: 'center' }}>
-          <div style={{ border: '1px solid #eee', borderRadius: '20px', padding: '4px 12px' }}>
-            <span style={{ fontSize: '0.75rem', color: '#aaa' }}>Search</span>
+          <div style={{ border: '1px solid #ccc', borderRadius: '20px', padding: '5px 15px' }}>
+            <span style={{ fontSize: '0.8rem', color: '#999' }}>Search</span>
           </div>
-          <span style={{ cursor: 'pointer', fontSize: '1.1rem' }}>🛍️</span>
+          <span style={{ cursor: 'pointer', fontSize: '1.2rem' }}>🛍️</span>
         </div>
       </nav>
 
-      {/* 2. 二级菜单区 - 极致压缩高度，让文字贴近底边 */}
+      {/* 2. 二级菜单区 - 彻底干掉底部的 Border */}
       <div 
         style={{ 
           display: 'flex', 
           justifyContent: 'center', 
-          gap: '30px', 
-          height: '35px',  // 强行压到 35px
+          gap: '35px', 
+          height: '40px', // 固定一个紧凑的高度
           backgroundColor: '#fff',
-          borderBottom: activeMenu ? 'none' : '1px solid #f2f2f2'
+          position: 'relative',
+          // 关键：不在这里加 border，让弹窗的 border 来当底线
         }}
         onMouseLeave={() => setActiveMenu(null)}
       >
@@ -70,21 +69,25 @@ export default function Navbar() {
             onMouseEnter={() => setActiveMenu(item.id)}
             style={{
               cursor: 'pointer',
-              fontSize: '0.8rem', // 稍微缩小字号更显精致
+              fontSize: '0.85rem',
               color: '#333',
               fontWeight: activeMenu === item.id ? '600' : '400',
               display: 'flex',
-              alignItems: 'flex-end', // 文字对齐到底部
-              paddingBottom: '8px',   // 距离底线只有 8px
+              alignItems: 'center',
               height: '100%',
+              padding: '0 5px',
+              // 关键：下划线通过位移直接压在容器边缘
               borderBottom: activeMenu === item.id ? '2px solid #333' : '2px solid transparent',
-              boxSizing: 'border-box',
-              transition: 'all 0.1s'
+              zIndex: 1001,
+              transition: 'all 0.1s',
+              transform: 'translateY(1px)' // 强行下移 1px 压住线
             }}
           >
             {item.label}
           </div>
         ))}
+        {/* 如果没打开菜单，手动补一条淡色底线保持样式一致 */}
+        {!activeMenu && <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, borderBottom: '1px solid #eee' }} />}
       </div>
 
       {/* 3. 弹窗区 */}
