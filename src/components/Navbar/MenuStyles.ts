@@ -2,7 +2,9 @@ import React from 'react';
 
 export const megaMenuStyles: React.CSSProperties = {
   position: 'absolute',
-  top: '100%', 
+  /* 80px (上层) + 45px (中层) = 125px */
+  /* 如果你的页面还是有 1px 缝隙，就改成 124px */
+  top: '125px', 
   left: 0,
   width: '100%',
   backgroundColor: '#fff',
@@ -11,9 +13,8 @@ export const megaMenuStyles: React.CSSProperties = {
   justifyContent: 'center',
   padding: '40px 0 60px 0', 
   color: '#333',
-  boxShadow: '0 20px 40px rgba(0,0,0,0.08)', // 加深阴影，让无缝效果更明显
+  boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
   borderTop: '1px solid #eee',
-  marginTop: '-1px', // 关键：向上移动 1 像素，消除肉眼空隙
 };
 
 export const containerStyles: React.CSSProperties = {
@@ -28,9 +29,8 @@ export const headerStyles: React.CSSProperties = {
   fontSize: '1.25rem',
   marginBottom: '25px',
   fontWeight: '400',
-  fontFamily: '"Playfair Display", serif',
+  fontFamily: 'serif',
   color: '#000',
-  letterSpacing: '0.5px',
 };
 
 export const subHeaderStyles: React.CSSProperties = {
@@ -41,7 +41,6 @@ export const subHeaderStyles: React.CSSProperties = {
   color: '#000',
   display: 'block',
   textTransform: 'uppercase',
-  letterSpacing: '1px',
 };
 
 export const listStyles: React.CSSProperties = {
@@ -51,7 +50,6 @@ export const listStyles: React.CSSProperties = {
   fontSize: '0.9rem',
   color: '#444',
   cursor: 'pointer',
-  fontWeight: '400',
 };
 
 export const cardStyles: React.CSSProperties = {
