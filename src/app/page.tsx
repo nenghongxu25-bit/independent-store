@@ -1,79 +1,105 @@
+'use client';
+
 import React from 'react';
-import PageTemplate from '@/components/PageTemplate';
-import './globals.css'; 
 
-export default function Page() {
+export default function Home() {
   return (
-    <main className="mainContainer">
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+    <main style={{ 
+      minHeight: '100vh', 
+      // 这里的颜色对标 Shane Co. 的极简主义，使用淡淡的米灰色渐变
+      background: 'linear-gradient(to bottom, #FFFFFF 0%, #F9F6F4 100%)', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      paddingTop: '80px' // 为导航栏留出空间
+    }}>
+      {/* 核心展示区 */}
+      <div style={{ textAlign: 'center', maxWidth: '800px', padding: '0 20px' }}>
         
-        {/* 第一屏：品牌封面 */}
-        <PageTemplate pageNum="01">
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h1 className="shimmerText">Shimmer</h1>
-            <p style={{ letterSpacing: '8px', fontSize: '0.8rem', opacity: 0.8, color: '#d4af37', marginTop: '-20px' }}>
-              JEWELRY
-            </p>
-          </div>
-        </PageTemplate>
+        {/* 品牌副标题：北美客户看重情感链接 */}
+        <p style={{ 
+          fontSize: '0.9rem', 
+          letterSpacing: '3px', 
+          color: '#888', 
+          textTransform: 'uppercase',
+          marginBottom: '20px'
+        }}>
+          Handcrafted Excellence
+        </p>
 
-        {/* 第二屏：产品展示 */}
-        <PageTemplate pageNum="02">
-          <div style={{ textAlign: 'center', maxWidth: '1000px', width: '100%', padding: '0 20px' }}>
-            
-            {/* 严格等尺寸图片展示区 */}
-            <div className="jewelry-grid">
-              <div className="jewelry-item">
-                <div className="image-container borderGlow">
-                  <img src="/pic1.jpg" alt="Diamond {111} Plane" />
-                </div>
-                <p className="font-serif italic text-[10px] tracking-widest mt-4 uppercase opacity-60">
-                  {111} Plane Micro
-                </p>
-              </div>
+        {/* 主 Logo 区域 */}
+        <h1 style={{ 
+          fontSize: '5rem', 
+          fontFamily: 'serif', // 建议确保安装了衬线体
+          color: '#1a1a1a', 
+          margin: '0',
+          fontWeight: '400',
+          lineHeight: '1'
+        }}>
+          Shimmer
+        </h1>
+        
+        <h2 style={{ 
+          fontSize: '1.2rem', 
+          letterSpacing: '6px', 
+          color: '#d4af37', // 你的品牌金
+          marginTop: '10px',
+          fontWeight: '300',
+          textTransform: 'uppercase'
+        }}>
+          Jewelry
+        </h2>
 
-              <div className="jewelry-item">
-                <div className="image-container borderGlow">
-                  <img src="/pic2.jpg" alt="Diamond {100} Plane" />
-                </div>
-                <p className="font-serif italic text-[10px] tracking-widest mt-4 uppercase opacity-60">
-                  {100} Plane Control
-                </p>
-              </div>
+        {/* 增加一段富有感染力的文案（Slogan） */}
+        <p style={{ 
+          marginTop: '40px', 
+          fontSize: '1.1rem', 
+          color: '#555', 
+          lineHeight: '1.8',
+          fontFamily: 'Georgia, serif',
+          fontStyle: 'italic'
+        }}>
+          &quot;Modern diamonds for a new generation. <br />
+          Ethically grown, brilliantly cut, and designed to last a lifetime.&quot;
+        </p>
 
-              <div className="jewelry-item">
-                <div className="image-container borderGlow">
-                  <img src="/pic3.jpg" alt="Growth Process" />
-                </div>
-                <p className="font-serif italic text-[10px] tracking-widest mt-4 uppercase opacity-60">
-                  HPHT Growth
-                </p>
-              </div>
-            </div>
-
-            <h2 style={{ 
-              fontFamily: 'var(--font-cormorant)', 
-              color: '#d4af37', 
-              fontSize: '2.5rem', 
-              fontWeight: '300',
-              margin: '40px 0 20px'
-            }}>
-              科技缔造永恒
-            </h2>
-            <p style={{ 
-              color: '#d4af37', 
-              opacity: 0.7, 
-              lineHeight: '2', 
-              fontSize: '1rem',
-              letterSpacing: '1px' 
-            }}>
-              精选顶级实验室培育钻石，每一颗都经过精密的 HPHT 或 CVD 工艺生长，<br/>
-              只为呈现超越自然的纯净火彩。
-            </p>
-          </div>
-        </PageTemplate>
+        {/* 操作按钮 (CTA) */}
+        <div style={{ marginTop: '50px', display: 'flex', gap: '20px', justifyContent: 'center' }}>
+          <button style={{
+            padding: '15px 40px',
+            backgroundColor: '#1a1a1a',
+            color: '#fff',
+            border: 'none',
+            fontSize: '0.9rem',
+            letterSpacing: '1px',
+            cursor: 'pointer',
+            transition: 'opacity 0.2s'
+          }}>
+            SHOP ENGAGEMENT
+          </button>
+          <button style={{
+            padding: '15px 40px',
+            backgroundColor: 'transparent',
+            color: '#1a1a1a',
+            border: '1px solid #1a1a1a',
+            fontSize: '0.9rem',
+            letterSpacing: '1px',
+            cursor: 'pointer'
+          }}>
+            EXPLORE DIAMONDS
+          </button>
+        </div>
 
       </div>
+
+      {/* 底部装饰线 */}
+      <div style={{ 
+        marginTop: '100px', 
+        width: '1px', 
+        height: '60px', 
+        backgroundColor: '#d4af37' 
+      }}></div>
     </main>
   );
 }
