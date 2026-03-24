@@ -39,3 +39,42 @@
 .image-container img:hover {
   transform: scale(1.05);
 }
+
+/* 导航栏功能图标样式 */
+.nav-icon-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.search-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #000; /* 极简下划线风格 */
+  padding: 2px 0;
+}
+
+.search-input-container input {
+  border: none;
+  outline: none;
+  font-size: 12px;
+  width: 120px;
+  background: transparent;
+}
+
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #000;
+  color: #fff;
+  font-size: 9px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
