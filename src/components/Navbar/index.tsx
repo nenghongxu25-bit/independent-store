@@ -23,9 +23,9 @@ export default function Navbar() {
   ];
 
   return (
-    <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff' }}>
+    <div style={{ position: 'relative', zIndex: 1000 }}>
       
-      {/* 1. Logo 层 - 这里的 borderBottom 是常驻的 */}
+      {/* 1. Logo 层 - 维持原始风格 */}
       <nav style={{ 
         height: '80px', 
         display: 'flex', 
@@ -51,19 +51,20 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 2. 二级菜单区 - 核心：改为 absolute，不占位，不挤压下方内容 */}
+      {/* 2. 二级菜单区 - 关键点：这个容器现在是漂浮在页面上的 */}
       <div 
         style={{ 
-          position: 'absolute',
-          top: '80px', // 紧跟 Logo 层
+          position: 'absolute', // 变成绝对定位，不占用页面高度
+          top: '80px', 
           left: 0,
           width: '100%',
           display: 'flex', 
           justifyContent: 'center', 
           gap: '35px', 
           backgroundColor: '#fff',
-          height: '45px',
-          zIndex: 1001
+          height: '45px', // 导航栏的高度
+          zIndex: 1001,
+          borderBottom: activeMenu ? 'none' : '1px solid #f2f2f2' // 没弹窗时显示底线
         }}
         onMouseLeave={() => setActiveMenu(null)}
       >
@@ -79,7 +80,7 @@ export default function Navbar() {
               display: 'flex',
               alignItems: 'center',
               height: '100%',
-              /* 黑线：稍微往下移一点，压在弹窗的线上 */
+              /* 下划线直接压在容器边缘 */
               borderBottom: activeMenu === item.id ? '2px solid #000' : '2px solid transparent',
               boxSizing: 'border-box',
               marginBottom: '-1px'
@@ -89,7 +90,7 @@ export default function Navbar() {
           </div>
         ))}
 
-        {/* 3. 弹窗区 - 它是二级菜单的子元素，也会跟着不占位 */}
+        {/* 3. 弹窗区 */}
         {activeMenu && (
           <div 
             style={megaMenuStyles}
@@ -105,8 +106,12 @@ export default function Navbar() {
         )}
       </div>
 
-      {/* 4. 占位块 - 只有这个块是占位的，确保页面主体内容不会钻到导航栏下面 */}
-      <div style={{ height: '45px' }} />
+      {/* 这里没有第4步的占位块了！
+        因为二级导航是 absolute，
+        所以你需要去你的 src/app/page.tsx 里，
+        给最外层的 <main> 或者容器加一个 padding-top: 45px (或者直接加一个 45px 高度的空 div)，
+        这样你的流光标题就会被永久固定在 125px (80+45) 的位置。
+      */}
     </div>
   );
 }
