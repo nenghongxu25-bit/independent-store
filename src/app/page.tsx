@@ -1,72 +1,70 @@
 import React from 'react';
 import PageTemplate from '@/components/PageTemplate';
-// 导入你的 CSS 模块
-import styles from './page.module.css';
-import './globals.css'; // 确保文件名带 s，且不需要 from 关键字
+import './globals.css'; 
 
 export default function Page() {
   return (
-    <main className={styles.mainContainer}>
-      {/* 去掉原来的高度限制，让它随内容伸展 */}
+    <main className="mainContainer">
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+        
+        {/* 第一屏：品牌封面 */}
         <PageTemplate pageNum="01">
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h1 className={styles.shimmerText}>Shimmer</h1>
-            <p className={styles.subtitle}>JEWELRY</p>
+            <h1 className="shimmerText">Shimmer</h1>
+            <p style={{ letterSpacing: '8px', fontSize: '0.8rem', opacity: 0.8, color: '#d4af37', marginTop: '-20px' }}>
+              JEWELRY
+            </p>
           </div>
         </PageTemplate>
 
-        {/* 关键：第二个板块紧跟其后 */}
+        {/* 第二屏：产品展示 */}
         <PageTemplate pageNum="02">
-          <div style={{ textAlign: 'center', maxWidth: '800px', padding: '100px 20px' }}>
-            {/* 图片展示区 */}
-<div className="jewelry-grid">
-  
-  {/* 第一张 */}
-  <div className="jewelry-item">
-    <div className="image-container">
-      <img src="/pic1.jpg" alt="Diamond {111} Plane" />
-    </div>
-    <p className="font-serif italic text-[10px] tracking-widest text-center uppercase text-gray-500">
-      {111} Plane Micro
-    </p>
-  </div>
+          <div style={{ textAlign: 'center', maxWidth: '1000px', width: '100%', padding: '0 20px' }}>
+            
+            {/* 严格等尺寸图片展示区 */}
+            <div className="jewelry-grid">
+              <div className="jewelry-item">
+                <div className="image-container borderGlow">
+                  <img src="/pic1.jpg" alt="Diamond {111} Plane" />
+                </div>
+                <p className="font-serif italic text-[10px] tracking-widest mt-4 uppercase opacity-60">
+                  {111} Plane Micro
+                </p>
+              </div>
 
-  {/* 第二张 */}
-  <div className="jewelry-item">
-    <div className="image-container">
-      <img src="/pic2.jpg" alt="Diamond {100} Plane" />
-    </div>
-    <p className="font-serif italic text-[10px] tracking-widest text-center uppercase text-gray-500">
-      {100} Plane Control
-    </p>
-  </div>
+              <div className="jewelry-item">
+                <div className="image-container borderGlow">
+                  <img src="/pic2.jpg" alt="Diamond {100} Plane" />
+                </div>
+                <p className="font-serif italic text-[10px] tracking-widest mt-4 uppercase opacity-60">
+                  {100} Plane Control
+                </p>
+              </div>
 
-  {/* 第三张 */}
-  <div className="jewelry-item">
-    <div className="image-container">
-      <img src="/pic3.jpg" alt="HPHT Growth" />
-    </div>
-    <p className="font-serif italic text-[10px] tracking-widest text-center uppercase text-gray-500">
-      Growth Process
-    </p>
-  </div>
+              <div className="jewelry-item">
+                <div className="image-container borderGlow">
+                  <img src="/pic3.jpg" alt="Growth Process" />
+                </div>
+                <p className="font-serif italic text-[10px] tracking-widest mt-4 uppercase opacity-60">
+                  HPHT Growth
+                </p>
+              </div>
+            </div>
 
-</div>
             <h2 style={{ 
               fontFamily: 'var(--font-cormorant)', 
               color: '#d4af37', 
-              fontSize: '3rem', 
+              fontSize: '2.5rem', 
               fontWeight: '300',
-              marginBottom: '30px'
+              margin: '40px 0 20px'
             }}>
               科技缔造永恒
             </h2>
             <p style={{ 
               color: '#d4af37', 
-              opacity: 0.8, 
+              opacity: 0.7, 
               lineHeight: '2', 
-              fontSize: '1.1rem',
+              fontSize: '1rem',
               letterSpacing: '1px' 
             }}>
               精选顶级实验室培育钻石，每一颗都经过精密的 HPHT 或 CVD 工艺生长，<br/>
@@ -74,6 +72,7 @@ export default function Page() {
             </p>
           </div>
         </PageTemplate>
+
       </div>
     </main>
   );
