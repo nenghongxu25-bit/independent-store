@@ -3,18 +3,18 @@
 import React from 'react';
 
 export default function Home() {
-  // 优化后的 CSS 动画
+  // 更加丝滑的钻石光泽动画
   const diamondFireKeyframes = `
-    /* 1. 窄比例流光动画：让光带更聚焦 */
+    /* 1. 丝滑流光：使用更大的位移范围配合 ease-in-out */
     @keyframes diamondMove {
-      0% { background-position: 150% 0; }
-      100% { background-position: -150% 0; }
+      0% { background-position: 250% 50%; }
+      100% { background-position: -150% 50%; }
     }
 
-    /* 2. 模拟火彩闪烁 */
+    /* 2. 呼吸式闪烁：让亮度变化更柔和 */
     @keyframes diamondSparkle {
-      0%, 100% { opacity: 1; filter: brightness(1); }
-      50% { opacity: 0.98; filter: brightness(1.15); }
+      0%, 100% { filter: brightness(1) contrast(1); }
+      50% { filter: brightness(1.1) contrast(1.05); }
     }
   `;
 
@@ -47,11 +47,12 @@ export default function Home() {
           Handcrafted Excellence
         </p>
 
-        {/* --- 标题区域：流光范围已收窄 --- */}
+        {/* --- 标题区域 --- */}
         <div style={{
           display: 'inline-block',
           position: 'relative',
-          animation: 'diamondSparkle 3s ease-in-out infinite', 
+          /* 使用 4秒一轮的呼吸感闪烁 */
+          animation: 'diamondSparkle 4s ease-in-out infinite', 
         }}>
           <h1 style={{ 
             fontSize: '8.5rem', 
@@ -62,16 +63,20 @@ export default function Home() {
             lineHeight: '0.85',
             textTransform: 'none',
             
-            /* 核心修改：
-               将彩虹色集中在 48%-52% 之间，其余部分留给主色调。
-               这样光束经过时会非常细碎、闪耀，而不是大面积变色。
+            /* 渐变优化：
+               1. 极大幅度拉宽中间的白色和彩虹色过渡区域。
+               2. 使用重复色值来确保光束边缘完全“隐身”。
             */
-            background: 'linear-gradient(90deg, #d4af37 0%, #d4af37 45%, #fff 48%, #e0f7fa 50%, #fbe9e7 52%, #fff 55%, #d4af37 60%, #d4af37 100%)',
-            backgroundSize: '300% auto', // 增大背景尺寸，使光束更窄
+            background: 'linear-gradient(90deg, #d4af37 0%, #d4af37 20%, #e5c05b 35%, #fff 45%, #f0faff 50%, #fff 55%, #fdf2f0 65%, #d4af37 80%, #d4af37 100%)',
+            backgroundSize: '400% auto', 
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             
-            animation: 'diamondMove 10s linear infinite', 
+            /* 关键修改：
+               - 时间延长至 12s，让动作慢下来。
+               - 使用 cubic-bezier 替代 linear，实现“蓄势待发-加速流过-缓缓消失”的效果。
+            */
+            animation: 'diamondMove 12s cubic-bezier(0.4, 0, 0.2, 1) infinite', 
           }}>
             Shimmer
           </h1>
