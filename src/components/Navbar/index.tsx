@@ -23,8 +23,8 @@ export default function Navbar() {
   ];
 
   return (
-    /* 整个导航栏容器，设为 flex-direction column 确保没有间隙 */
-    <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff', display: 'flex', flexDirection: 'column' }}>
+    /* 核心：这个最外层 div 必须是 relative 且没有 padding/margin */
+    <div style={{ position: 'relative', width: '100%', zIndex: 1000, backgroundColor: '#fff' }}>
       
       {/* 1. Logo 层 */}
       <nav style={{ 
@@ -53,15 +53,14 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 2. 二级菜单区 - 强行固定高度 45px，不给任何空隙机会 */}
+      {/* 2. 二级菜单触发区 - 移除所有可能导致空隙的 padding */}
       <div 
         style={{ 
           display: 'flex', 
           justifyContent: 'center', 
           gap: '35px', 
-          height: '45px', 
           backgroundColor: '#fff',
-          borderBottom: activeMenu ? 'none' : '1px solid #eee'
+          borderBottom: '1px solid #eee'
         }}
         onMouseLeave={() => setActiveMenu(null)}
       >
@@ -74,11 +73,9 @@ export default function Navbar() {
               fontSize: '0.85rem',
               color: '#333',
               fontWeight: activeMenu === item.id ? '600' : '400',
-              display: 'flex',
-              alignItems: 'center',
-              height: '100%',
+              padding: '15px 0', // 垂直方向对称 padding
               borderBottom: activeMenu === item.id ? '2px solid #333' : '2px solid transparent',
-              boxSizing: 'border-box',
+              marginBottom: '-1px', // 让下划线压在底线上
               transition: 'all 0.1s'
             }}
           >
@@ -87,7 +84,7 @@ export default function Navbar() {
         ))}
       </div>
 
-      {/* 3. 弹窗区 - 使用绝对定位紧贴顶部 */}
+      {/* 3. 弹窗区 - 必须放在 relative 父容器的最后 */}
       {activeMenu && (
         <div 
           style={megaMenuStyles}
