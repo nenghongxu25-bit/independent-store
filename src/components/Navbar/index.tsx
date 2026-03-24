@@ -23,17 +23,17 @@ export default function Navbar() {
   ];
 
   return (
-    /* 锁定背景色，防止透底 */
     <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff' }}>
       
-      {/* 1. Logo 层 - 保持你原始的 80px 布局 */}
+      {/* 1. Logo 层 - 这里的 borderBottom 是常驻的 */}
       <nav style={{ 
         height: '80px', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'space-between',
         padding: '0 60px',
-        borderBottom: '1px solid #f2f2f2'
+        borderBottom: '1px solid #f2f2f2',
+        backgroundColor: '#fff'
       }}>
         <div style={{ display: 'flex', gap: '20px', flex: 1 }}>
            <span style={{ cursor: 'pointer', fontSize: '1.2rem' }}>📍</span>
@@ -51,14 +51,19 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 2. 二级菜单区 - 关键：高度固定，去掉 border */}
+      {/* 2. 二级菜单区 - 核心：改为 absolute，不占位，不挤压下方内容 */}
       <div 
         style={{ 
+          position: 'absolute',
+          top: '80px', // 紧跟 Logo 层
+          left: 0,
+          width: '100%',
           display: 'flex', 
           justifyContent: 'center', 
           gap: '35px', 
           backgroundColor: '#fff',
-          height: '45px' // 给一个固定高度方便弹窗定位
+          height: '45px',
+          zIndex: 1001
         }}
         onMouseLeave={() => setActiveMenu(null)}
       >
@@ -74,33 +79,34 @@ export default function Navbar() {
               display: 'flex',
               alignItems: 'center',
               height: '100%',
-              /* 文字下划线：通过 position 让它浮在最底层，方便跟弹窗线合体 */
+              /* 黑线：稍微往下移一点，压在弹窗的线上 */
               borderBottom: activeMenu === item.id ? '2px solid #000' : '2px solid transparent',
               boxSizing: 'border-box',
-              zIndex: 1001, // 确保文字在弹窗线上方
-              transition: 'all 0.1s'
+              marginBottom: '-1px'
             }}
           >
             {item.label}
           </div>
         ))}
+
+        {/* 3. 弹窗区 - 它是二级菜单的子元素，也会跟着不占位 */}
+        {activeMenu && (
+          <div 
+            style={megaMenuStyles}
+            onMouseEnter={() => setActiveMenu(activeMenu)} 
+          >
+            {activeMenu === 'engagement' && <EngagementMenu />}
+            {activeMenu === 'wedding' && <WeddingMenu />}
+            {activeMenu === 'diamonds' && <DiamondsMenu />}
+            {activeMenu === 'gemstones' && <GemstonesMenu />}
+            {activeMenu === 'fine-jewelry' && <FineJewelryMenu />}
+            {activeMenu === 'support' && <SupportMenu />}
+          </div>
+        )}
       </div>
 
-      {/* 3. 弹窗区 - 这次真的贴死了 */}
-      {activeMenu && (
-        <div 
-          style={megaMenuStyles}
-          onMouseEnter={() => setActiveMenu(activeMenu)} 
-          onMouseLeave={() => setActiveMenu(null)}
-        >
-          {activeMenu === 'engagement' && <EngagementMenu />}
-          {activeMenu === 'wedding' && <WeddingMenu />}
-          {activeMenu === 'diamonds' && <DiamondsMenu />}
-          {activeMenu === 'gemstones' && <GemstonesMenu />}
-          {activeMenu === 'fine-jewelry' && <FineJewelryMenu />}
-          {activeMenu === 'support' && <SupportMenu />}
-        </div>
-      )}
+      {/* 4. 占位块 - 只有这个块是占位的，确保页面主体内容不会钻到导航栏下面 */}
+      <div style={{ height: '45px' }} />
     </div>
   );
 }
