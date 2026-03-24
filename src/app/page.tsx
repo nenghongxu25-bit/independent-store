@@ -2,7 +2,7 @@ import React from 'react';
 import PageTemplate from '@/components/PageTemplate';
 // 导入你的 CSS 模块
 import styles from './page.module.css';
-import className from './grobal.css';
+import className from './global.css';
 
 export default function Page() {
   return (
