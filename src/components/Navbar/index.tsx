@@ -6,71 +6,96 @@ import WeddingMenu from './WeddingMenu';
 import DiamondsMenu from './DiamondsMenu';
 import GemstonesMenu from './GemstonesMenu';
 import FineJewelryMenu from './FineJewelryMenu';
+import PersonalizeMenu from './PersonalizeMenu'; // 如果还没写，可以先注释
 import SupportMenu from './SupportMenu';
 
 export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   const navItems = [
-    { id: 'engagement', label: 'ENGAGEMENT RINGS' },
-    { id: 'wedding', label: 'WEDDING BANDS' },
-    { id: 'diamonds', label: 'DIAMONDS' },
-    { id: 'gemstones', label: 'GEMSTONES' },
-    { id: 'fine-jewelry', label: 'FINE JEWELRY' },
-    { id: 'support', label: 'SUPPORT CENTER' }
+    { id: 'engagement', label: 'Engagement Rings' },
+    { id: 'wedding', label: 'Wedding Bands' },
+    { id: 'diamonds', label: 'Diamonds' },
+    { id: 'gemstones', label: 'Gemstones' },
+    { id: 'fine-jewelry', label: 'Fine Jewelry' },
+    { id: 'personalize', label: 'Personalize' },
+    { id: 'support', label: 'Support Center' }
   ];
 
-  // 主导航栏单项样式
-  const menuItemStyle: React.CSSProperties = {
-    cursor: 'pointer',
-    fontSize: '1.1rem',      // 顶部字体放大
-    fontWeight: '600',       // 增加厚度
-    letterSpacing: '2.5px',  // 增加高级感间距
-    color: '#d4af37',        // 保持金色主题
-    padding: '25px 0',       // 增加高度
-    transition: 'all 0.3s ease',
-    borderBottom: '3px solid transparent',
-  };
-
   return (
-    <div style={{ position: 'relative', zIndex: 1000 }}>
-      {/* 顶部主条 */}
+    <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff' }}>
+      {/* 顶部主导航 */}
       <nav style={{ 
-        backgroundColor: '#000', // 假设你的背景是黑色
         height: '80px', 
         display: 'flex', 
         alignItems: 'center', 
-        padding: '0 40px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.3)'
+        justifyContent: 'space-between',
+        padding: '0 60px',
+        borderBottom: '1px solid #eee'
       }}>
-        <div style={{ flex: 1, fontSize: '1.8rem', fontWeight: 'bold', color: '#d4af37', fontFamily: 'serif' }}>
-          SHIMMER
+        {/* 左侧功能图标区 (仿 Shane Co.) */}
+        <div style={{ display: 'flex', gap: '20px', flex: 1 }}>
+           <span style={{ cursor: 'pointer', fontSize: '1.2rem' }}>📍</span>
+           <span style={{ cursor: 'pointer', fontSize: '1.2rem' }}>❓</span>
         </div>
 
-        <div 
-          style={{ display: 'flex', flex: 4, justifyContent: 'center', gap: '40px' }}
-          onMouseLeave={() => setActiveMenu(null)}
-        >
-          {navItems.map((item) => (
-            <div 
-              key={item.id}
-              style={{
-                ...menuItemStyle,
-                borderBottom: activeMenu === item.id ? '3px solid #d4af37' : '3px solid transparent'
-              }} 
-              onMouseEnter={() => setActiveMenu(item.id)}
-            >
-              {item.label}
-            </div>
-          ))}
+        {/* 中间 Logo (SHIMMER) */}
+        <div style={{ flex: 1, textAlign: 'center' }}>
+          <h1 style={{ 
+            fontSize: '1.8rem', 
+            letterSpacing: '4px', 
+            fontWeight: '400', 
+            fontFamily: 'serif',
+            margin: 0,
+            cursor: 'pointer'
+          }}>
+            SHIMMER
+          </h1>
+          <p style={{ fontSize: '0.6rem', letterSpacing: '2px', margin: 0, color: '#666' }}>
+            YOUR FRIEND & JEWELER
+          </p>
         </div>
 
-        <div style={{ flex: 1, textAlign: 'right', color: '#fff', fontSize: '0.9rem' }}>
-          SEARCH / BAG
+        {/* 右侧工具栏 */}
+        <div style={{ flex: 1, textAlign: 'right', display: 'flex', justifyContent: 'flex-end', gap: '20px', alignItems: 'center' }}>
+          <div style={{ border: '1px solid #ccc', borderRadius: '20px', padding: '5px 15px', display: 'flex', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.8rem', color: '#999' }}>Search</span>
+          </div>
+          <span style={{ cursor: 'pointer', fontSize: '1.2rem' }}>🛍️</span>
         </div>
       </nav>
 
-      {/* 下拉菜单容器 */}
+      {/* 下面这一排是真正的二级菜单触发区 */}
+      <div 
+        style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          gap: '35px', 
+          padding: '10px 0',
+          borderBottom: activeMenu ? 'none' : '1px solid #eee'
+        }}
+        onMouseLeave={() => setActiveMenu(null)}
+      >
+        {navItems.map((item) => (
+          <div 
+            key={item.id}
+            onMouseEnter={() => setActiveMenu(item.id)}
+            style={{
+              cursor: 'pointer',
+              fontSize: '0.85rem', // 关键：使用 0.85 这种精细的尺寸
+              color: '#333',
+              fontWeight: activeMenu === item.id ? '600' : '400',
+              paddingBottom: '5px',
+              borderBottom: activeMenu === item.id ? '2px solid #333' : '2px solid transparent',
+              transition: 'all 0.2s'
+            }}
+          >
+            {item.label}
+          </div>
+        ))}
+      </div>
+
+      {/* 渲染子菜单 */}
       <div 
         onMouseEnter={() => setActiveMenu(activeMenu)} 
         onMouseLeave={() => setActiveMenu(null)}
