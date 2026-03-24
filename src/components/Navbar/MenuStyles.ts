@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const megaMenuStyles: React.CSSProperties = {
-  /* 关键：使用 absolute 配合 top: 100% 实现无缝拼接 */
   position: 'absolute',
   top: '100%', 
   left: 0,
@@ -12,16 +11,16 @@ export const megaMenuStyles: React.CSSProperties = {
   justifyContent: 'center',
   padding: '40px 0 60px 0', 
   color: '#333',
-  /* 柔和阴影，增加大牌感 */
-  boxShadow: '0 15px 30px rgba(0,0,0,0.05)',
-  borderTop: '1px solid #f2f2f2',
+  boxShadow: '0 20px 40px rgba(0,0,0,0.08)', // 加深阴影，让无缝效果更明显
+  borderTop: '1px solid #eee',
+  marginTop: '-1px', // 关键：向上移动 1 像素，消除肉眼空隙
 };
 
 export const containerStyles: React.CSSProperties = {
   display: 'flex',
   width: '100%',
   maxWidth: '1200px', 
-  gap: '60px', // 增加间距更有呼吸感
+  gap: '60px',
   padding: '0 40px',
 };
 
@@ -41,7 +40,7 @@ export const subHeaderStyles: React.CSSProperties = {
   marginBottom: '10px',
   color: '#000',
   display: 'block',
-  textTransform: 'uppercase', // 增加一点 Shane Co. 的硬朗感
+  textTransform: 'uppercase',
   letterSpacing: '1px',
 };
 
@@ -58,7 +57,7 @@ export const listStyles: React.CSSProperties = {
 export const cardStyles: React.CSSProperties = {
   backgroundColor: '#f9f6f4',
   padding: '40px',
-  flex: '0 0 300px', // 固定宽度
+  flex: '0 0 300px',
   display: 'flex',
   flexDirection: 'column',
 };
