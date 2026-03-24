@@ -54,3 +54,48 @@
   background-attachment: fixed;
   overflow-x: hidden;
 }
+
+/* 1. 丝滑流光：12秒一轮，cubic-bezier 实现“入场-加速-淡出” */
+@keyframes diamondMove {
+  0% { background-position: 250% 50%; }
+  100% { background-position: -150% 50%; }
+}
+
+/* 2. 柔和呼吸感闪烁 */
+@keyframes diamondSparkle {
+  0%, 100% { filter: brightness(1) contrast(1); }
+  50% { filter: brightness(1.1) contrast(1.05); }
+}
+
+.shimmerTitle {
+  font-size: 8.5rem;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+  margin: 0;
+  font-weight: 400;
+  line-height: 0.85;
+  
+  /* 宽渐变：确保光束边缘和底色（#d4af37）丝滑过渡 */
+  background: linear-gradient(90deg, 
+    #d4af37 0%, #d4af37 20%, 
+    #e5c05b 35%, #fff 45%, 
+    #f0faff 50%, #fff 55%, 
+    #fdf2f0 65%, #d4af37 80%, 
+    #d4af37 100%
+  );
+  background-size: 400% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* 动画组合 */
+  animation: 
+    diamondMove 12s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    diamondSparkle 4s ease-in-out infinite;
+}
+
+/* 适配移动端 */
+@media (max-width: 768px) {
+  .shimmerTitle {
+    font-size: 4rem;
+  }
+}
