@@ -3,16 +3,17 @@
 import React from 'react';
 
 export default function Home() {
-  // 极致丝滑、摊开的钻石光泽动画逻辑
   const diamondFireKeyframes = `
+    /* 1. 改为匀速 linear 动画，确保速度始终一致 */
     @keyframes diamondMove {
-      0% { background-position: 400% 50%; }
-      100% { background-position: -400% 50%; }
+      0% { background-position: 200% 50%; }
+      100% { background-position: -200% 50%; }
     }
 
+    /* 2. 闪烁动画保持轻微 */
     @keyframes diamondSparkle {
       0%, 100% { filter: brightness(1) contrast(1); }
-      50% { filter: brightness(1.08) contrast(1.02); }
+      50% { filter: brightness(1.06) contrast(1.02); }
     }
   `;
 
@@ -45,11 +46,11 @@ export default function Home() {
           Handcrafted Excellence
         </p>
 
-        {/* 标题区域：流光极其缓慢且均匀摊开 */}
+        {/* 标题区域 */}
         <div style={{
           display: 'inline-block',
           position: 'relative',
-          animation: 'diamondSparkle 6s ease-in-out infinite', 
+          animation: 'diamondSparkle 5s ease-in-out infinite', 
         }}>
           <h1 style={{ 
             fontSize: '8.5rem', 
@@ -59,13 +60,28 @@ export default function Home() {
             fontWeight: '400',
             lineHeight: '0.85',
             textTransform: 'none',
-            /* 800% 的拉伸度，确保流光不再聚集，而是像云雾一样散开 */
-            background: 'linear-gradient(90deg, #d4af37 0%, #d4af37 35%, #e5c05b 45%, #fff 50%, #f0faff 52%, #fff 55%, #fdf2f0 65%, #d4af37 80%, #d4af37 100%)',
-            backgroundSize: '800% auto', 
+            
+            /* 调整 backgroundSize 为 600%，既保证了“摊开”感，
+               又缩短了光带在外部“空跑”的时间。
+            */
+            background: 'linear-gradient(90deg, 
+              #d4af37 0%, 
+              #d4af37 30%, 
+              #e5c05b 40%, 
+              #fff 50%, 
+              #f0faff 52%, 
+              #fff 55%, 
+              #fdf2f0 65%, 
+              #d4af37 75%, 
+              #d4af37 100%)',
+            backgroundSize: '600% auto', 
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-            /* 25秒循环：极慢的流淌感 */
-            animation: 'diamondMove 25s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite', 
+            
+            /* 使用 linear (匀速)，彻底解决一会儿快一会儿慢的问题。
+               18s 是平衡了“静谧感”和“可见性”的匀速频率。
+            */
+            animation: 'diamondMove 18s linear infinite', 
           }}>
             Shimmer
           </h1>
