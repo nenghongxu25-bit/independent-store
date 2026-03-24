@@ -23,17 +23,16 @@ export default function Navbar() {
   ];
 
   return (
-    <div style={{ position: 'relative', zIndex: 1000 }}>
+    <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff' }}>
       
-      {/* 1. Logo 层 - 维持原始风格 */}
+      {/* 1. Logo 层 - 80px 高度，带 1px 底线 */}
       <nav style={{ 
         height: '80px', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'space-between',
         padding: '0 60px',
-        borderBottom: '1px solid #f2f2f2',
-        backgroundColor: '#fff'
+        borderBottom: '1px solid #f2f2f2'
       }}>
         <div style={{ display: 'flex', gap: '20px', flex: 1 }}>
            <span style={{ cursor: 'pointer', fontSize: '1.2rem' }}>📍</span>
@@ -51,20 +50,15 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 2. 二级菜单区 - 关键点：这个容器现在是漂浮在页面上的 */}
+      {/* 2. 二级菜单区 - 紧贴 Logo 层，不加任何定位干扰 */}
       <div 
         style={{ 
-          position: 'absolute', // 变成绝对定位，不占用页面高度
-          top: '80px', 
-          left: 0,
-          width: '100%',
           display: 'flex', 
           justifyContent: 'center', 
           gap: '35px', 
           backgroundColor: '#fff',
-          height: '45px', // 导航栏的高度
-          zIndex: 1001,
-          borderBottom: activeMenu ? 'none' : '1px solid #f2f2f2' // 没弹窗时显示底线
+          height: '45px',
+          position: 'relative' // 仅为了给弹窗提供定位基准
         }}
         onMouseLeave={() => setActiveMenu(null)}
       >
@@ -80,17 +74,17 @@ export default function Navbar() {
               display: 'flex',
               alignItems: 'center',
               height: '100%',
-              /* 下划线直接压在容器边缘 */
+              /* 下划线 */
               borderBottom: activeMenu === item.id ? '2px solid #000' : '2px solid transparent',
               boxSizing: 'border-box',
-              marginBottom: '-1px'
+              zIndex: 1001
             }}
           >
             {item.label}
           </div>
         ))}
 
-        {/* 3. 弹窗区 */}
+        {/* 3. 弹窗区 - 唯一绝对定位的东西，它会盖在流光标题上 */}
         {activeMenu && (
           <div 
             style={megaMenuStyles}
@@ -105,13 +99,6 @@ export default function Navbar() {
           </div>
         )}
       </div>
-
-      {/* 这里没有第4步的占位块了！
-        因为二级导航是 absolute，
-        所以你需要去你的 src/app/page.tsx 里，
-        给最外层的 <main> 或者容器加一个 padding-top: 45px (或者直接加一个 45px 高度的空 div)，
-        这样你的流光标题就会被永久固定在 125px (80+45) 的位置。
-      */}
     </div>
   );
 }
