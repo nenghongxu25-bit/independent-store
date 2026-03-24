@@ -25,7 +25,7 @@ export default function Navbar() {
   return (
     <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff' }}>
       
-      {/* 1. Logo 层 */}
+      {/* 1. Logo 层 - 还原 80px 高度 */}
       <nav style={{ 
         height: '80px', 
         display: 'flex', 
@@ -50,16 +50,14 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 2. 二级菜单区 - 彻底干掉底部的 Border */}
+      {/* 2. 二级菜单区 - 还原你的间距，但通过 zIndex 处理衔接 */}
       <div 
         style={{ 
           display: 'flex', 
           justifyContent: 'center', 
           gap: '35px', 
-          height: '40px', // 固定一个紧凑的高度
           backgroundColor: '#fff',
           position: 'relative',
-          // 关键：不在这里加 border，让弹窗的 border 来当底线
         }}
         onMouseLeave={() => setActiveMenu(null)}
       >
@@ -69,25 +67,21 @@ export default function Navbar() {
             onMouseEnter={() => setActiveMenu(item.id)}
             style={{
               cursor: 'pointer',
-              fontSize: '0.85rem',
+              fontSize: '0.9rem',
               color: '#333',
-              fontWeight: activeMenu === item.id ? '600' : '400',
-              display: 'flex',
-              alignItems: 'center',
-              height: '100%',
-              padding: '0 5px',
-              // 关键：下划线通过位移直接压在容器边缘
-              borderBottom: activeMenu === item.id ? '2px solid #333' : '2px solid transparent',
+              fontWeight: activeMenu === item.id ? '700' : '400',
+              padding: '15px 0',
+              /* 这里的线会和弹窗的顶边线完美重合 */
+              borderBottom: activeMenu === item.id ? '2px solid #000' : '2px solid transparent',
               zIndex: 1001,
-              transition: 'all 0.1s',
-              transform: 'translateY(1px)' // 强行下移 1px 压住线
+              marginBottom: '-1px' 
             }}
           >
             {item.label}
           </div>
         ))}
-        {/* 如果没打开菜单，手动补一条淡色底线保持样式一致 */}
-        {!activeMenu && <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, borderBottom: '1px solid #eee' }} />}
+        {/* 底线：只有在没激活菜单时显示，激活时由弹窗的 borderTop 代替 */}
+        {!activeMenu && <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, borderBottom: '1px solid #f2f2f2' }} />}
       </div>
 
       {/* 3. 弹窗区 */}
