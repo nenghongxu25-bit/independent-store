@@ -27,7 +27,6 @@ export default function Navbar() {
 
   return (
     <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff', width: '100%' }}>
-      
       {/* 1. Logo & Icons 层 */}
       <nav style={{ 
         height: '80px', 
@@ -44,9 +43,7 @@ export default function Navbar() {
           <p style={{ fontSize: '0.6rem', letterSpacing: '2px', margin: 0, color: '#666' }}>YOUR FRIEND & JEWELER</p>
         </div>
 
-        {/* 右侧：搜索与购物车 */}
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '25px' }}>
-          
           <div style={{ 
             display: 'flex', 
             alignItems: 'center', 
@@ -92,6 +89,7 @@ export default function Navbar() {
         </div>
       </nav>
 
+      {/* 2. 二级导航层 */}
       <div 
         style={{ 
           display: 'flex', justifyContent: 'center', gap: '35px', height: '45px',
@@ -117,6 +115,7 @@ export default function Navbar() {
           </div>
         ))}
 
+        {/* 3. 弹窗层 */}
         {activeMenu && (
           <div style={megaMenuStyles} onMouseEnter={() => setActiveMenu(activeMenu)}>
             {activeMenu === 'engagement' && <EngagementMenu />}
@@ -124,4 +123,11 @@ export default function Navbar() {
             {activeMenu === 'diamonds' && <DiamondsMenu />}
             {activeMenu === 'gemstones' && <GemstonesMenu />}
             {activeMenu === 'fine-jewelry' && <FineJewelryMenu />}
-            {active
+            {activeMenu === 'personalize' && <PersonalizeMenu />}
+            {activeMenu === 'support' && <SupportMenu />}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
