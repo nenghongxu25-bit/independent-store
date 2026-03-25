@@ -5,7 +5,7 @@ import { Search, ShoppingBag } from 'lucide-react'; // 需要安装：npm instal
 import EngagementMenu from './menus/EngagementMenu';
 import WeddingMenu from './menus/WeddingMenu';
 import DiamondsMenu from './menus/DiamondsMenu';
-import GemstonesMenu from '.menus//GemstonesMenu';
+import GemstonesMenu from '.menus/GemstonesMenu';
 import FineJewelryMenu from './menus/FineJewelryMenu';
 import PersonalizeMenu from './menus/PersonalizeMenu';
 import SupportMenu from './menus/SupportMenu';
