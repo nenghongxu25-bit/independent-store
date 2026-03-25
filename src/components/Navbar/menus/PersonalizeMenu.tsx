@@ -1,5 +1,5 @@
 import React from 'react';
-import { containerStyles, headerStyles, subHeaderStyles, listStyles } from './MenuStyles';
+import { containerStyles, headerStyles, subHeaderStyles, listStyles } from '../MenuStyles';
 
 export default function PersonalizeMenu() {
   return (
