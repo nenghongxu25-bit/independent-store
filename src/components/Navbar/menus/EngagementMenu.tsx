@@ -1,5 +1,5 @@
 import React from 'react';
-import { containerStyles, headerStyles, subHeaderStyles, listStyles, cardStyles } from './MenuStyles';
+import { containerStyles, headerStyles, subHeaderStyles, listStyles, cardStyles } from '../MenuStyles';
 
 export default function EngagementMenu() {
   return (
