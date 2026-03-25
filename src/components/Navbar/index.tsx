@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import EngagementMenu from './menus/EngagementMenu';
 import WeddingMenu from './menus/WeddingMenu';
 import DiamondsMenu from './menus/DiamondsMenu';
@@ -12,7 +12,6 @@ import SearchBar from './ui/SearchBar';
 import CartIcon from './ui/CartIcon';
 import { megaMenuStyles } from './MenuStyles';
 
-// 1. 建立组件映射表，让代码像配置一样简单
 const MENU_COMPONENTS: Record<string, React.ComponentType> = {
   'engagement': EngagementMenu,
   'wedding': WeddingMenu,
@@ -37,37 +36,40 @@ export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [searchFocused, setSearchFocused] = useState(false);
 
-  // 2. 动态获取当前激活的组件
-  const ActiveMenuComponent = activeMenu ? MENU_COMPONENTS[activeMenu] : null;
+  const ActiveMenuComponent = useMemo(() => 
+    activeMenu ? MENU_COMPONENTS[activeMenu] : null
+  , [activeMenu]);
 
   return (
     <div style={{ position: 'relative', zIndex: 1000, backgroundColor: '#fff', width: '100%' }}>
       
-      {/* 顶部 Logo 层 */}
+      {/* 1. 顶部 Logo 层 (高度 80px) */}
       <nav style={{ 
         height: '80px', display: 'flex', alignItems: 'center', 
         justifyContent: 'space-between', padding: '0 60px', borderBottom: '1px solid #f2f2f2' 
       }}>
         <div style={{ flex: 1 }}></div>
-
         <div style={{ flex: 1, textAlign: 'center' }}>
           <h1 style={{ fontSize: '1.8rem', letterSpacing: '4px', fontFamily: 'serif', margin: 0, cursor: 'pointer' }}>SHIMMER</h1>
           <p style={{ fontSize: '0.6rem', letterSpacing: '2px', margin: 0, color: '#666' }}>YOUR FRIEND & JEWELER</p>
         </div>
-
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '25px' }}>
-          <SearchBar 
-            isFocused={searchFocused} 
-            onFocus={() => setSearchFocused(true)} 
-            onBlur={() => setSearchFocused(false)} 
-          />
+          <SearchBar isFocused={searchFocused} onFocus={() => setSearchFocused(true)} onBlur={() => setSearchFocused(false)} />
           <CartIcon count={0} />
         </div>
       </nav>
 
-      {/* 导航与弹窗层 */}
+      {/* 2. 一级导航层 (高度 45px) */}
+      {/* 注意：增加 position: 'relative' 作为二级菜单的定位基准 */}
       <div 
-        style={{ display: 'flex', justifyContent: 'center', gap: '35px', height: '45px', backgroundColor: '#fff' }}
+        style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          gap: '35px', 
+          height: '45px', 
+          backgroundColor: '#fff', 
+          position: 'relative' 
+        }}
         onMouseLeave={() => setActiveMenu(null)}
       >
         {NAV_ITEMS.map((item) => (
@@ -87,13 +89,26 @@ export default function Navbar() {
           </div>
         ))}
 
-        {/* 3. 终极精简：一行渲染所有弹窗 */}
+        {/* 3. 二级菜单弹窗层 */}
         {ActiveMenuComponent && (
-          <div style={megaMenuStyles} onMouseEnter={() => setActiveMenu(activeMenu)}>
+          <div 
+            style={{
+              ...megaMenuStyles,
+              position: 'absolute', // 确保是绝对定位
+              top: '45px',          // 刚好在一级导航条(45px)下方
+              left: 0,
+              width: '100vw',
+              animation: 'navFadeIn 0.2s ease-out forwards'
+            }} 
+            onMouseEnter={() => setActiveMenu(activeMenu)}
+          >
             <ActiveMenuComponent />
           </div>
         )}
       </div>
-    </div>
-  );
-}
+
+      <style jsx global>{`
+        @keyframes navFadeIn {
+          from { opacity: 0; transform: translateY(5px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
