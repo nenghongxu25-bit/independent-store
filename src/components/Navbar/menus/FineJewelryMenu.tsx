@@ -1,5 +1,5 @@
 import React from 'react';
-import { containerStyles, headerStyles, listStyles } from './MenuStyles';
+import { containerStyles, headerStyles, listStyles } from '../MenuStyles';
 
 export default function FineJewelryMenu() {
   return (
