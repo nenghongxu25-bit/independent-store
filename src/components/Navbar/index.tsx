@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 import { Search, ShoppingBag } from 'lucide-react'; // 需要安装：npm install lucide-react
-import EngagementMenu from '../EngagementMenu';
-import WeddingMenu from '../WeddingMenu';
-import DiamondsMenu from '../DiamondsMenu';
-import GemstonesMenu from '../GemstonesMenu';
-import FineJewelryMenu from '../FineJewelryMenu';
-import PersonalizeMenu from '../PersonalizeMenu';
-import SupportMenu from '../SupportMenu';
+import EngagementMenu from './menus/EngagementMenu';
+import WeddingMenu from './menus/WeddingMenu';
+import DiamondsMenu from './menus/DiamondsMenu';
+import GemstonesMenu from '.menus//GemstonesMenu';
+import FineJewelryMenu from './menus/FineJewelryMenu';
+import PersonalizeMenu from './menus/PersonalizeMenu';
+import SupportMenu from './menus/SupportMenu';
 import { megaMenuStyles } from './MenuStyles';
 
 export default function Navbar() {
