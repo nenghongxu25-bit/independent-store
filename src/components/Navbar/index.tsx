@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Search, ShoppingBag } from 'lucide-react'; // 需要安装：npm install lucide-react
+import { Search, ShoppingBag } from 'lucide-react';
 import EngagementMenu from './menus/EngagementMenu';
 import WeddingMenu from './menus/WeddingMenu';
 import DiamondsMenu from './menus/DiamondsMenu';
@@ -33,16 +33,12 @@ export default function Navbar() {
         height: '80px', 
         display: 'flex', 
         alignItems: 'center', 
-        justifyContent: 'space-between', // 改为 between，为左右留出空间
+        justifyContent: 'space-between',
         padding: '0 60px',
         borderBottom: '1px solid #f2f2f2' 
       }}>
-        {/* 左侧占位（为了让 Logo 居中，左右两边宽度需对称） */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '20px' }}>
-          {/* 这里以后可以放语言切换或门店定位 */}
-        </div>
+        <div style={{ flex: 1 }}></div>
 
-        {/* 中间 Logo */}
         <div style={{ flex: 1, textAlign: 'center' }}>
           <h1 style={{ fontSize: '1.8rem', letterSpacing: '4px', fontFamily: 'serif', margin: 0, cursor: 'pointer' }}>SHIMMER</h1>
           <p style={{ fontSize: '0.6rem', letterSpacing: '2px', margin: 0, color: '#666' }}>YOUR FRIEND & JEWELER</p>
@@ -51,7 +47,6 @@ export default function Navbar() {
         {/* 右侧：搜索与购物车 */}
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '25px' }}>
           
-          {/* 搜索框 */}
           <div style={{ 
             display: 'flex', 
             alignItems: 'center', 
@@ -70,22 +65,20 @@ export default function Navbar() {
                 outline: 'none',
                 marginLeft: '8px',
                 fontSize: '0.85rem',
-                width: searchFocused ? '150px' : '100px', // 聚焦时自动变长
+                width: searchFocused ? '150px' : '100px',
                 transition: 'width 0.3s',
                 backgroundColor: 'transparent'
               }}
             />
           </div>
 
-          {/* 购物车图标 */}
           <div style={{ position: 'relative', cursor: 'pointer' }}>
             <ShoppingBag size={22} strokeWidth={1.5} color="#333" />
-            {/* 购物车角标 */}
             <span style={{
               position: 'absolute',
               top: '-5px',
               right: '-8px',
-              backgroundColor: '#d4af37', // 你的品牌金
+              backgroundColor: '#d4af37',
               color: '#fff',
               fontSize: '10px',
               padding: '2px 5px',
@@ -99,7 +92,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 2. 二级导航层 */}
       <div 
         style={{ 
           display: 'flex', justifyContent: 'center', gap: '35px', height: '45px',
@@ -125,7 +117,6 @@ export default function Navbar() {
           </div>
         ))}
 
-        {/* 3. 弹窗层 */}
         {activeMenu && (
           <div style={megaMenuStyles} onMouseEnter={() => setActiveMenu(activeMenu)}>
             {activeMenu === 'engagement' && <EngagementMenu />}
@@ -133,11 +124,4 @@ export default function Navbar() {
             {activeMenu === 'diamonds' && <DiamondsMenu />}
             {activeMenu === 'gemstones' && <GemstonesMenu />}
             {activeMenu === 'fine-jewelry' && <FineJewelryMenu />}
-            {activeMenu === 'personalize' && <PersonalizeMenu />}
-            {activeMenu === 'support' && <SupportMenu />}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+            {active
