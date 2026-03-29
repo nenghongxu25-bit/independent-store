@@ -1,5 +1,8 @@
+import './globals.css';
+import { ClerkProvider } from '@clerk/nextjs';
 import { Cormorant_Garamond, Great_Vibes } from 'next/font/google';
-import Navbar from '@/components/Navbar/index'; // 建议把导航逻辑拆分成独立组件
+import Navbar from '@/components/Navbar/index';
+import FloatingActions from '@/components/FloatingActions'; // 确保路径正确
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ['latin'], 
@@ -15,14 +18,30 @@ const greatVibes = Great_Vibes({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${greatVibes.variable}`}>
-      <body style={{ margin: 0, backgroundColor: '#0a0210' }}>
-        {/* 导航栏放在这里，它就是固定（Fixed）的，不随 children 滚动 */}
-        <Navbar /> 
-        
-        {/* 这里的 children 就是你 page.tsx 里那一列长长的内容 */}
-        <main>{children}</main>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className={`${cormorant.variable} ${greatVibes.variable}`}>
+        <body style={{ 
+          margin: 0, 
+          backgroundColor: '#0a0210', 
+          color: '#ffffff',
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          
+          {/* 1. 顶部导航栏 (已集成左上角无弹窗跳转) */}
+          <Navbar /> 
+          
+          {/* 2. 主内容区 */}
+          <main style={{ flex: 1, width: '100%' }}>
+            {children}
+          </main>
+          
+          {/* 3. 右下角悬浮组件 (WhatsApp + 客服 Vikas) */}
+          <FloatingActions />
+          
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
