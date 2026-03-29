@@ -1,11 +1,12 @@
-import { authMiddleware } from "@clerk/nextjs/server";
+// 🛑 注意：从 '@clerk/nextjs' 直接导入，不要带 /server
+import { authMiddleware } from "@clerk/nextjs"; 
 
 export default authMiddleware({
-  // 重点：一定要把首页和你的 AI 接口设为公开，否则用户还没说话就被拦截了
+  // 允许所有人访问首页和 AI 聊天接口，不强制登录
   publicRoutes: ["/", "/api/chat", "/api/(.*)"],
 });
 
 export const config = {
-  // 这段正则的意思是：除了静态文件，所有的路由都要经过 Clerk 检查
+  // 这里的正则配置非常关键，确保不拦截静态资源
   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
 };
