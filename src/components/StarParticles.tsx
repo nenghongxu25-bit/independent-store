@@ -13,76 +13,40 @@ export default function StarParticles() {
     if (!ctx) return;
 
     let animationId: number;
-    let stars: Star[] = [];
-    let goldStars: GoldStar[] = [];
+    let stars: (Star | GoldStar)[] = [];
     let width: number, height: number;
 
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        cancelAnimationFrame(animationId);
-      } else {
-        animate();
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    function drawStar(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, opacity: number, isGold: boolean = false) {
-      const spikes = 4;
-      const outerRadius = size;
-      const innerRadius = size * 0.4;
-      let rotation = Math.PI / 4;
-      let step = Math.PI / spikes;
-
-      ctx.beginPath();
-      for (let i = 0; i < spikes * 2; i++) {
-        let r = (i % 2 === 0) ? outerRadius : innerRadius;
-        let angle = i * step + rotation;
-        let xPos = x + r * Math.cos(angle);
-        let yPos = y + r * Math.sin(angle);
-        if (i === 0) ctx.moveTo(xPos, yPos);
-        else ctx.lineTo(xPos, yPos);
-      }
-      ctx.closePath();
+    function drawStar(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, opacity: number, colorType: 'white' | 'gold') {
+      ctx.save();
+      ctx.globalAlpha = opacity;
       
-      if (isGold) {
-        const gradient = ctx.createRadialGradient(x, y, 0, x, y, size);
-        gradient.addColorStop(0, `rgba(255, 215, 0, ${opacity})`);
-        gradient.addColorStop(1, `rgba(255, 100, 0, ${opacity * 0.8})`);
-        ctx.fillStyle = gradient;
-      } else {
-        const gradient = ctx.createRadialGradient(x, y, 0, x, y, size);
-        gradient.addColorStop(0, `rgba(255, 255, 255, ${opacity})`);
-        gradient.addColorStop(1, `rgba(255, 200, 100, ${opacity * 0.7})`);
-        ctx.fillStyle = gradient;
-      }
-      ctx.fill();
-    }
-
-    function drawStarGlow(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, opacity: number, isGold: boolean = false) {
-      const spikes = 4;
-      const outerRadius = size * 2.2;
-      const innerRadius = size * 0.8;
-      let rotation = Math.PI / 4;
-      let step = Math.PI / spikes;
-
+      // 1. 绘制外层淡淡的扩散晕染 (增加柔和感)
+      const glow = ctx.createRadialGradient(x, y, 0, x, y, size * 2.5);
+      // 将光晕颜色也稍微带一点点紫/蓝调 (e.g., #E6E6FA for white, #FFDAB9 for gold)
+      glow.addColorStop(0, colorType === 'gold' ? 'rgba(255, 218, 185, 0.25)' : 'rgba(230, 230, 250, 0.15)');
+      glow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = glow;
       ctx.beginPath();
-      for (let i = 0; i < spikes * 2; i++) {
-        let r = (i % 2 === 0) ? outerRadius : innerRadius;
-        let angle = i * step + rotation;
-        let xPos = x + r * Math.cos(angle);
-        let yPos = y + r * Math.sin(angle);
-        if (i === 0) ctx.moveTo(xPos, yPos);
-        else ctx.lineTo(xPos, yPos);
-      }
-      ctx.closePath();
-      
-      if (isGold) {
-        ctx.fillStyle = `rgba(255, 200, 50, ${opacity * 0.4})`;
-      } else {
-        ctx.fillStyle = `rgba(255, 255, 200, ${opacity * 0.3})`;
-      }
+      ctx.arc(x, y, size * 2.5, 0, Math.PI * 2);
       ctx.fill();
+
+      // 2. 绘制十字星芒 (使用 #EFEFFF 代替纯白，增加高级感)
+      ctx.beginPath();
+      ctx.strokeStyle = colorType === 'gold' ? '#FFD700' : '#EFEFFF'; 
+      ctx.lineWidth = size * 0.22;
+      ctx.moveTo(x - size * 2.3, y);
+      ctx.lineTo(x + size * 2.3, y);
+      ctx.moveTo(x, y - size * 2.3);
+      ctx.lineTo(x, y + size * 2.3);
+      ctx.stroke();
+
+      // 3. 核心亮点
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fillStyle = colorType === 'gold' ? '#FFFACD' : '#FFFFFF';
+      ctx.fill();
+      
+      ctx.restore();
     }
 
     class Star {
@@ -91,33 +55,28 @@ export default function StarParticles() {
       size: number;
       speedX: number;
       speedY: number;
-      baseOpacity: number;
-      currentOpacity: number;
-      cyclePhase: number;
-      cycleSpeed: number;
-      twinkleAmplitude: number;
+      seed: number;
+      opacity: number = 0;
 
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 2.5 + 1.2;
-        this.speedX = (Math.random() - 0.5) * 0.02;
-        this.speedY = (Math.random() - 0.5) * 0.015;
-        this.baseOpacity = Math.random() * 0.3 + 0.2;
-        this.cyclePhase = Math.random() * Math.PI * 2;
-        // 闪烁速度降低到原来的 1/3：0.002 - 0.006（之前是 0.008-0.02）
-        this.cycleSpeed = 0.002 + Math.random() * 0.004;
-        this.twinkleAmplitude = 0.4 + Math.random() * 0.3;
-        this.currentOpacity = this.baseOpacity;
+        this.size = Math.random() * 1.3 + 1.2;
+        this.speedX = (Math.random() - 0.5) * 0.03;
+        this.speedY = (Math.random() - 0.5) * 0.03;
+        this.seed = Math.random() * 100;
       }
 
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
+
+        const time = Date.now() * 0.002; 
+        const base = (Math.sin(time + this.seed) + 1) / 2; 
         
-        this.cyclePhase += this.cycleSpeed;
-        const brightness = Math.sin(this.cyclePhase) * this.twinkleAmplitude;
-        this.currentOpacity = Math.max(0.15, Math.min(0.9, this.baseOpacity + brightness));
+        // 保留微颤
+        const microTwinkle = Math.random() > 0.98 ? Math.random() * 0.2 : 0;
+        this.opacity = base * 0.8 + microTwinkle;
 
         if (this.x < 0) this.x = width;
         if (this.x > width) this.x = 0;
@@ -126,108 +85,86 @@ export default function StarParticles() {
       }
 
       draw() {
-        if (!ctx) return;
-        
-        drawStarGlow(ctx, this.x, this.y, this.size, this.currentOpacity * 1.2, false);
-        drawStar(ctx, this.x, this.y, this.size, this.currentOpacity, false);
+        if (this.opacity < 0.05) return; 
+        drawStar(ctx!, this.x, this.y, this.size, this.opacity, 'white');
       }
     }
 
-    class GoldStar {
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      baseOpacity: number;
-      currentOpacity: number;
-      cyclePhase: number;
-      cycleSpeed: number;
-      twinkleAmplitude: number;
-
+    class GoldStar extends Star {
       constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 3 + 1.8;
-        this.speedX = (Math.random() - 0.5) * 0.018;
-        this.speedY = (Math.random() - 0.5) * 0.012;
-        this.baseOpacity = Math.random() * 0.35 + 0.25;
-        this.cyclePhase = Math.random() * Math.PI * 2;
-        // 金色星星闪烁也更慢：0.0025 - 0.0055
-        this.cycleSpeed = 0.0025 + Math.random() * 0.003;
-        this.twinkleAmplitude = 0.5 + Math.random() * 0.35;
-        this.currentOpacity = this.baseOpacity;
+        super();
+        this.size = Math.random() * 1.5 + 2.0;
       }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        
-        this.cyclePhase += this.cycleSpeed;
-        const brightness = Math.sin(this.cyclePhase) * this.twinkleAmplitude;
-        this.currentOpacity = Math.max(0.2, Math.min(0.95, this.baseOpacity + brightness));
-
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
-      }
-
       draw() {
-        if (!ctx) return;
-        
-        drawStarGlow(ctx, this.x, this.y, this.size * 1.3, this.currentOpacity * 1.3, true);
-        drawStar(ctx, this.x, this.y, this.size, this.currentOpacity, true);
+        if (this.opacity < 0.05) return;
+        drawStar(ctx!, this.x, this.y, this.size, this.opacity, 'gold');
       }
     }
 
     function init() {
       width = window.innerWidth;
       height = window.innerHeight;
-      if (canvas) canvas.width = width;
-      if (canvas) canvas.height = height;
+      canvas!.width = width;
+      canvas!.height = height;
 
       stars = [];
-      const starCount = Math.min(600, Math.floor((width * height) / 4000));
-      for (let i = 0; i < starCount; i++) {
-        stars.push(new Star());
-      }
-
-      goldStars = [];
-      const goldCount = Math.max(25, Math.min(60, Math.floor((width * height) / 10000)));
-      for (let i = 0; i < goldCount; i++) {
-        goldStars.push(new GoldStar());
+      const totalCount = Math.floor((width * height) / 15000); // 保持少而精
+      for (let i = 0; i < totalCount; i++) {
+        if (Math.random() > 0.85) {
+          stars.push(new GoldStar());
+        } else {
+          stars.push(new Star());
+        }
       }
     }
 
     function animate() {
       if (!ctx) return;
-      ctx.clearRect(0, 0, width, height);
       
-      ctx.fillStyle = 'rgba(3, 3, 10, 0.05)';
+      // 1. 清空画布
+      ctx.clearRect(0, 0, width, height);
+
+      // --- 核心优化: 绘制深邃紫色“调色滤镜” ---
+      ctx.save();
+      
+      // 使用 destination-over 确保这层紫色在星星“后面”
+      // 并且会与 layout 的背景图叠加
+      ctx.globalCompositeOperation = 'destination-over';
+      
+      // 创建径向渐变，从中心淡淡的紫色过渡到边缘的极深紫黑
+      const bgGradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, Math.max(width, height) / 1.5);
+      
+      // 增加深紫色感：
+      // 中心使用淡淡的、带透明度的薰衣草紫 (#E6E6FA @ 0.05)
+      bgGradient.addColorStop(0, 'rgba(230, 230, 250, 0.05)'); 
+      // 边缘过渡到极深的、带透明度的暗紫 (#080110 @ 0.3)
+      bgGradient.addColorStop(1, 'rgba(8, 1, 16, 0.3)'); 
+      
+      ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, width, height);
       
+      ctx.restore(); // 恢复正常的混合模式，用于绘制星星
+
+      // 2. 绘制星星
       for (const star of stars) {
         star.update();
         star.draw();
       }
       
-      for (const gold of goldStars) {
-        gold.update();
-        gold.draw();
-      }
-      
       animationId = requestAnimationFrame(animate);
     }
 
-    function handleResize() {
-      init();
-    }
+    const handleResize = () => init();
+    const handleVisibilityChange = () => {
+      if (!document.hidden) animate();
+      else cancelAnimationFrame(animationId);
+    };
 
     init();
     animate();
 
     window.addEventListener('resize', handleResize);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       cancelAnimationFrame(animationId);
@@ -245,6 +182,8 @@ export default function StarParticles() {
         left: 0,
         width: '100%',
         height: '100%',
+        // --- 调整 1: 移除 CSS 背景色，让其变透明 ---
+        background: 'transparent', 
         pointerEvents: 'none',
         zIndex: 0,
       }}

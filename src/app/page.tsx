@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import BrandStory from '@/components/BrandStory';
-import Bestsellers from '@/components/BestSeller/Bestsellers';
+import Bestsellers from '@/components/BestSeller';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);

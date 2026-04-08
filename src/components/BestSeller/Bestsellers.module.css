@@ -1,304 +1,196 @@
-/* Bestsellers.module.css */
-
-/* ============================================
-   📦 基础布局
-   ============================================ */
-
-.bestsellersSection {
-  width: 100%;
-  padding: 100px 2rem;
-  background: transparent;  /* 👈 改成完全透明 */
-  position: relative;
+/* ==========================================================================
+   1. 整体布局 (Section & Container)
+   ========================================================================== */
+.bestsellersSection { 
+  padding: 80px 2rem; 
+  color: #fff; 
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+.container { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  text-align: center; 
 }
 
-/* ============================================
-   📝 板块标题
-   ============================================ */
-
-.header {
-  text-align: center;
-  margin-bottom: 4rem;
+/* ==========================================================================
+   2. 标题区域 (文字、副标题、装饰线)
+   ========================================================================== */
+/* 小标题 */
+.subtitle { 
+  font-size: 0.8rem; 
+  letter-spacing: 4px; 
+  color: rgba(212, 175, 55, 0.8); 
+  text-transform: uppercase; 
 }
 
-.subtitle {
-  font-size: 0.8rem;
-  letter-spacing: 4px;
-  color: rgba(212, 175, 55, 0.8);
-  text-transform: uppercase;
-  font-family: var(--font-cormorant), serif;
+/* 主标题 */
+.title { 
+  font-size: clamp(2rem, 5vw, 3rem); 
+  font-weight: 400; 
+  margin: 0.5rem 0 1.5rem; 
 }
 
-.title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 400;
-  font-family: var(--font-cormorant), serif;
-  color: #fff;
-  margin: 0.5rem 0 1.5rem;
-  letter-spacing: 2px;
+/* 装饰分割线容器 */
+.divider { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 1rem; 
+  margin-bottom: 1.5rem; 
 }
 
-.divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+/* 左右渐变横线 */
+.dividerLine { 
+  width: 50px; 
+  height: 1px; 
+  background: linear-gradient(90deg, transparent, #d4af37, transparent); 
 }
 
-.dividerLine {
-  width: 50px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+/* 描述文字 */
+.description { 
+  font-size: 0.9rem; 
+  color: rgba(255, 255, 255, 0.6); 
+  margin-bottom: 4rem; 
 }
 
-.dividerStar {
-  color: #d4af37;
-  font-size: 0.8rem;
+/* ==========================================================================
+   3. 产品网格与卡片 (Grid & Card)
+   ========================================================================== */
+/* 网格布局：自动填充，最小宽度280px */
+.grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 2rem; 
 }
 
-.description {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-family: var(--font-cormorant), serif;
-  letter-spacing: 1px;
+/* 产品卡片外框 */
+.productCard { 
+  border: 1px solid rgba(212, 175, 55, 0.2); 
+  transition: 0.4s; 
 }
 
-/* ============================================
-   🖼️ 产品网格
-   ============================================ */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+/* 悬停效果：向上平移 + 边框变亮 */
+.productCard:hover { 
+  transform: translateY(-8px); 
+  border-color: #d4af37; 
 }
 
-/* ============================================
-   💎 产品卡片
-   ============================================ */
-
-.productCard {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border-radius: 2px;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  border: 1px solid rgba(212, 175, 55, 0.1);
+/* ==========================================================================
+   4. 图片处理 (Image Container)
+   ========================================================================== */
+.imageContainer { 
+  position: relative; 
+  aspect-ratio: 1; 
+  overflow: hidden; 
 }
 
-.productCard:hover {
-  transform: translateY(-8px);
-  border-color: rgba(212, 175, 55, 0.3);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+/* 图片缩放动画 */
+.imageWrapper { 
+  width: 100%; 
+  height: 100%; 
+  transition: 0.6s; 
 }
 
-/* 图片容器 */
-.imageContainer {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1a0525 0%, #0a0210 100%);
+.productCard:hover .imageWrapper { 
+  transform: scale(1.05); 
 }
 
-.imageWrapper {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s ease;
+/* ==========================================================================
+   5. UI 元素 (标签、快捷查看)
+   ========================================================================== */
+/* 标签基础样式 (通用) */
+.badge { 
+  position: absolute; 
+  top: 1rem; 
+  padding: 0.3rem 0.8rem; 
+  font-size: 0.7rem; 
+  color: #000; 
+  z-index: 2; 
 }
 
-.productCard:hover .imageWrapper {
-  transform: scale(1.05);
+/* 畅销标签 (靠左，金色) */
+.badgeBestseller { 
+  left: 1rem; 
+  background: rgba(212, 175, 55, 0.9); 
 }
 
-/* 占位图（请替换为实际图片） */
-.placeholderImage {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #2a0a3a 0%, #1a0525 100%);
+/* 新品标签 (靠右，白色) */
+.badgeNew { 
+  right: 1rem; 
+  background: #fff; 
 }
 
-.placeholderIcon {
-  font-size: 3rem;
-  opacity: 0.5;
-}
-
-.productImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* 标签 */
-.badgeBestseller,
-.badgeNew {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  padding: 0.3rem 0.8rem;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  z-index: 2;
-}
-
-.badgeBestseller {
-  background: rgba(212, 175, 55, 0.9);
-  color: #000;
-}
-
-.badgeNew {
-  background: rgba(255, 255, 255, 0.9);
-  color: #000;
-  left: auto;
-  right: 1rem;
-}
-
-/* 快速查看按钮 */
+/* 快捷查看按钮：初始隐藏在底部 -50px */
 .quickViewBtn {
-  position: absolute;
-  bottom: -50px;
-  left: 0;
-  right: 0;
-  width: 100%;
+  position: absolute; 
+  bottom: -50px; 
+  width: 100%; 
   padding: 0.8rem;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  border: none;
+  background: rgba(0,0,0,0.8); 
+  backdrop-filter: blur(10px); 
   color: #fff;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
+  transition: 0.3s; 
+  border: none; 
   cursor: pointer;
-  transition: bottom 0.3s ease;
-  font-family: var(--font-cormorant), serif;
 }
 
-.imageContainer:hover .quickViewBtn {
-  bottom: 0;
+/* 悬停时滑入 */
+.imageContainer:hover .quickViewBtn { 
+  bottom: 0; 
 }
 
-/* 产品信息 */
-.productInfo {
-  padding: 1.5rem;
-  text-align: center;
+/* ==========================================================================
+   6. 产品信息 (Product Info)
+   ========================================================================== */
+.productInfo { 
+  padding: 1.5rem; 
 }
 
-.productName {
-  font-size: 1.1rem;
-  font-weight: 400;
-  font-family: var(--font-cormorant), serif;
-  color: #fff;
-  margin: 0 0 0.3rem;
-  letter-spacing: 1px;
+.productCategory { 
+  font-size: 0.7rem; 
+  color: #d4af37; 
+  text-transform: uppercase; 
+  margin-bottom: 0.5rem; 
 }
 
-.productCategory {
-  font-size: 0.7rem;
-  color: rgba(212, 175, 55, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0 0 0.5rem;
+.productPrice { 
+  font-size: 1.1rem; 
+  color: #d4af37; 
+  margin: 0.5rem 0; 
 }
 
-.productPrice {
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: #d4af37;
-  margin: 0 0 1rem;
-  font-family: var(--font-cormorant), serif;
+/* ==========================================================================
+   7. 按钮通用样式 (Buttons)
+   ========================================================================== */
+/* 基础按钮样式 */
+.btn { 
+  cursor: pointer; 
+  transition: 0.3s; 
+  background: transparent; 
+  border: 1px solid rgba(212, 175, 55, 0.5); 
+  color: #d4af37; 
 }
 
 /* 加入购物车按钮 */
-.addToCartBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 0.7rem;
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  color: #d4af37;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: var(--font-cormorant), serif;
+.addToCartBtn { 
+  width: 100%; 
+  padding: 0.7rem; 
+  background: rgba(212, 175, 55, 0.05); 
 }
 
-.addToCartBtn:hover {
-  background: rgba(212, 175, 55, 0.2);
-  border-color: rgba(212, 175, 55, 0.6);
+/* 查看全部按钮 */
+.viewAllBtn { 
+  padding: 1rem 2.5rem; 
+  margin-top: 4rem; 
 }
 
-.cartIcon {
-  font-size: 0.9rem;
+.btn:hover { 
+  background: rgba(212, 175, 55, 0.15); 
 }
 
-/* ============================================
-   👁️ 查看全部按钮
-   ============================================ */
-
-.viewAllWrapper {
-  text-align: center;
-}
-
-.viewAllBtn {
-  padding: 1rem 2.5rem;
-  background: transparent;
-  border: 1px solid rgba(212, 175, 55, 0.5);
-  color: #d4af37;
-  font-size: 0.8rem;
-  letter-spacing: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: var(--font-cormorant), serif;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.viewAllBtn:hover {
-  background: rgba(212, 175, 55, 0.1);
-  border-color: #d4af37;
-  letter-spacing: 5px;
-}
-
-.arrow {
-  transition: transform 0.3s ease;
-}
-
-.viewAllBtn:hover .arrow {
-  transform: translateX(5px);
-}
-
-/* ============================================
-   📱 响应式
-   ============================================ */
-
-@media (max-width: 768px) {
-  .bestsellersSection {
-    padding: 60px 1rem;
-  }
-  
-  .grid {
-    gap: 1.5rem;
-  }
-  
-  .title {
-    font-size: 2rem;
-  }
-  
-  .viewAllBtn {
-    padding: 0.8rem 1.8rem;
-    letter-spacing: 3px;
-  }
+/* ==========================================================================
+   8. 响应式适配 (Mobile)
+   ========================================================================== */
+@media (max-width: 768px) { 
+  .bestsellersSection { padding: 40px 1rem; } 
 }
