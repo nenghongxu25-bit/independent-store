@@ -1,22 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
 
-/* 全局背景与基础 */
 body {
   margin: 0;
   padding: 0;
-  background: #0a0210;
-  color: #d4af37;
+  min-height: 100vh;
+  width: 100%;
+  
+  background-image: 
+    linear-gradient(rgba(3, 0, 8, 0.92), rgba(0, 0, 0, 0.7)), 
+    url('/image/bg.jpg');
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+  color: #e8e8e8;
   overflow-x: hidden;
 }
 
 .mainContainer {
   min-height: 100vh;
   width: 100%;
-  background: linear-gradient(180deg, #0a0210 0%, #1a0525 50%, #0a0210 100%);
-  background-attachment: fixed;
+  background: transparent !important;
 }
 
-/* 呼吸边框：用于图片容器 */
 @keyframes borderGlow {
   0%, 100% { 
     border-color: rgba(212, 175, 55, 0.3); 
@@ -33,68 +41,54 @@ body {
   animation: borderGlow 4s ease-in-out infinite;
 }
 
-/* 手写流光标题 */
 .shimmerText {
-  font-family: var(--font-great-vibes), cursive;
-  text-transform: none; 
-  font-size: clamp(4rem, 15vw, 10rem); 
-  letter-spacing: -0.02em; 
+  font-family: serif;
+  text-transform: uppercase; 
+  font-size: clamp(3rem, 12vw, 9rem); 
+  letter-spacing: 0.1em;
   background: linear-gradient(to right, #d4af37 20%, #fff 40%, #fff 60%, #d4af37 80%);
-  background-size: 300% auto;
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmerEffect 10s ease-in-out infinite;
+  animation: shimmerEffect 6s linear infinite;
+  text-align: center;
+  font-weight: bold;
 }
 
 @keyframes shimmerEffect {
-  0% { background-position: 150% center; }
-  100% { background-position: -150% center; }
+  to { background-position: 200% center; }
 }
 
-/* 珠宝展示格：强制 1:1 */
 .jewelry-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
   max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 768px) {
-  .jewelry-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  margin: 4rem auto;
+  padding: 0 2rem;
 }
 
 .image-container {
   aspect-ratio: 1 / 1; 
   overflow: hidden;
-  background-color: #1a0525;
+  position: relative;
+  background-color: rgba(26, 5, 37, 0.5);
 }
 
 .image-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
-.image-container img:hover { transform: scale(1.05); }
+.image-container img:hover { transform: scale(1.1); }
 
-/* 导航栏搜索与购物车 */
-.nav-icon-group { display: flex; align-items: center; gap: 1.5rem; }
-.search-input-container {
-  display: flex; align-items: center;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.5);
-  padding: 2px 0;
-}
-.search-input-container input {
-  border: none; outline: none; font-size: 12px;
-  width: 100px; background: transparent; color: #d4af37;
-}
-.cart-icon { position: relative; cursor: pointer; }
-.cart-badge {
-  position: absolute; top: -8px; right: -8px;
-  background: #d4af37; color: #0a0210;
-  font-size: 9px; padding: 2px 5px; border-radius: 50%;
+body.navMenuOpen .navLogo,
+body.navMenuOpen .handcraftedText,
+body.navMenuOpen .excellenceText {
+  filter: blur(12px);
+  opacity: 0.3;
+  transition: all 0.3s ease;
 }

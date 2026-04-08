@@ -3,13 +3,12 @@ import { containerStyles, headerStyles, listStyles, cardStyles } from '../MenuSt
 
 export default function WeddingMenu() {
   return (
-    /* 核心修改：删除了最外层的 <div style={megaMenuStyles}> 
-       这样它就不会相对于父级再向下偏移 45px，解决了空白断层问题 */
+
     <div style={containerStyles}>
+
       <div style={{ flex: 1 }}>
         <h4 style={headerStyles}>Shop All Bands</h4>
         <ul style={listStyles}>
-          {/* 使用 &apos; 确保 Next.js 编译不报错 */}
           <li>Women&apos;s Bands</li>
           <li>Men&apos;s Bands</li>
           <li>Couples Bands</li>
@@ -34,6 +33,9 @@ export default function WeddingMenu() {
           <li style={{ textDecoration: 'underline' }}>Find Your Ring Size</li>
         </ul>
       </div>
+
     </div>
+
   );
+
 }

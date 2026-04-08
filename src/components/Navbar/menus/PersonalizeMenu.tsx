@@ -1,11 +1,11 @@
 import React from 'react';
-import { containerStyles, headerStyles, subHeaderStyles, listStyles } from '../MenuStyles';
+import { containerStyles, headerStyles, listStyles, cardStyles } from '../MenuStyles';
 
 export default function PersonalizeMenu() {
   return (
-    /* 核心修改：删除了最外层的 <div style={megaMenuStyles}> 
-       让定位由 Navbar 的父级容器统一管理，彻底消除 45px 的空白死区 */
+    
     <div style={containerStyles}>
+
       <div style={{ flex: 1 }}>
         <h4 style={headerStyles}>Pick Your Gem</h4>
         <ul style={listStyles}>
@@ -38,8 +38,9 @@ export default function PersonalizeMenu() {
         </ul>
       </div>
 
-      {/* 保持 Shane Co. 的极简感，右侧留出适当呼吸感 */}
       <div style={{ flex: 1.5 }}></div>
+
     </div>
+    
   );
 }

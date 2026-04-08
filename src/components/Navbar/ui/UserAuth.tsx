@@ -1,34 +1,67 @@
 'use client';
 
-import { SignInButton, UserButton, SignedIn, SignedOut } from "@clerk/nextjs";
-import { User } from "lucide-react"; // 使用 lucide 图标保持风格统一
+import { SignInButton, UserButton, SignedIn, SignedOut, useUser } from "@clerk/nextjs";
+import { User } from "lucide-react";
 
 export default function UserAuth() {
+  const { user } = useUser();
+
+  const openAccountPage = () => {
+    window.open('/account', '_blank');
+  };
+
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
-      {/* 情况 A：用户未登录，显示登录图标 */}
       <SignedOut>
         <SignInButton mode="modal">
           <button style={{ 
-            background: 'none', border: 'none', cursor: 'pointer',
-            display: 'flex', alignItems: 'center', color: '#333' 
-          }}>
-            <User size={22} strokeWidth={1.5} />
-            <span style={{ fontSize: '11px', marginLeft: '5px', letterSpacing: '1px' }}>LOGIN</span>
+            background: 'transparent', 
+            border: 'none', 
+            cursor: 'pointer',
+            display: 'flex', 
+            alignItems: 'center', 
+            color: '#c0c0c0',
+            padding: '6px 10px',
+            borderRadius: '4px',
+            transition: 'all 0.2s'
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = '#d4af37'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = '#c0c0c0'; }}>
+            <User size={22} strokeWidth={2} />
+            <span style={{ fontSize: '13px', marginLeft: '6px', letterSpacing: '1px', fontWeight: '600' }}>LOGIN</span>
           </button>
         </SignInButton>
       </SignedOut>
 
-      {/* 情况 B：用户已登录，显示圆形头像菜单 */}
       <SignedIn>
-        <UserButton 
-          afterSignOutUrl="/" 
-          appearance={{
-            elements: {
-              avatarBox: { width: '32px', height: '32px' }
-            }
-          }}
-        />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          {/* 自定义账户按钮，点击打开新窗口 */}
+          <button
+            onClick={openAccountPage}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '4px 8px',
+              borderRadius: '20px',
+              transition: 'all 0.2s',
+              color: '#c0c0c0'
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(192, 192, 192, 0.1)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+          >
+            <User size={20} strokeWidth={2} />
+            <span style={{ fontSize: '12px', fontWeight: '500' }}>
+              {user?.firstName || 'Account'}
+            </span>
+          </button>
+          
+          {/* 登出按钮单独保留 */}
+          <UserButton afterSignOutUrl="/" />
+        </div>
       </SignedIn>
     </div>
   );

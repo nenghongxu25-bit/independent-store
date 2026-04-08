@@ -1,72 +1,95 @@
-/* 呼吸边框：增强亮度版 */
-@keyframes borderGlow {
-  0%, 100% { 
-    border-color: rgba(212, 175, 55, 0.3); 
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1); /* 初始微弱发光 */
-  }
-  50% { 
-    border-color: rgba(212, 175, 55, 0.8); /* 呼吸到最高点：接近实色金 */
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3); /* 明显的外金圈感 */
-  }
-}
 
-.borderGlow {
-  /* 增加边框宽度到 2px，并确保动画挂载 */
-  border: 2px solid rgba(212, 175, 55, 0.3) !important; 
-  animation: borderGlow 4s ease-in-out infinite; /* 频率稍微加快一点，更容易察觉变化 */
-  transition: all 0.3s ease;
-}
-.shimmerText {
-  /* 1. 核心：切换为手写连笔体 */
-  font-family: var(--font-great-vibes), cursive;
-  
-  /* 2. 必须把全大写去掉，让首字母大写，其他小写，才能实现连笔 */
-  text-transform: none; 
-  
-  /* 3. 调整字号，手写体通常需要比黑体更大一点才够霸气 */
-  font-size: clamp(4rem, 15vw, 10rem); 
-  
-  /* 4. 减小间距，让字母靠得更近，增加连笔感 */
-  letter-spacing: -0.02em; 
-  
-  /* 以下保留你之前调好的慢速流光逻辑 */
-  font-weight: 400; /* 手写体不需要加粗 */
-  background: linear-gradient(to right, #d4af37 20%, #fff 40%, #fff 60%, #d4af37 80%);
-  background-size: 300% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmerEffect 10s ease-in-out infinite; /* 慢速流光 */
-}
-
-/* 之前衬线体的定义可以留着给副标题使用 */
-
-@keyframes shimmerEffect {
-  0% { background-position: 150% center; }
-  100% { background-position: -150% center; }
-}
-
+/* 备用深色渐变容器 */
 .mainContainer {
   min-height: 100vh;
   width: 100%;
-  /* 背景要足够长，或者设为 fixed */
   background: linear-gradient(180deg, #0a0210 0%, #1a0525 50%, #0a0210 100%);
   background-attachment: fixed;
   overflow-x: hidden;
 }
 
-/* 1. 丝滑流光：12秒一轮，cubic-bezier 实现“入场-加速-淡出” */
+/* ============================================================
+   2. 动画库 (Animations)
+   ============================================================ */
+/* 呼吸边框动画 */
+@keyframes borderGlow {
+  0%, 100% { 
+    border-color: rgba(212, 175, 55, 0.3); 
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1); 
+  }
+  50% { 
+    border-color: rgba(212, 175, 55, 0.8); 
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3); 
+  }
+}
+
+/* 基础火彩动画 */
+@keyframes fire-shimmer {
+  0% { background-position: 150% 50%; }
+  100% { background-position: -50% 50%; }
+}
+
+/* 慢速流光动画 */
+@keyframes shimmerEffect {
+  0% { background-position: 150% center; }
+  100% { background-position: -150% center; }
+}
+
+/* 丝滑流光动画 */
 @keyframes diamondMove {
   0% { background-position: 250% 50%; }
   100% { background-position: -150% 50%; }
 }
 
-/* 2. 柔和呼吸感闪烁 */
+/* 柔和呼吸感闪烁 */
 @keyframes diamondSparkle {
   0%, 100% { filter: brightness(1) contrast(1); }
   50% { filter: brightness(1.1) contrast(1.05); }
 }
 
+/* ============================================================
+   3. 标题组件 (Titles)
+   ============================================================ */
+
+/* 方案 A：标准火彩大标题 (DroSta 专用) */
+.shimmer-title {
+  font-size: 9rem;
+  font-style: italic;
+  font-family: var(--font-cormorant), serif;
+  margin: 0;
+  line-height: 0.9;
+  text-transform: uppercase; 
+  letter-spacing: -2px;
+  background: linear-gradient(90deg, 
+    #d4af37 0%, #d4af37 45%, 
+    rgba(255, 100, 100, 0.5) 47%, 
+    rgba(255, 255, 255, 0.9) 50%, 
+    rgba(100, 200, 255, 0.6) 53%, 
+    #d4af37 55%, #d4af37 100%
+  );
+  background-size: 150% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fire-shimmer 22s linear infinite;
+}
+
+/* 方案 B：手写连笔流光体 */
+.shimmerText {
+  font-family: var(--font-great-vibes), cursive;
+  text-transform: none; 
+  font-size: clamp(4rem, 15vw, 10rem); 
+  letter-spacing: -0.02em; 
+  font-weight: 400;
+  background: linear-gradient(to right, #d4af37 20%, #fff 40%, #fff 60%, #d4af37 80%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerEffect 10s ease-in-out infinite;
+}
+
+/* 方案 C：宽渐变衬线体 */
 .shimmerTitle {
   font-size: 8.5rem;
   font-style: italic;
@@ -74,28 +97,61 @@
   margin: 0;
   font-weight: 400;
   line-height: 0.85;
-  
-  /* 宽渐变：确保光束边缘和底色（#d4af37）丝滑过渡 */
   background: linear-gradient(90deg, 
-    #d4af37 0%, #d4af37 20%, 
-    #e5c05b 35%, #fff 45%, 
-    #f0faff 50%, #fff 55%, 
-    #fdf2f0 65%, #d4af37 80%, 
-    #d4af37 100%
+    #d4af37 0%, #d4af37 20%, #e5c05b 35%, #fff 45%, 
+    #f0faff 50%, #fff 55%, #fdf2f0 65%, #d4af37 80%, #d4af37 100%
   );
   background-size: 400% auto;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  
-  /* 动画组合 */
   animation: 
     diamondMove 12s cubic-bezier(0.4, 0, 0.2, 1) infinite,
     diamondSparkle 4s ease-in-out infinite;
 }
 
+/* ============================================================
+   4. 功能性类名 (Utility Classes)
+   ============================================================ */
+/* 呼吸边框 */
+.borderGlow {
+  border: 2px solid rgba(212, 175, 55, 0.3) !important; 
+  animation: borderGlow 4s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+  transition: all 0.3s ease;
+}
+
+/* 按钮样式 */
+.shop-button {
+  padding: 15px 45px;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: none;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shop-button:hover {
+  background-color: #d4af37;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+}
+
+/* 副标题（Jewelry） */
+.brand-jewelry {
+  font-size: 1.1rem;
+  letter-spacing: 18px;
+  color: #333;
+  margin-top: 15px;
+  font-weight: 300;
+  text-transform: uppercase;
+  padding-left: 18px;
+}
+
 /* 适配移动端 */
 @media (max-width: 768px) {
-  .shimmerTitle {
+  .shimmer-title, .shimmerTitle {
     font-size: 4rem;
   }
 }

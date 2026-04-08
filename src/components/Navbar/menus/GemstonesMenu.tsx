@@ -3,8 +3,9 @@ import { containerStyles, headerStyles, listStyles, cardStyles } from '../MenuSt
 
 export default function GemstonesMenu() {
   return (
-    /* 核心修改：删除了最外层的 <div style={megaMenuStyles}>，只保留布局容器 */
+    
     <div style={containerStyles}>
+
       <div style={{ flex: 1 }}>
         <h4 style={headerStyles}>Shop All Gemstones</h4>
         <ul style={listStyles}>
@@ -31,6 +32,9 @@ export default function GemstonesMenu() {
           <li style={{ textDecoration: 'underline' }}>Gemstone Buying Tips</li>
         </ul>
       </div>
+
     </div>
+    
   );
+
 }

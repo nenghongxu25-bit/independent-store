@@ -1,32 +1,34 @@
 import React from 'react';
 import { containerStyles, headerStyles, listStyles, cardStyles } from '../MenuStyles';
+import MenuItem from './MenusItems';
 
 export default function DiamondsMenu() {
   return (
-    /* ❌ 绝对不要在这里再写一次 <div style={megaMenuStyles}> ❌ */
     <div style={containerStyles}>
       <div style={{ flex: 1 }}>
         <h4 style={headerStyles}>Shop All Diamonds</h4>
         <ul style={listStyles}>
-          <li style={{ fontWeight: 'bold' }}>Shop All</li>
-          <li>Natural Diamonds</li>
-          <li>Lab-Grown Diamonds</li>
-          <li>Color Lab-Grown Diamonds</li>
+          <MenuItem href="/diamonds/all">Shop All</MenuItem>
+          <MenuItem href="/diamonds/natural">Natural Diamonds</MenuItem>
+          <MenuItem href="/diamonds/lab-grown">Lab-Grown Diamonds</MenuItem>
+          <MenuItem href="/diamonds/color-lab-grown">Color Lab-Grown Diamonds</MenuItem>
         </ul>
       </div>
+
       <div style={{ flex: 1 }}>
         <h4 style={headerStyles}>Specialty Diamonds</h4>
         <ul style={listStyles}>
-          <li>Shane Classic Natural</li>
-          <li>Stargazer Lab-Grown</li>
-          <li>Padma Lab-Grown</li>
+          <MenuItem href="/diamonds/shane-classic">Shane Classic Natural</MenuItem>
+          <MenuItem href="/diamonds/stargazer">Stargazer Lab-Grown</MenuItem>
+          <MenuItem href="/diamonds/padma">Padma Lab-Grown</MenuItem>
         </ul>
       </div>
+      
       <div style={cardStyles}>
-        <h4 style={{ fontSize: '1rem', marginBottom: '15px' }}>Diamond Education</h4>
+        <h4 style={{ fontSize: '1rem', marginBottom: '15px', color: '#C0C0C0' }}>Diamond Education</h4>
         <ul style={listStyles}>
-          <li style={{ textDecoration: 'underline' }}>Diamond Buying Guide</li>
-          <li style={{ textDecoration: 'underline' }}>About Lab-Grown</li>
+          <MenuItem href="/education/diamond-buying-guide">Diamond Buying Guide</MenuItem>
+          <MenuItem href="/education/about-lab-grown">About Lab-Grown</MenuItem>
         </ul>
       </div>
     </div>

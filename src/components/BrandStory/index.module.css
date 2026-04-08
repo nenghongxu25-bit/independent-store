@@ -1,0 +1,156 @@
+/* BrandStory.module.css */
+
+/* ============================================
+   📦 基础布局模块
+   ============================================ */
+
+.storySection {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 2rem;
+  background: transparent;  /* 完全透明，星空直接透出 */
+  box-shadow: none;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ============================================
+   🎨 视觉元素模块 (图标、装饰线等)
+   ============================================ */
+
+.starIcon {
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.shootingStar {
+  font-size: 2.5rem;
+  color: #d4af37;
+  display: inline-block;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); text-shadow: 0 0 10px #d4af37; }
+}
+
+/* 装饰线 */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+
+.dividerLine {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.dividerDot {
+  color: #d4af37;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* ============================================
+   📝 文字排版模块
+   ============================================ */
+
+/* 第一行：陈述事实，轻柔 */
+.line1 {
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+/* 第二行：品牌主张，有力 */
+.line2 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 400;
+  font-family: var(--font-cormorant), serif;
+  color: #d4af37;
+  margin: 0 0 2rem 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* 英文故事区域 - 优雅衬线体 */
+.englishStory {
+  font-family: var(--font-cormorant), Georgia, 'Times New Roman', serif;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+.englishLine1 {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1.5rem;
+}
+
+.englishLine2 {
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.englishLine3 {
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 品牌落款 */
+.brandFooter {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.brandName {
+  font-size: 1.5rem;
+  font-family: var(--font-great-vibes), cursive;
+  color: #d4af37;
+  letter-spacing: 2px;
+}
+
+.brandTagline {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 0.75rem;
+  letter-spacing: 2px;
+}
+
+/* ============================================
+   📱 响应式适配模块
+   ============================================ */
+
+@media (max-width: 768px) {
+  .storySection {
+    padding: 80px 1.5rem;
+  }
+  
+  .englishLine2 {
+    font-size: 1.1rem;
+  }
+  
+  .dividerLine {
+    width: 40px;
+  }
+}

@@ -1,0 +1,304 @@
+/* Bestsellers.module.css */
+
+/* ============================================
+   📦 基础布局
+   ============================================ */
+
+.bestsellersSection {
+  width: 100%;
+  padding: 100px 2rem;
+  background: transparent;  /* 👈 改成完全透明 */
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   📝 板块标题
+   ============================================ */
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  color: rgba(212, 175, 55, 0.8);
+  text-transform: uppercase;
+  font-family: var(--font-cormorant), serif;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  font-family: var(--font-cormorant), serif;
+  color: #fff;
+  margin: 0.5rem 0 1.5rem;
+  letter-spacing: 2px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dividerLine {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.dividerStar {
+  color: #d4af37;
+  font-size: 0.8rem;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-cormorant), serif;
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   🖼️ 产品网格
+   ============================================ */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* ============================================
+   💎 产品卡片
+   ============================================ */
+
+.productCard {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.productCard:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* 图片容器 */
+.imageContainer {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a0525 0%, #0a0210 100%);
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+}
+
+.productCard:hover .imageWrapper {
+  transform: scale(1.05);
+}
+
+/* 占位图（请替换为实际图片） */
+.placeholderImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2a0a3a 0%, #1a0525 100%);
+}
+
+.placeholderIcon {
+  font-size: 3rem;
+  opacity: 0.5;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 标签 */
+.badgeBestseller,
+.badgeNew {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+.badgeBestseller {
+  background: rgba(212, 175, 55, 0.9);
+  color: #000;
+}
+
+.badgeNew {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  left: auto;
+  right: 1rem;
+}
+
+/* 快速查看按钮 */
+.quickViewBtn {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 0.8rem;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border: none;
+  color: #fff;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: bottom 0.3s ease;
+  font-family: var(--font-cormorant), serif;
+}
+
+.imageContainer:hover .quickViewBtn {
+  bottom: 0;
+}
+
+/* 产品信息 */
+.productInfo {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.productName {
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-family: var(--font-cormorant), serif;
+  color: #fff;
+  margin: 0 0 0.3rem;
+  letter-spacing: 1px;
+}
+
+.productCategory {
+  font-size: 0.7rem;
+  color: rgba(212, 175, 55, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 0.5rem;
+}
+
+.productPrice {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #d4af37;
+  margin: 0 0 1rem;
+  font-family: var(--font-cormorant), serif;
+}
+
+/* 加入购物车按钮 */
+.addToCartBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #d4af37;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-cormorant), serif;
+}
+
+.addToCartBtn:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.6);
+}
+
+.cartIcon {
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   👁️ 查看全部按钮
+   ============================================ */
+
+.viewAllWrapper {
+  text-align: center;
+}
+
+.viewAllBtn {
+  padding: 1rem 2.5rem;
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: #d4af37;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-cormorant), serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.viewAllBtn:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: #d4af37;
+  letter-spacing: 5px;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.viewAllBtn:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* ============================================
+   📱 响应式
+   ============================================ */
+
+@media (max-width: 768px) {
+  .bestsellersSection {
+    padding: 60px 1rem;
+  }
+  
+  .grid {
+    gap: 1.5rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .viewAllBtn {
+    padding: 0.8rem 1.8rem;
+    letter-spacing: 3px;
+  }
+}
