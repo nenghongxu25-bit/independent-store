@@ -48,12 +48,12 @@ export default function StarParticles() {
       if (isGold) {
         const gradient = ctx.createRadialGradient(x, y, 0, x, y, size);
         gradient.addColorStop(0, `rgba(255, 215, 0, ${opacity})`);
-        gradient.addColorStop(1, `rgba(255, 160, 0, ${opacity * 0.6})`);
+        gradient.addColorStop(1, `rgba(255, 100, 0, ${opacity * 0.8})`);
         ctx.fillStyle = gradient;
       } else {
         const gradient = ctx.createRadialGradient(x, y, 0, x, y, size);
-        gradient.addColorStop(0, `rgba(255, 248, 225, ${opacity})`);
-        gradient.addColorStop(1, `rgba(255, 220, 160, ${opacity * 0.5})`);
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${opacity})`);
+        gradient.addColorStop(1, `rgba(255, 200, 100, ${opacity * 0.7})`);
         ctx.fillStyle = gradient;
       }
       ctx.fill();
@@ -61,8 +61,8 @@ export default function StarParticles() {
 
     function drawStarGlow(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, opacity: number, isGold: boolean = false) {
       const spikes = 4;
-      const outerRadius = size * 1.8;
-      const innerRadius = size * 0.7;
+      const outerRadius = size * 2.2;
+      const innerRadius = size * 0.8;
       let rotation = Math.PI / 4;
       let step = Math.PI / spikes;
 
@@ -78,9 +78,9 @@ export default function StarParticles() {
       ctx.closePath();
       
       if (isGold) {
-        ctx.fillStyle = `rgba(255, 200, 50, ${opacity * 0.2})`;
+        ctx.fillStyle = `rgba(255, 200, 50, ${opacity * 0.4})`;
       } else {
-        ctx.fillStyle = `rgba(255, 235, 180, ${opacity * 0.15})`;
+        ctx.fillStyle = `rgba(255, 255, 200, ${opacity * 0.3})`;
       }
       ctx.fill();
     }
@@ -100,13 +100,14 @@ export default function StarParticles() {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 1.5 + 0.6;
-        this.speedX = (Math.random() - 0.5) * 0.03;
-        this.speedY = (Math.random() - 0.5) * 0.02;
-        this.baseOpacity = Math.random() * 0.12 + 0.04;
+        this.size = Math.random() * 2.5 + 1.2;
+        this.speedX = (Math.random() - 0.5) * 0.02;
+        this.speedY = (Math.random() - 0.5) * 0.015;
+        this.baseOpacity = Math.random() * 0.3 + 0.2;
         this.cyclePhase = Math.random() * Math.PI * 2;
-        this.cycleSpeed = 0.003 + Math.random() * 0.01;
-        this.twinkleAmplitude = 0.3 + Math.random() * 0.25;
+        // 闪烁速度降低到原来的 1/3：0.002 - 0.006（之前是 0.008-0.02）
+        this.cycleSpeed = 0.002 + Math.random() * 0.004;
+        this.twinkleAmplitude = 0.4 + Math.random() * 0.3;
         this.currentOpacity = this.baseOpacity;
       }
 
@@ -116,7 +117,7 @@ export default function StarParticles() {
         
         this.cyclePhase += this.cycleSpeed;
         const brightness = Math.sin(this.cyclePhase) * this.twinkleAmplitude;
-        this.currentOpacity = Math.max(0.02, Math.min(0.6, this.baseOpacity + brightness));
+        this.currentOpacity = Math.max(0.15, Math.min(0.9, this.baseOpacity + brightness));
 
         if (this.x < 0) this.x = width;
         if (this.x > width) this.x = 0;
@@ -127,10 +128,7 @@ export default function StarParticles() {
       draw() {
         if (!ctx) return;
         
-        if (this.currentOpacity > this.baseOpacity + 0.1) {
-          drawStarGlow(ctx, this.x, this.y, this.size, this.currentOpacity, false);
-        }
-        
+        drawStarGlow(ctx, this.x, this.y, this.size, this.currentOpacity * 1.2, false);
         drawStar(ctx, this.x, this.y, this.size, this.currentOpacity, false);
       }
     }
@@ -150,13 +148,14 @@ export default function StarParticles() {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 1.6 + 0.9;
-        this.speedX = (Math.random() - 0.5) * 0.025;
-        this.speedY = (Math.random() - 0.5) * 0.018;
-        this.baseOpacity = Math.random() * 0.1 + 0.03;
+        this.size = Math.random() * 3 + 1.8;
+        this.speedX = (Math.random() - 0.5) * 0.018;
+        this.speedY = (Math.random() - 0.5) * 0.012;
+        this.baseOpacity = Math.random() * 0.35 + 0.25;
         this.cyclePhase = Math.random() * Math.PI * 2;
-        this.cycleSpeed = 0.005 + Math.random() * 0.008;
-        this.twinkleAmplitude = 0.35 + Math.random() * 0.3;
+        // 金色星星闪烁也更慢：0.0025 - 0.0055
+        this.cycleSpeed = 0.0025 + Math.random() * 0.003;
+        this.twinkleAmplitude = 0.5 + Math.random() * 0.35;
         this.currentOpacity = this.baseOpacity;
       }
 
@@ -166,7 +165,7 @@ export default function StarParticles() {
         
         this.cyclePhase += this.cycleSpeed;
         const brightness = Math.sin(this.cyclePhase) * this.twinkleAmplitude;
-        this.currentOpacity = Math.max(0.02, Math.min(0.65, this.baseOpacity + brightness));
+        this.currentOpacity = Math.max(0.2, Math.min(0.95, this.baseOpacity + brightness));
 
         if (this.x < 0) this.x = width;
         if (this.x > width) this.x = 0;
@@ -177,10 +176,7 @@ export default function StarParticles() {
       draw() {
         if (!ctx) return;
         
-        if (this.currentOpacity > this.baseOpacity + 0.15) {
-          drawStarGlow(ctx, this.x, this.y, this.size * 1.1, this.currentOpacity, true);
-        }
-        
+        drawStarGlow(ctx, this.x, this.y, this.size * 1.3, this.currentOpacity * 1.3, true);
         drawStar(ctx, this.x, this.y, this.size, this.currentOpacity, true);
       }
     }
@@ -192,13 +188,13 @@ export default function StarParticles() {
       if (canvas) canvas.height = height;
 
       stars = [];
-      const starCount = Math.min(400, Math.floor((width * height) / 6000));
+      const starCount = Math.min(600, Math.floor((width * height) / 4000));
       for (let i = 0; i < starCount; i++) {
         stars.push(new Star());
       }
 
       goldStars = [];
-      const goldCount = Math.max(15, Math.min(40, Math.floor((width * height) / 15000)));
+      const goldCount = Math.max(25, Math.min(60, Math.floor((width * height) / 10000)));
       for (let i = 0; i < goldCount; i++) {
         goldStars.push(new GoldStar());
       }
@@ -208,8 +204,7 @@ export default function StarParticles() {
       if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
       
-      // 极淡的深邃透明层，保持通透感
-      ctx.fillStyle = 'rgba(3, 3, 10, 0.08)';
+      ctx.fillStyle = 'rgba(3, 3, 10, 0.05)';
       ctx.fillRect(0, 0, width, height);
       
       for (const star of stars) {
