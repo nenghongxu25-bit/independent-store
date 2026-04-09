@@ -1,0 +1,75 @@
+/* ============================================
+   动画库
+   ============================================ */
+
+/* 基础火彩动画 - DroSta 标题用 */
+@keyframes fire-shimmer {
+  0% { background-position: 150% 50%; }
+  100% { background-position: -50% 50%; }
+}
+
+/* ============================================
+   标题样式
+   ============================================ */
+
+/* DroSta 大标题 */
+.drosta-title {
+  font-size: 9rem;
+  font-style: italic;
+  font-family: var(--font-cormorant), serif;
+  margin: 0;
+  line-height: 0.9;
+  text-transform: uppercase; 
+  letter-spacing: -2px;
+  background: linear-gradient(90deg, 
+    #d4af37 0%, #d4af37 45%, 
+    rgba(255, 100, 100, 0.5) 47%, 
+    rgba(255, 255, 255, 0.9) 50%, 
+    rgba(100, 200, 255, 0.6) 53%, 
+    #d4af37 55%, #d4af37 100%
+  );
+  background-size: 150% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fire-shimmer 22s linear infinite;
+}
+
+/* 副标题（Jewelry） */
+.brand-jewelry {
+  font-size: 1.1rem;
+  letter-spacing: 18px;
+  color: #333;
+  margin-top: 15px;
+  font-weight: 300;
+  text-transform: uppercase;
+  padding-left: 18px;
+}
+
+/* 按钮样式 */
+.shop-button {
+  padding: 15px 45px;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: none;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shop-button:hover {
+  background-color: #d4af37;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+}
+
+/* ============================================
+   适配移动端
+   ============================================ */
+
+@media (max-width: 768px) {
+  .drosta-title {
+    font-size: 4rem;
+  }
+}

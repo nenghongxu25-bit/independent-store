@@ -1,5 +1,8 @@
 /* ==========================================================================
-   1. 整体布局 (Section & Container)
+   Bestsellers.module.css - 精简版
+   ========================================================================== */
+
+/* 1. 整体布局
    ========================================================================== */
 .bestsellersSection { 
   padding: 80px 2rem; 
@@ -12,10 +15,12 @@
   text-align: center; 
 }
 
-/* ==========================================================================
-   2. 标题区域 (文字、副标题、装饰线)
+/* 2. 标题区域
    ========================================================================== */
-/* 小标题 */
+.header {
+  margin-bottom: 2rem;
+}
+
 .subtitle { 
   font-size: 0.8rem; 
   letter-spacing: 4px; 
@@ -23,14 +28,12 @@
   text-transform: uppercase; 
 }
 
-/* 主标题 */
 .title { 
   font-size: clamp(2rem, 5vw, 3rem); 
   font-weight: 400; 
   margin: 0.5rem 0 1.5rem; 
 }
 
-/* 装饰分割线容器 */
 .divider { 
   display: flex; 
   align-items: center; 
@@ -39,44 +42,46 @@
   margin-bottom: 1.5rem; 
 }
 
-/* 左右渐变横线 */
 .dividerLine { 
   width: 50px; 
   height: 1px; 
   background: linear-gradient(90deg, transparent, #d4af37, transparent); 
 }
 
-/* 描述文字 */
+.dividerStar {
+  color: #d4af37;
+  font-size: 0.8rem;
+}
+
 .description { 
   font-size: 0.9rem; 
   color: rgba(255, 255, 255, 0.6); 
   margin-bottom: 4rem; 
 }
 
-/* ==========================================================================
-   3. 产品网格与卡片 (Grid & Card)
+/* 3. 产品网格
    ========================================================================== */
-/* 网格布局：自动填充，最小宽度280px */
 .grid { 
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
   gap: 2rem; 
+  margin-bottom: 2rem;
 }
 
-/* 产品卡片外框 */
+/* 4. 产品卡片
+   ========================================================================== */
 .productCard { 
   border: 1px solid rgba(212, 175, 55, 0.2); 
   transition: 0.4s; 
+  background: transparent;
 }
 
-/* 悬停效果：向上平移 + 边框变亮 */
 .productCard:hover { 
   transform: translateY(-8px); 
   border-color: #d4af37; 
 }
 
-/* ==========================================================================
-   4. 图片处理 (Image Container)
+/* 5. 图片区域
    ========================================================================== */
 .imageContainer { 
   position: relative; 
@@ -84,7 +89,6 @@
   overflow: hidden; 
 }
 
-/* 图片缩放动画 */
 .imageWrapper { 
   width: 100%; 
   height: 100%; 
@@ -95,35 +99,43 @@
   transform: scale(1.05); 
 }
 
-/* ==========================================================================
-   5. UI 元素 (标签、快捷查看)
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 6. 标签
    ========================================================================== */
-/* 标签基础样式 (通用) */
-.badge { 
+.badgeBestseller { 
   position: absolute; 
   top: 1rem; 
+  left: 1rem; 
   padding: 0.3rem 0.8rem; 
   font-size: 0.7rem; 
   color: #000; 
+  background: rgba(212, 175, 55, 0.9); 
   z-index: 2; 
 }
 
-/* 畅销标签 (靠左，金色) */
-.badgeBestseller { 
-  left: 1rem; 
-  background: rgba(212, 175, 55, 0.9); 
-}
-
-/* 新品标签 (靠右，白色) */
 .badgeNew { 
+  position: absolute; 
+  top: 1rem; 
   right: 1rem; 
+  padding: 0.3rem 0.8rem; 
+  font-size: 0.7rem; 
+  color: #000; 
   background: #fff; 
+  z-index: 2; 
 }
 
-/* 快捷查看按钮：初始隐藏在底部 -50px */
+/* 7. 快捷查看按钮
+   ========================================================================== */
 .quickViewBtn {
   position: absolute; 
   bottom: -50px; 
+  left: 0;
+  right: 0;
   width: 100%; 
   padding: 0.8rem;
   background: rgba(0,0,0,0.8); 
@@ -134,16 +146,21 @@
   cursor: pointer;
 }
 
-/* 悬停时滑入 */
 .imageContainer:hover .quickViewBtn { 
   bottom: 0; 
 }
 
-/* ==========================================================================
-   6. 产品信息 (Product Info)
+/* 8. 产品信息
    ========================================================================== */
 .productInfo { 
   padding: 1.5rem; 
+}
+
+.productName {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 0 0 0.3rem;
+  color: #fff;
 }
 
 .productCategory { 
@@ -159,38 +176,60 @@
   margin: 0.5rem 0; 
 }
 
-/* ==========================================================================
-   7. 按钮通用样式 (Buttons)
+/* 9. 按钮样式
    ========================================================================== */
-/* 基础按钮样式 */
-.btn { 
-  cursor: pointer; 
-  transition: 0.3s; 
-  background: transparent; 
-  border: 1px solid rgba(212, 175, 55, 0.5); 
-  color: #d4af37; 
-}
-
-/* 加入购物车按钮 */
 .addToCartBtn { 
   width: 100%; 
   padding: 0.7rem; 
   background: rgba(212, 175, 55, 0.05); 
+  border: 1px solid rgba(212, 175, 55, 0.5); 
+  color: #d4af37; 
+  cursor: pointer; 
+  transition: 0.3s; 
 }
 
-/* 查看全部按钮 */
-.viewAllBtn { 
-  padding: 1rem 2.5rem; 
-  margin-top: 4rem; 
-}
-
-.btn:hover { 
+.addToCartBtn:hover { 
   background: rgba(212, 175, 55, 0.15); 
 }
 
-/* ==========================================================================
-   8. 响应式适配 (Mobile)
+.cartIcon {
+  margin-right: 0.5rem;
+}
+
+.viewAllWrapper {
+  text-align: center;
+}
+
+.viewAllBtn { 
+  padding: 1rem 2.5rem; 
+  margin-top: 2rem; 
+  background: transparent; 
+  border: 1px solid rgba(212, 175, 55, 0.5); 
+  color: #d4af37; 
+  cursor: pointer; 
+  transition: 0.3s; 
+}
+
+.viewAllBtn:hover { 
+  background: rgba(212, 175, 55, 0.15); 
+}
+
+.arrow {
+  margin-left: 0.5rem;
+  transition: transform 0.3s;
+}
+
+.viewAllBtn:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* 10. 响应式
    ========================================================================== */
 @media (max-width: 768px) { 
-  .bestsellersSection { padding: 40px 1rem; } 
+  .bestsellersSection { 
+    padding: 40px 1rem; 
+  } 
+  .grid {
+    gap: 1rem;
+  }
 }

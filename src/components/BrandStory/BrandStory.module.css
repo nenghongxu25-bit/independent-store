@@ -71,7 +71,7 @@
 .line1 {
   font-size: 1.2rem;
   letter-spacing: 4px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.6);  /* 深灰色 */
   font-family: var(--font-cormorant), serif;
   font-style: italic;
   margin-bottom: 1rem;
@@ -91,7 +91,7 @@
 /* 英文故事区域 - 优雅衬线体 */
 .englishStory {
   font-family: var(--font-cormorant), Georgia, 'Times New Roman', serif;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.85);  /* 深灰色 */
   line-height: 1.8;
   margin-bottom: 3rem;
 }
@@ -99,7 +99,7 @@
 .englishLine1 {
   font-size: 1rem;
   letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.5);  /* 中灰色 */
   margin-bottom: 1.5rem;
 }
 
@@ -108,12 +108,13 @@
   letter-spacing: 1px;
   margin-bottom: 1.5rem;
   font-weight: 400;
+  color: rgba(0, 0, 0, 0.85);  /* 深灰色 */
 }
 
 .englishLine3 {
   font-size: 1rem;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.6);  /* 深灰色 */
 }
 
 /* 品牌落款 */
@@ -132,7 +133,7 @@
 
 .brandTagline {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.4);  /* 浅灰色 */
   margin-left: 0.75rem;
   letter-spacing: 2px;
 }

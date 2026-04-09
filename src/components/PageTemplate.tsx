@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
-import styles from '../app/page.module.css';
-
+import styles from './HeroSection/HeroSection.module.css';
 interface PageTemplateProps {
   children: ReactNode;
   innerBg?: string;
