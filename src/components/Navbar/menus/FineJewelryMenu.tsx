@@ -1,5 +1,6 @@
 import React from 'react';
-import { containerStyles, headerStyles, listStyles, cardStyles } from '../MenuStyles';
+import { containerStyles, headerStyles, listStyles, cardStyles } from './MenuStyles';
+import MenuItem from './MenusItems';
 
 export default function FineJewelryMenu() {
   return (
@@ -9,30 +10,30 @@ export default function FineJewelryMenu() {
       <div style={{ flex: 1 }}>
         <h4 style={headerStyles}>Shop by Category</h4>
         <ul style={listStyles}>
-          <li>Necklaces</li>
-          <li>Rings</li>
-          <li>Earrings</li>
-          <li>Bracelets</li>
-          <li>Men&apos;s</li>
+          <MenuItem href="/fine-jewelry/necklaces">Necklaces</MenuItem>
+          <MenuItem href="/fine-jewelry/rings">Rings</MenuItem>
+          <MenuItem href="/fine-jewelry/earrings">Earrings</MenuItem>
+          <MenuItem href="/fine-jewelry/bracelets">Bracelets</MenuItem>
+          <MenuItem href="/fine-jewelry/mens">Men&apos;s</MenuItem>
         </ul>
       </div>
 
       <div style={{ flex: 1 }}>
         <h4 style={headerStyles}>Popular Styles</h4>
-        <ul style={listStyles}>
-          <li>Gold Essentials</li>
-          <li>Hoop Earrings</li>
-          <li>Tennis Bracelets</li>
-        </ul>
+          <ul style={listStyles}>
+            <MenuItem href="/fine-jewelry/gold-essentials">Gold Essentials</MenuItem>
+            <MenuItem href="/fine-jewelry/hoop-earrings">Hoop Earrings</MenuItem>
+            <MenuItem href="/fine-jewelry/tennis-bracelets">Tennis Bracelets</MenuItem>
+          </ul>
       </div>
 
       <div style={{ flex: 1 }}>
         <h4 style={headerStyles}>Gifts</h4>
-        <ul style={listStyles}>
-          <li>Anniversary Rings</li>
-          <li>Family Jewelry</li>
-          <li>Gift Cards</li>
-        </ul>
+          <ul style={listStyles}>
+            <MenuItem href="/gifts/anniversary-rings">Anniversary Rings</MenuItem>
+            <MenuItem href="/gifts/family-jewelry">Family Jewelry</MenuItem>
+            <MenuItem href="/gifts/gift-cards">Gift Cards</MenuItem>
+          </ul>
       </div>
 
     </div>

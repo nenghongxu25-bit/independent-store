@@ -8,7 +8,7 @@ import GemstonesMenu from './GemstonesMenu';
 import FineJewelryMenu from './FineJewelryMenu';
 import PersonalizeMenu from './PersonalizeMenu';
 import SupportMenu from './SupportMenu';
-import { megaMenuStyles } from '../MenuStyles';
+import { megaMenuStyles } from './MenuStyles';
 
 export const NAV_ITEMS = [
   { id: 'engagement', label: 'Engagement Rings' },

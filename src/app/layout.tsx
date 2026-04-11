@@ -1,21 +1,22 @@
-import './styles/globals.css';  // ✅ 改成这样
-import { ClerkProvider } from '@clerk/nextjs';
-import { Cormorant_Garamond, Great_Vibes } from 'next/font/google';
-import Navbar from '@/components/Navbar/index';
-import FloatingActions from '@/components/FloatingActions';
-import StarParticles from '@/components/StarParticles';
+import './styles/globals.css';  // 引用全局样式
+import { ClerkProvider } from '@clerk/nextjs';// 引入 ClerkProvider 组件
+import { Cormorant_Garamond, Great_Vibes } from 'next/font/google';// 引入字体
+import Navbar from '@/components/Navbar/index';// 引入 导航栏 组件
+import FloatingActions from '@/components/FloatingActions';// 引入 悬浮按钮 组件
+import StarParticles from '@/components/StarParticles';// 引入 粒子效果 组件
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ['latin'], 
   weight: ['300', '400', '600'], 
   variable: '--font-cormorant' 
-});
+}); //配置第一板块大标题字体参数
 
 const greatVibes = Great_Vibes({ 
   subsets: ['latin'], 
   weight: ['400'], 
   variable: '--font-great-vibes' 
-});
+});//配置导航栏标题字体参数
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

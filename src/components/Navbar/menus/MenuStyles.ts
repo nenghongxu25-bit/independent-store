@@ -30,7 +30,7 @@ export const headerStyles: React.CSSProperties = {
   fontSize: '1.2rem',
   marginBottom: '15px',
   fontWeight: '700',
-  color: '#C0C0C0',
+  color: '#000000ff',
   letterSpacing: '1px',
   textShadow: 'none',
   backgroundColor: 'transparent',

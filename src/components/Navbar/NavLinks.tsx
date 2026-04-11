@@ -16,14 +16,14 @@ export default function NavLinks({ items, activeMenu, setActiveMenu }: NavLinksP
           onMouseEnter={() => setActiveMenu(item.id)}
           style={{ 
             cursor: 'pointer', 
-            color: '#c0c0c0',  // 👈 银色
+            color: '#000000ff',  // 黑色
             fontSize: '0.75rem', 
             fontWeight: 500, 
             textTransform: 'uppercase',
             height: '100%',
             display: 'flex',
             alignItems: 'center',
-            borderBottom: activeMenu === item.id ? '2px solid #c0c0c0' : '2px solid transparent',
+            borderBottom: activeMenu === item.id ? '2px solid #000000ff' : '2px solid transparent',
             transition: 'all 0.2s'
           }}
         >

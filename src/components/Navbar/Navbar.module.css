@@ -21,9 +21,9 @@
 
 .logoText {
   font-size: 40px;
-  color: #c0c0c0;
+  color: #000000;
   margin: 0;
-  text-shadow: 0 0 15px rgba(192, 192, 192, 0.3);
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 .rightTools {

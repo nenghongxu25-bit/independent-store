@@ -26,7 +26,7 @@ export default function UserAuth() {
             transition: 'all 0.2s'
           }}
           onMouseEnter={(e) => { e.currentTarget.style.color = '#d4af37'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.color = '#c0c0c0'; }}>
+          onMouseLeave={(e) => { e.currentTarget.style.color = '#000000ff'; }}>
             <User size={22} strokeWidth={2} />
             <span style={{ fontSize: '13px', marginLeft: '6px', letterSpacing: '1px', fontWeight: '600' }}>LOGIN</span>
           </button>

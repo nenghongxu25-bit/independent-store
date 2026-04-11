@@ -2,29 +2,25 @@ import styles from './HeroSection.module.css';
 
 export default function HeroSection() {
   return (
-    <main style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center', 
-      paddingTop: '120px',
-      minHeight: '100vh' 
-    }}>
-      <div style={{ textAlign: 'center' }}>
+    <main className={styles.hero}>
+      {/*hero页面总布局 */}
+      <div className={styles.content}>
+        {/*容器内容格式*/}
         <p className={styles.subtitle}>
           <span className="handcraftedText">Handcrafted</span>{' '}
           <span className="excellenceText">Excellence</span>
         </p>
         
-        <h1 className={`${styles['drosta-title']} navLogo`} translate="no">
+        <h1 className={`${styles.drostaTitle} navLogo`} translate="no">
           DroSta
         </h1>
         
-        <h2 className={styles['brand-jewelry']}>
+        <h2 className={styles.brandJewelry}>
           Jewelry
         </h2>
         
-        <div style={{ marginTop: '110px' }}>
-          <button className={styles['shop-button']}>
+        <div className={styles.buttonWrapper}>
+          <button className={styles.shopButton}>
             EXPLORE THE COLLECTIONS
           </button>
         </div>

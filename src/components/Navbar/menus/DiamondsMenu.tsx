@@ -1,5 +1,5 @@
 import React from 'react';
-import { containerStyles, headerStyles, listStyles, cardStyles } from '../MenuStyles';
+import { containerStyles, headerStyles, listStyles, cardStyles } from './MenuStyles';
 import MenuItem from './MenusItems';
 
 export default function DiamondsMenu() {
@@ -25,7 +25,7 @@ export default function DiamondsMenu() {
       </div>
       
       <div style={cardStyles}>
-        <h4 style={{ fontSize: '1rem', marginBottom: '15px', color: '#C0C0C0' }}>Diamond Education</h4>
+        {/*<h4 style={{ fontSize: '1rem', marginBottom: '15px', color: '#000000ff' }}>Diamond Education</h4>*/}
         <ul style={listStyles}>
           <MenuItem href="/education/diamond-buying-guide">Diamond Buying Guide</MenuItem>
           <MenuItem href="/education/about-lab-grown">About Lab-Grown</MenuItem>

@@ -47,17 +47,6 @@ main {
   background: transparent !important;
 }
 
-@keyframes borderGlow {
-  0%, 100% { 
-    border-color: rgba(212, 175, 55, 0.3); 
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
-  }
-  50% { 
-    border-color: rgba(212, 175, 55, 0.8); 
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
-  }
-}
-
 .borderGlow {
   border: 2px solid rgba(212, 175, 55, 0.3) !important; 
   animation: borderGlow 4s ease-in-out infinite;
@@ -76,10 +65,6 @@ main {
   animation: shimmerEffect 6s linear infinite;
   text-align: center;
   font-weight: bold;
-}
-
-@keyframes shimmerEffect {
-  to { background-position: 200% center; }
 }
 
 .jewelry-grid {
@@ -113,4 +98,19 @@ body.navMenuOpen .excellenceText {
   filter: blur(12px);
   opacity: 0.3;
   transition: all 0.3s ease;
+}
+
+@keyframes shimmerEffect {
+  to { background-position: 200% center; }
+}
+
+@keyframes borderGlow {
+  0%, 100% { 
+    border-color: rgba(212, 175, 55, 0.3); 
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+  }
+  50% { 
+    border-color: rgba(212, 175, 55, 0.8); 
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+  }
 }

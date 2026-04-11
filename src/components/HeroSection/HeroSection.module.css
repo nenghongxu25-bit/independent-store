@@ -1,25 +1,54 @@
-/* ============================================
-   动画库
-   ============================================ */
-
-/* 基础火彩动画 - DroSta 标题用 */
-@keyframes fire-shimmer {
-  0% { background-position: 150% 50%; }
-  100% { background-position: -50% 50%; }
+/*hero页面总布局 */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 120px;
+  min-height: 100vh;
+}
+/*容器内容格式*/
+.content {
+  text-align: center;
+}
+/*容器包裹*/
+.buttonWrapper {
+  margin-top: 110px;
 }
 
-/* ============================================
-   标题样式
-   ============================================ */
+/* 按钮默认样式 */
+.shopButton {
+  padding: 15px 45px;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: none;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* 按钮悬停样式 */
+.shopButton:hover {
+  background-color: #d4af37;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+}
+
+/* 副标题 */
+.subtitle {
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 1rem;
+}
 
 /* DroSta 大标题 */
-.drosta-title {
+.drostaTitle {
   font-size: 9rem;
   font-style: italic;
   font-family: var(--font-cormorant), serif;
   margin: 0;
   line-height: 0.9;
-  text-transform: uppercase; 
+  text-transform: uppercase;
   letter-spacing: -2px;
   background: linear-gradient(90deg, 
     #d4af37 0%, #d4af37 45%, 
@@ -35,8 +64,8 @@
   animation: fire-shimmer 22s linear infinite;
 }
 
-/* 副标题（Jewelry） */
-.brand-jewelry {
+/* 副标题 Jewelry */
+.brandJewelry {
   font-size: 1.1rem;
   letter-spacing: 18px;
   color: #333;
@@ -46,30 +75,15 @@
   padding-left: 18px;
 }
 
-/* 按钮样式 */
-.shop-button {
-  padding: 15px 45px;
-  background-color: #1a1a1a;
-  color: #fff;
-  border: none;
-  font-size: 0.75rem;
-  letter-spacing: 4px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* 动画 */
+@keyframes fire-shimmer {
+  0% { background-position: 150% 50%; }
+  100% { background-position: -50% 50%; }
 }
 
-.shop-button:hover {
-  background-color: #d4af37;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
-}
-
-/* ============================================
-   适配移动端
-   ============================================ */
-
+/* 移动端适配 */
 @media (max-width: 768px) {
-  .drosta-title {
+  .drostaTitle {
     font-size: 4rem;
   }
 }

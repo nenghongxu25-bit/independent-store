@@ -32,7 +32,7 @@ export default function CartIcon({ count = 0, onClick }: CartIconProps) {
         <ShoppingBag 
           size={24} 
           strokeWidth={2} 
-          color={isHovered ? '#d4af37' : '#c0c0c0'}
+          color={isHovered ? '#d4af37' : '#000000ff'}
           style={{ transition: 'color 0.2s' }}
         />
         
