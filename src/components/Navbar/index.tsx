@@ -4,13 +4,7 @@ import React, { useState, useEffect } from 'react';
 import NavLinks from './NavLinks'; 
 import MenuRenderer, { NAV_ITEMS } from './menus/index'; 
 import {UserAuth, CartIcon, SearchBar} from './ui/index';
-import { Cormorant_Garamond } from 'next/font/google';
 import styles from './Navbar.module.css'; // 引入皮肤
-
-const cormorant = Cormorant_Garamond({ 
-  subsets: ['latin'], 
-  weight: ['400'] 
-});
 
 export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -35,7 +29,7 @@ export default function Navbar() {
 
       {/* Logo 区域 - 恢复原样，不加 navLogo */}
       <div className={styles.logoWrapper}>
-        <h1 translate="no" className={`${cormorant.className} ${styles.logoText}`}>
+        <h1 translate="no" className={styles.logoText} style={{ fontFamily: 'var(--font-cormorant)' }}>
           DroSta
         </h1>
       </div>

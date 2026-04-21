@@ -4,7 +4,7 @@ import React from 'react';
 import { Phone } from 'lucide-react'; // 记得安装 lucide-react
 
 export default function WhatsAppButton() {
-  const phoneNumber = "7354946908"; // 这里换成你的真实 WhatsApp 号码
+  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "7354946908";
   const message = "Hi Shimmer, I'm interested in your jewelry collection.";
 
   const handleClick = () => {

@@ -1,15 +1,16 @@
-import { SignUp } from "@clerk/nextjs";
+import Link from 'next/link';
 
 export default function SignUpPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black">
-      <SignUp 
-        routing="path" 
-        path="/sign-up" 
-        // 🚀 加上这一行，注册页底部会有 "Already have an account? Sign in"
-        signInUrl="/sign-in" 
-        afterSignUpUrl="/account"
-      />
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', backgroundColor: '#000', color: '#fff' }}>
+      <h1 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '2rem', marginBottom: '20px', letterSpacing: '4px' }}>SIGN UP</h1>
+      <p style={{ color: '#888', marginBottom: '30px' }}>Clerk 未配置，注册功能暂不可用。</p>
+      <Link
+        href="/"
+        style={{ color: '#d4af37', border: '1px solid #d4af37', padding: '10px 30px', borderRadius: '30px', textDecoration: 'none', letterSpacing: '2px', fontSize: '12px' }}
+      >
+        BACK TO HOME
+      </Link>
     </div>
   );
 }

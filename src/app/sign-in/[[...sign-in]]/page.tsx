@@ -1,27 +1,16 @@
-import { SignIn } from "@clerk/nextjs";
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function SignInPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black">
-      {/* 登录框 */}
-      <SignIn 
-        routing="path" 
-        path="/sign-in" 
-        signUpUrl="/sign-up"
-        afterSignInUrl="/account"
-      />
-      
-      {/* 强制显示的注册入口 */}
-      <div className="mt-6 text-center">
-        <p className="text-gray-400 mb-2">没有账号？</p>
-        <Link 
-          href="/sign-up" 
-          className="text-white border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition"
-        >
-          立即注册 Shimmer 会员
-        </Link>
-      </div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', backgroundColor: '#000', color: '#fff' }}>
+      <h1 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '2rem', marginBottom: '20px', letterSpacing: '4px' }}>SIGN IN</h1>
+      <p style={{ color: '#888', marginBottom: '30px' }}>Clerk 未配置，登录功能暂不可用。</p>
+      <Link
+        href="/"
+        style={{ color: '#d4af37', border: '1px solid #d4af37', padding: '10px 30px', borderRadius: '30px', textDecoration: 'none', letterSpacing: '2px', fontSize: '12px' }}
+      >
+        BACK TO HOME
+      </Link>
     </div>
   );
 }

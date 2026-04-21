@@ -6,6 +6,7 @@ export interface Product {
   category: string;
   price: number;
   image: string;
+  video?: string;
   isBestseller?: boolean;
   isNew?: boolean;
 }

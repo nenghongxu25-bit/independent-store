@@ -8,7 +8,8 @@ export const products: Product[] = [
     name: 'Celestial Ring',
     category: 'Rings',
     price: 299,
-    image: '/images/ring1.jpg',
+    image: '/image/bestseller/RS.png',
+    video: '/RS.mp4',
     isBestseller: true,
   },
   {
@@ -34,7 +35,6 @@ export const products: Product[] = [
     price: 159,
     image: '/images/bracelet1.jpg',
   },
-  // ========== 新增 5 个产品 ==========
   {
     id: '5',
     name: 'Midnight Sapphire Ring',

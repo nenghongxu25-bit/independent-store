@@ -4,10 +4,24 @@ const nextConfig = {
   
   // 忽略 ESLint 和 TypeScript 构建错误，确保部署通过
   eslint: {
-    ignoreDuringBuilds: true, // 构建时跳过 ESLint 检查
+    ignoreDuringBuilds: true,
   },
   typescript: {
-    ignoreBuildErrors: true,  // 构建时跳过 TypeScript 类型检查
+    ignoreBuildErrors: true,
+  },
+  
+  // 图片配置
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: '**',
+      },
+    ],
   },
 };
 

@@ -1,0 +1,133 @@
+/* ChatVikas.module.css */
+
+.trigger {
+  width: 50px;
+  height: 50px;
+  background-color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.panel {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 350px;
+  height: 500px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+}
+
+.header {
+  background-color: #000;
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #aa8928;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerName {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.headerRole {
+  font-size: 10px;
+  color: #aa8928;
+  letter-spacing: 1px;
+}
+
+.messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #fafafa;
+}
+
+.message {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 15px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.messageUser {
+  composes: message;
+  align-self: flex-end;
+  background-color: #000;
+  color: #fff;
+}
+
+.messageAssistant {
+  composes: message;
+  align-self: flex-start;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #eee;
+}
+
+.loading {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #aa8928;
+  font-size: 12px;
+}
+
+.inputBar {
+  padding: 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+  background-color: #fff;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 13px;
+}
+
+.sendButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sendButtonActive {
+  composes: sendButton;
+  color: #aa8928;
+}
+
+.sendButtonDisabled {
+  composes: sendButton;
+  color: #ccc;
+}

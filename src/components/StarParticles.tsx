@@ -66,12 +66,11 @@ export default function StarParticles() {
         this.seed = Math.random() * 100;
       }
 
-      update() {
+      update(time: number) {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        const time = Date.now() * 0.001;  // 更慢的闪烁
-        const base = (Math.sin(time + this.seed) + 1) / 2; 
+        const base = (Math.sin(time + this.seed) + 1) / 2;  // 用外部传入的时间
         
         // 白底版：透明度范围 0.1 - 0.4，更淡
         this.opacity = base * 0.3 + 0.1;
@@ -123,9 +122,11 @@ export default function StarParticles() {
       // 清空画布（完全透明，不添加任何颜色滤镜）
       ctx.clearRect(0, 0, width, height);
 
+      const time = performance.now() * 0.001; // 统一时间，避免每个星星重复调用
+
       // 绘制星星
       for (const star of stars) {
-        star.update();
+        star.update(time);
         star.draw();
       }
       

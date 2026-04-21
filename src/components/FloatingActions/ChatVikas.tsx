@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, User, Loader2 } from 'lucide-react';
+import styles from './ChatVikas.module.css';
 
 export default function ChatVikas() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,6 @@ export default function ChatVikas() {
         body: JSON.stringify({ messages: [...messages, userMsg] }),
       });
 
-      // 关键改动：先检查响应状态
       if (!res.ok) {
         const errorData = await res.json();
         throw new Error(errorData.content || 'Server Error');
@@ -50,45 +50,32 @@ export default function ChatVikas() {
 
   return (
     <>
-      <div 
-        onClick={() => setIsOpen(!isOpen)} 
-        style={{ width: '50px', height: '50px', backgroundColor: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#fff', boxShadow: '0 4px 15px rgba(0,0,0,0.2)' }}
-      >
+      <div className={styles.trigger} onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
       </div>
 
       {isOpen && (
-        <div style={{ position: 'absolute', bottom: '70px', right: 0, width: '350px', height: '500px', backgroundColor: '#fff', borderRadius: '15px', boxShadow: '0 10px 40px rgba(0,0,0,0.15)', display: 'flex', flexDirection: 'column', overflow: 'hidden', border: '1px solid #f0f0f0' }}>
+        <div className={styles.panel}>
           {/* Header */}
-          <div style={{ backgroundColor: '#000', padding: '20px', color: '#fff', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: '35px', height: '35px', borderRadius: '50%', backgroundColor: '#aa8928', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className={styles.header}>
+            <div className={styles.avatar}>
               <User size={20} />
             </div>
             <div>
-              <div style={{ fontSize: '14px', fontWeight: '600', letterSpacing: '1px' }}>VIKAS</div>
-              <div style={{ fontSize: '10px', color: '#aa8928', letterSpacing: '1px' }}>SHIMMER EXPERT</div>
+              <div className={styles.headerName}>VIKAS</div>
+              <div className={styles.headerRole}>SHIMMER EXPERT</div>
             </div>
           </div>
 
           {/* Messages */}
-          <div ref={scrollRef} style={{ flex: 1, padding: '20px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '15px', backgroundColor: '#fafafa' }}>
+          <div ref={scrollRef} className={styles.messages}>
             {messages.map((msg, i) => (
-              <div key={i} style={{ 
-                alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start', 
-                maxWidth: '85%', 
-                padding: '12px 16px', 
-                borderRadius: '15px', 
-                fontSize: '13px', 
-                lineHeight: '1.5',
-                backgroundColor: msg.role === 'user' ? '#000' : '#fff', 
-                color: msg.role === 'user' ? '#fff' : '#333', 
-                border: msg.role === 'assistant' ? '1px solid #eee' : 'none' 
-              }}>
+              <div key={i} className={msg.role === 'user' ? styles.messageUser : styles.messageAssistant}>
                 {msg.content}
               </div>
             ))}
             {isLoading && (
-              <div style={{ alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: '8px', color: '#aa8928', fontSize: '12px' }}>
+              <div className={styles.loading}>
                 <Loader2 className="animate-spin" size={16} />
                 Vikas is thinking...
               </div>
@@ -96,19 +83,19 @@ export default function ChatVikas() {
           </div>
 
           {/* Input */}
-          <div style={{ padding: '15px', borderTop: '1px solid #eee', display: 'flex', gap: '10px', backgroundColor: '#fff' }}>
+          <div className={styles.inputBar}>
             <input 
               type="text" 
+              className={styles.input}
               value={input} 
               onChange={(e) => setInput(e.target.value)} 
               onKeyDown={(e) => e.key === 'Enter' && handleSend()} 
               placeholder="Ask Vikas about diamonds..." 
-              style={{ flex: 1, border: 'none', outline: 'none', fontSize: '13px' }} 
             />
             <button 
+              className={input.trim() ? styles.sendButtonActive : styles.sendButtonDisabled}
               onClick={handleSend} 
               disabled={isLoading} 
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: input.trim() ? '#aa8928' : '#ccc' }}
             >
               <Send size={20} />
             </button>

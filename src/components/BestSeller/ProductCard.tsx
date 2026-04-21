@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { Product } from './types';
 import styles from './Bestsellers.module.css';
@@ -13,12 +13,32 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (product.video && videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log('Video autoplay prevented:', error);
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (product.video && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  const videoPath = product.video ? `/video/bestseller/${product.video}` : null;
 
   return (
     <div 
       className={styles.productCard}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className={styles.imageContainer}>
         {product.isBestseller && (
@@ -28,14 +48,30 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className={styles.badgeNew}>NEW</div>
         )}
         
-        <div className={styles.imageWrapper}>
-          <Image 
-            src={product.image} 
-            alt={product.name}
-            width={400}
-            height={400}
-            className={styles.productImage}
-          />
+        <div className={styles.mediaContainer}>
+          <div className={`${styles.mediaItem} ${!isHovered ? styles.mediaVisible : styles.mediaHidden}`}>
+            <Image 
+              src={product.image}
+              alt={product.name}
+              width={400}
+              height={400}
+              className={styles.productImage}
+            />
+          </div>
+          
+          {videoPath && (
+            <div className={`${styles.mediaItem} ${isHovered ? styles.mediaVisible : styles.mediaHidden}`}>
+              <video
+                ref={videoRef}
+                src={videoPath}
+                className={styles.productVideo}
+                muted
+                playsInline
+                loop={false}
+                preload="metadata"
+              />
+            </div>
+          )}
         </div>
         
         <button className={styles.quickViewBtn}>
